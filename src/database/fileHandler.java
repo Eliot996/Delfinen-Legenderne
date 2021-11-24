@@ -1,6 +1,6 @@
 package database;
 
-public class filreader {
+public class fileHandler {
 }
 /*
 Dolphine:
