@@ -17,4 +17,12 @@ public class Competitor extends Member{
         super(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber);
         this.disciplines = disciplines;
     }
+
+    public List<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines) {
+        this.disciplines = disciplines;
+    }
 }
