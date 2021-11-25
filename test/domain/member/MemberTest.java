@@ -14,7 +14,8 @@ class MemberTest {
                 false,
                 "name",
                 LocalDate.of(2020, 12, 24),
-                "+4533445566");
+                "+4533445566",
+                "test@gmail.com");
 
         assertEquals("name", member.getName());
     }
@@ -25,7 +26,8 @@ class MemberTest {
                 false,
                 "name",
                 LocalDate.of(2020, 12, 24),
-                "+4533445566");
+                "+4533445566",
+                "test@gmail.com");
 
         assertEquals(1, member.getMemberNumber());
     }
@@ -36,7 +38,8 @@ class MemberTest {
                 false,
                 "name",
                 LocalDate.of(2020, 12, 24),
-                "+4533445566");
+                "+4533445566",
+                "test@gmail.com");
 
         assertFalse(member.isPassiveMember());
     }
@@ -47,8 +50,21 @@ class MemberTest {
                 false,
                 "name",
                 LocalDate.of(2020, 12, 24),
-                "+4533445566");
+                "+4533445566",
+                "test@gmail.com");
 
         assertEquals(LocalDate.of(2020, 12, 24), member.getDateOfBirth());
+    }
+
+    @Test
+    void constructorTest_email(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(2020, 12, 24),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertEquals("test@gmail.com", member.getEmail());
     }
 }
