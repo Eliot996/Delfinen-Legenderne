@@ -20,4 +20,44 @@ private String phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
     }
+
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+
+    public void setMemberNumber(int memberNumber) {
+        this.memberNumber = memberNumber;
+    }
+
+    public boolean isPassiveMember() {
+        return isPassiveMember;
+    }
+
+    public void setPassiveMember(boolean passiveMember) {
+        isPassiveMember = passiveMember;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }
