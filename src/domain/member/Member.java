@@ -22,7 +22,11 @@ private String phoneNumber;
     }
 
     public String toFile() {
-        return name+";"+email+";"+birthday+";"+active+";"+elite;
+        return null;//name + ";" + email + ";" + birthday + ";" + active + ";" + elite;
+    }
+
+    public String toCSV() {
+        return Integer.toString(memberNumber) + ';' + isPassiveMember + ';' + name + ';' + dateOfBirth + ';' + phoneNumber;
     }
 
     public int getMemberNumber() {

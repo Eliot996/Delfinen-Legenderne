@@ -3,6 +3,7 @@ package database;
 import domain.member.Member;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MemberDatabase {
 
@@ -34,11 +35,22 @@ public class MemberDatabase {
         return null;
     }
 
-    public ArrayList<Member> getMembers() {
+    public List<Member> getMembers() {
         return members;
     }
 
     public void setMembers(ArrayList<Member> members) {
         this.members = members;
+    }
+
+    public String toCSV() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member :
+                members) {
+            sb.append(member.toCSV()).append('\n');
+        }
+
+        return sb.toString();
     }
 }
