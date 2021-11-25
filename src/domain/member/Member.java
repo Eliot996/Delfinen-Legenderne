@@ -8,64 +8,69 @@ private boolean isPassiveMember;
 private String name;
 private LocalDate dateOfBirth;
 private String phoneNumber;
+private String email;
 
     public Member(int memberNumber,
                   boolean isPassiveMember,
                   String name,
                   LocalDate dateOfBirth,
-                  String phoneNumber) {
+                  String phoneNumber,
+                  String email) {
         this.memberNumber = memberNumber;
         this.isPassiveMember = isPassiveMember;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
-    }
-
-    public String toFile() {
-        return null;//name + ";" + email + ";" + birthday + ";" + active + ";" + elite;
-    }
-
-    public String toCSV() {
-        return Integer.toString(memberNumber) + ';' + isPassiveMember + ';' + name + ';' + dateOfBirth + ';' + phoneNumber;
+        this.email = email;
     }
 
     public int getMemberNumber() {
         return memberNumber;
     }
-
-    public void setMemberNumber(int memberNumber) {
-        this.memberNumber = memberNumber;
-    }
-
     public boolean isPassiveMember() {
         return isPassiveMember;
     }
-
-    public void setPassiveMember(boolean passiveMember) {
-        isPassiveMember = passiveMember;
-    }
-
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    @Override
+    public String toString() {
+        String memberType = "";
+
+        if (dateOfBirth < 18) {
+            memberType = "juniormedlem";
+        } else if (dateOfBirth >= 18)
+            memberType = "seniormedlem";
+
+        return "---- Medlemsoplysninger ----\n" +
+                "Fulde navn: " + name +
+                "\nAlder: " + dateOfBirth +
+                "\nMedlemstype: " + memberType +
+                "\nAktivitetsform: " + isPassiveMember +
+                "\nMedlemsnummer: " + memberNumber +
+                "\nTelefonnummer: " + phoneNumber +
+                "\nEmail: " + email + "\n";
+    }
+    public String toFile() {
+        return  name+";"+
+                dateOfbirth+";"+
+                memberType+";"+
+                IsPassiveMember+";"+
+                memberNumber+";"+
+                phoneNumber";"+
+                email";";
     }
 }
+
+
+
+
+
+
