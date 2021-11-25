@@ -1,10 +1,23 @@
 package domain;
 
-import java.util.Map;
+import java.util.*;
 
 public class Contingent {
-    private Map<String, Integer> fees;
-    private String youthSwimmer;
-    
-    
+    Map <String, Integer> fees = new HashMap<String, Integer>();
+    public Contingent() {
+
+        fees.put("Ungdomssvømmere", 1000);
+        fees.put("Seniorsvømmere", 1600);
+        fees.put("Senior", 1200);
+        fees.put("Passivt medlem", 500);
+
+    }
+
 }
+
+
+
+
+
+
+
