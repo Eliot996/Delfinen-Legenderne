@@ -21,6 +21,10 @@ private String phoneNumber;
         this.phoneNumber = phoneNumber;
     }
 
+    public String toFile() {
+        return name+";"+email+";"+birthday+";"+active+";"+elite;
+    }
+
     public int getMemberNumber() {
         return memberNumber;
     }
