@@ -20,4 +20,28 @@ private String phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.phoneNumber = phoneNumber;
     }
+
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+
+    public boolean isPassiveMember() {
+        return isPassiveMember;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String toFile() {
+        return name+";"+email+";"+birthday+";"+active+";"+elite;
+    }
 }
