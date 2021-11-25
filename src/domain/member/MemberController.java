@@ -3,10 +3,11 @@ package domain.member;
 import database.MemberDatabase;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class MemberController{
 
-    private MemberDatabase memberDB = new MemberDatabase();
+    private final MemberDatabase memberDB = new MemberDatabase();
 
     // TODO: 25/11/2021 add date parsing
     public void addMember(int memberNumber,
@@ -18,6 +19,8 @@ public class MemberController{
         memberDB.addMember(new Member(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber, email));
     }
 
-
+    public List<Member> getMembers(){
+        return memberDB.getMembers();
+    }
 
 }
