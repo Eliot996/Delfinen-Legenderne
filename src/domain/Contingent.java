@@ -10,9 +10,7 @@ public class Contingent {
         fees.put("Seniorsvømmere", 1600);
         fees.put("Pensionist", 1200);
         fees.put("Passivt medlem", 500);
-
     }
-
 }
 
 
