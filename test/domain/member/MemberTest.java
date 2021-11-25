@@ -67,4 +67,28 @@ class MemberTest {
 
         assertEquals("test@gmail.com", member.getEmail());
     }
+
+    @Test
+    void methodTest_isSenior_over18(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(1996, 10, 25),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertTrue(member.isSenior());
+    }
+
+    @Test
+    void methodTest_isSenior_under18(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(2020, 10, 25),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertFalse(member.isSenior());
+    }
 }
