@@ -8,7 +8,8 @@ public class Trainer extends Member{
                    boolean isPassiveMember,
                    String name,
                    LocalDate dateOfBirth,
-                   String phoneNumber) {
-        super(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber);
+                   String phoneNumber,
+                   String email) {
+        super(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber, email);
     }
 }
