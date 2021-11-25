@@ -3,6 +3,7 @@ package domain.member;
 import java.time.LocalDate;
 
 public class Member {
+    // attributter
 private int memberNumber;
 private boolean isPassiveMember;
 private String name;
@@ -10,6 +11,7 @@ private LocalDate dateOfBirth;
 private String phoneNumber;
 private String email;
 
+    //konstruktør
     public Member(int memberNumber,
                   boolean isPassiveMember,
                   String name,
@@ -24,30 +26,22 @@ private String email;
         this.email = email;
     }
 
-    public int getMemberNumber() {
-        return memberNumber;
-    }
-    public boolean isPassiveMember() {
-        return isPassiveMember;
-    }
-    public String getName() {
-        return name;
-    }
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-    public String getPhoneNumber() {
-        return phoneNumber;
+
+    public boolean isSenior() {
+        LocalDate eightteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+        LocalDate today = LocalDate.now();
+
+        return eightteenYearsLater.isBefore(today);
     }
 
     @Override
     public String toString() {
-        String memberType = "";
+        String memberType;
 
-        if (dateOfBirth.getYear() < 18) {
-            memberType = "juniormedlem";
-        } else if (dateOfBirth.getYear() >= 18) {
+        if (isSenior()) {
             memberType = "seniormedlem";
+        } else {
+            memberType = "juniormedlem";
         }
 
         return "---- Medlemsoplysninger ----\n" +
@@ -66,15 +60,50 @@ private String email;
                 isPassiveMember + ";"+
                 memberNumber + ";"+
                 phoneNumber + ";"+
-                email + ";";
+                email;
     }
 
+    // getter og setter for atributterne
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setMemberNumber(int memberNumber) {
+        this.memberNumber = memberNumber;
+    }
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+
+    public void setPassiveMember(boolean passiveMember) {
+        isPassiveMember = passiveMember;
+    }
+    public boolean isPassiveMember() {
+        return isPassiveMember;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }
 
