@@ -1,6 +1,5 @@
 package domain.member;
 
-public class MemberController {
-
+public class MemberController{
 
 }
