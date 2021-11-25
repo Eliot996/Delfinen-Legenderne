@@ -44,10 +44,11 @@ private String email;
     public String toString() {
         String memberType = "";
 
-        if (dateOfBirth < 18) {
+        if (dateOfBirth.getYear() < 18) {
             memberType = "juniormedlem";
-        } else if (dateOfBirth >= 18)
+        } else if (dateOfBirth.getYear() >= 18) {
             memberType = "seniormedlem";
+        }
 
         return "---- Medlemsoplysninger ----\n" +
                 "Fulde navn: " + name +
@@ -58,14 +59,22 @@ private String email;
                 "\nTelefonnummer: " + phoneNumber +
                 "\nEmail: " + email + "\n";
     }
-    public String toFile() {
-        return  name+";"+
-                dateOfbirth+";"+
-                memberType+";"+
-                IsPassiveMember+";"+
-                memberNumber+";"+
-                phoneNumber";"+
-                email";";
+
+    public String toCSV() {
+        return  name + ";"+
+                dateOfBirth + ";"+
+                isPassiveMember + ";"+
+                memberNumber + ";"+
+                phoneNumber + ";"+
+                email + ";";
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 
