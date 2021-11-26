@@ -9,8 +9,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemberControllerTest {
 
+    //****************
+    // *
+    // * Create member
+    // *
+    // ***************
+
     @Test
-    void insertionTest_With1Member(){
+    void createMemberTest_With1Member(){
     MemberController memberController = new MemberController();
     memberController.addMember(1,
             true,
@@ -22,7 +28,7 @@ class MemberControllerTest {
     }
 
     @Test
-    void insertionTest_With2Member(){
+    void createMemberTest_With2Member(){
         MemberController memberController = new MemberController();
 
         memberController.addMember(0,
@@ -43,6 +49,12 @@ class MemberControllerTest {
         assertEquals(memberController.getMembers().get(0).getMemberNumber(), 0);
         assertEquals(memberController.getMembers().get(1).getMemberNumber(), 1);
     }
+
+    //****************
+    // *
+    // * Parse date from string
+    // *
+    // ***************
 
     @Test
     void dateParserTest_legal() {
