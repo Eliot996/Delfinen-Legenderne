@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemberControllerTest {
 
+    //@author Sofia & Mathias
+
     //****************
     // *
     // * Create member

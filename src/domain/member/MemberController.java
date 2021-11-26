@@ -9,9 +9,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-// TODO: 26/11/2021 add trainer and test
-//                  make an edit function
+// TODO: 26/11/2021 make an edit function
 //                  make delete function
+
+//@author Sofia & Mathias
+
 
 public class MemberController{
 

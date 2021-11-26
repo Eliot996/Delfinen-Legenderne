@@ -1,15 +1,16 @@
 package domain.member;
-// @author Mathias og Sofia
+
 import java.time.LocalDate;
 
+// @author Mathias og Sofia
 public class Member {
     // attributter
-private int memberNumber;
-private boolean isPassiveMember;
-private String name;
-private LocalDate dateOfBirth;
-private String phoneNumber;
-private String email;
+    private int memberNumber;
+    private boolean isPassiveMember;
+    private String name;
+    private LocalDate dateOfBirth;
+    private String phoneNumber;
+    private String email;
 
     //konstruktør
     public Member(int memberNumber,
