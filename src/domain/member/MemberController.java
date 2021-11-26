@@ -8,9 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
-// TODO: 26/11/2021 add competitor and test
-//                  add trainer and test
-//                  Make date parser
+// TODO: 26/11/2021 add trainer and test
 //                  make an edit function
 //                  make delete function
 
@@ -18,7 +16,7 @@ public class MemberController{
 
     private final MemberDatabase memberDB = new MemberDatabase();
 
-    // TODO: 25/11/2021 add date parsing and test uniqness of membernumber
+    // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addMember(int memberNumber,
                           boolean isPassiveMember,
                           String name,
@@ -31,14 +29,19 @@ public class MemberController{
         memberDB.addMember(new Member(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
+    // to add a competitor to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addCompetitor(int memberNumber,
                               boolean isPassiveMember,
                               String name,
-                              LocalDate dateOfBirth,
+                              String dateOfBirth,
                               String phoneNumber,
                               String email,
                               List<Discipline> disciplines) {
-        memberDB.addMember(new Competitor(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber, email, disciplines));
+
+        checkUniquenessOfMemberNumber(memberNumber);
+
+        memberDB.addMember(new Competitor(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth),
+                                          phoneNumber, email, disciplines));
     }
 
     public LocalDate getDateFromString(String date){
