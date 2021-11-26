@@ -91,4 +91,40 @@ class MemberTest {
 
         assertFalse(member.isSenior());
     }
+
+    @Test
+    void methodTest_isSenior_over60(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(1950, 10, 25),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertFalse(member.isSenior());
+    }
+
+    @Test
+    void methodTest_isPensioner_over60(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(1950, 10, 25),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertTrue(member.isPensioner());
+    }
+
+    @Test
+    void methodTest_isPensioner_under60(){
+        Member member = new Member(1,
+                false,
+                "name",
+                LocalDate.of(1990, 10, 25),
+                "+4533445566",
+                "test@gmail.com");
+
+        assertFalse(member.isPensioner());
+    }
 }
