@@ -29,9 +29,18 @@ private String email;
 
     public boolean isSenior() {
         LocalDate eightteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+        LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+
         LocalDate today = LocalDate.now();
 
-        return eightteenYearsLater.isBefore(today);
+        return eightteenYearsLater.isBefore(today) && sixtyYearsLater.isAfter(today);
+    }
+
+    public boolean isPensioner() {
+        LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+        LocalDate today = LocalDate.now();
+
+        return sixtyYearsLater.isBefore(today);
     }
 
     @Override
