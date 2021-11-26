@@ -44,6 +44,19 @@ public class MemberController{
                                           phoneNumber, email, disciplines));
     }
 
+    // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
+    public void addTrainer(int memberNumber,
+                           boolean isPassiveMember,
+                           String name,
+                           String dateOfBirth,
+                           String phoneNumber,
+                           String email) {
+
+        checkUniquenessOfMemberNumber(memberNumber);
+
+        memberDB.addMember(new Trainer(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+    }
+
     public LocalDate getDateFromString(String date){
         // make a pattern to parse the given dates from
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
