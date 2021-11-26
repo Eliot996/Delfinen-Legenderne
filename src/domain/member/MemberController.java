@@ -22,10 +22,12 @@ public class MemberController{
     public void addMember(int memberNumber,
                           boolean isPassiveMember,
                           String name,
-                          LocalDate dateOfBirth,
+                          String dateOfBirth,
                           String phoneNumber,
                           String email) {
-        memberDB.addMember(new Member(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber, email));
+
+
+        memberDB.addMember(new Member(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
     public void addCompetitor(int memberNumber,

@@ -21,7 +21,7 @@ class MemberControllerTest {
     memberController.addMember(1,
             true,
             "Name",
-            LocalDate.of(1996,10,25),
+            "25-10-1996",
             "53663634",
             "Test@gmail.com");
     assertEquals(memberController.getMembers().get(0).getMemberNumber(), 1);
@@ -34,14 +34,14 @@ class MemberControllerTest {
         memberController.addMember(0,
                 true,
                 "Name",
-                LocalDate.of(1996,10,25),
+                "25-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
         memberController.addMember(1,
                 true,
                 "Name",
-                LocalDate.of(1996,10,25),
+                "06-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
