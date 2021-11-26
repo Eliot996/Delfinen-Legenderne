@@ -8,9 +8,10 @@ import java.util.Scanner;
 
 public class Controller {
     Scanner userInput = new Scanner(System.in);
+    MemberController memberController = new MemberController();
+    UserInterface ui = new UserInterface();
 
     public void addMember(){
-        MemberController memberController = new MemberController();
         memberController.addMember(userInput.nextInt(),
                                    userInput.nextBoolean(),
                                    userInput.nextLine(),
@@ -22,8 +23,6 @@ public class Controller {
     public void runMenu(){
         boolean keepRunning = true;
         while (keepRunning) {
-            MemberController memberController = new MemberController();
-            UserInterface ui = new UserInterface();
             int choice = ui.menu();
             switch (choice) {
                 case 1 -> memberController.addMember();

@@ -18,6 +18,7 @@ import java.util.List;
 public class MemberController{
 
     private final MemberDatabase memberDB = new MemberDatabase();
+    Controller controller = new Controller();
 
     // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addMember(int memberNumber,
@@ -80,9 +81,6 @@ public class MemberController{
         return memberDB.getMembers();
     }
     public void addMember(){
-        Controller controller = new Controller();
         controller.addMember();
     }
-
-
 }
