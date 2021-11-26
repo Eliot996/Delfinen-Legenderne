@@ -1,5 +1,5 @@
 package domain.member;
-
+// @author Mathias og Sofia
 import java.time.LocalDate;
 
 public class Member {

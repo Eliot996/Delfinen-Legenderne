@@ -1,5 +1,5 @@
 package domain;
-
+// @author Mathias og Sofia
 public class User {
     private String username;
     private String password;

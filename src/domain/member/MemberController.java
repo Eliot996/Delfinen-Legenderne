@@ -1,6 +1,7 @@
 package domain.member;
 
 import database.MemberDatabase;
+import domain.Controller;
 import domain.Discipline;
 
 import java.time.LocalDate;
@@ -76,5 +77,10 @@ public class MemberController{
     public List<Member> getMembers(){
         return memberDB.getMembers();
     }
+    public void addMember(){
+        Controller controller = new Controller();
+        controller.addMember();
+    }
+
 
 }

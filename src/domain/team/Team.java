@@ -1,5 +1,5 @@
 package domain.team;
-
+//@author Mathias
 import domain.member.Trainer;
 import java.util.ArrayList;
 
@@ -13,3 +13,5 @@ public class Team {
         this.description = description;
     }
 }
+
+
