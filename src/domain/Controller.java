@@ -4,7 +4,7 @@ import ui.UserInterface;
 
 import java.util.Scanner;
 
-//@author Sofia
+//@author Sofia og Mathias
 
 public class Controller {
     Scanner userInput = new Scanner(System.in);

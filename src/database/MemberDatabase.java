@@ -4,6 +4,7 @@ import domain.member.Member;
 
 import java.util.ArrayList;
 import java.util.List;
+// @author Mathias
 
 public class MemberDatabase {
 
