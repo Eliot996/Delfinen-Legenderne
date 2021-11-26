@@ -1,6 +1,5 @@
 package domain;
 import domain.member.MemberController;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 //@author Sofia
@@ -13,7 +12,7 @@ public class Controller {
         memberController.addMember(userInput.nextInt(),
                                    userInput.nextBoolean(),
                                    userInput.nextLine(),
-                                   LocalDate.parse(userInput.nextLine()),
+                                   userInput.nextLine(),
                                    userInput.nextLine(),
                                    userInput.nextLine());
     }
