@@ -13,11 +13,11 @@ import java.util.Scanner;
 // TODO: 26/11/2021 make an edit function
 //                  make delete function
 
-public class MemberController {
+//@author Sofia & Mathias
+public class MemberController{
 
     private final MemberDatabase memberDB = new MemberDatabase();
     Scanner userInput = new Scanner(System.in);
-    Controller controller = new Controller();
 
     // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addMember(int memberNumber,
@@ -44,7 +44,7 @@ public class MemberController {
         checkUniquenessOfMemberNumber(memberNumber);
 
         memberDB.addMember(new Competitor(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth),
-                phoneNumber, email, disciplines));
+                                          phoneNumber, email, disciplines));
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -65,7 +65,7 @@ public class MemberController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         // get the dates from the user and parse
-        return LocalDate.parse(date, formatter);
+        return LocalDate.parse(date.trim(), formatter);
     }
 
     public void checkUniquenessOfMemberNumber(int memberNumber) {
@@ -80,10 +80,6 @@ public class MemberController {
         return memberDB.getMembers();
     }
 
-    public void addMember() {
-        controller.addMember();
-    }
-
     public void deleteMember() {
         System.out.println("Her kan du se medlemmerne af svømmeklubben: " + memberDB.getMembers());
         System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
@@ -91,4 +87,3 @@ public class MemberController {
         memberDB.deleteMember(memberDB.getMember(memberNumber));
     }
 }
-
