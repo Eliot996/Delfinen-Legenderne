@@ -7,17 +7,16 @@ import domain.Discipline;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
-
+//@author Sofia & Mathias
 // TODO: 26/11/2021 make an edit function
 //                  make delete function
 
-//@author Sofia & Mathias
-
-
-public class MemberController{
+public class MemberController {
 
     private final MemberDatabase memberDB = new MemberDatabase();
+    Scanner userInput = new Scanner(System.in);
     Controller controller = new Controller();
 
     // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -45,7 +44,7 @@ public class MemberController{
         checkUniquenessOfMemberNumber(memberNumber);
 
         memberDB.addMember(new Competitor(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth),
-                                          phoneNumber, email, disciplines));
+                phoneNumber, email, disciplines));
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -61,7 +60,7 @@ public class MemberController{
         memberDB.addMember(new Trainer(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
-    public LocalDate getDateFromString(String date){
+    public LocalDate getDateFromString(String date) {
         // make a pattern to parse the given dates from
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -69,18 +68,27 @@ public class MemberController{
         return LocalDate.parse(date, formatter);
     }
 
-    public void checkUniquenessOfMemberNumber(int memberNumber){
+    public void checkUniquenessOfMemberNumber(int memberNumber) {
         for (Member member : getMembers()) {
-            if (member.getMemberNumber() == memberNumber){
+            if (member.getMemberNumber() == memberNumber) {
                 throw new IllegalArgumentException("That memberNumber is allready in use!");
             }
         }
     }
 
-    public List<Member> getMembers(){
+    public List<Member> getMembers() {
         return memberDB.getMembers();
     }
-    public void addMember(){
+
+    public void addMember() {
         controller.addMember();
     }
+
+    public void deleteMember() {
+        System.out.println("Her kan du se medlemmerne af svømmeklubben: " + memberDB.getMembers());
+        System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
+        String memberNumber = userInput.nextLine();
+        memberDB.deleteMember(memberDB.getMember(memberNumber));
+    }
 }
+
