@@ -52,11 +52,11 @@ class MemberControllerTest {
         assertEquals(memberController.getMembers().get(1).getMemberNumber(), 1);
     }
 
-    //****************
+    //********************
     // *
     // * Create Competitor
     // *
-    // ***************
+    // *******************
 
     @Test
     void createCompetitorTest_With1Member(){
@@ -105,6 +105,48 @@ class MemberControllerTest {
 
         assertTrue(memberController.getMembers().get(0) instanceof Member);
         assertTrue(memberController.getMembers().get(1) instanceof Competitor);
+    }
+
+    //********************
+    // *
+    // * Create Competitor
+    // *
+    // *******************
+
+    @Test
+    void createTrainerTest_With2Member() {
+        MemberController memberController = new MemberController();
+
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        disciplines.add(Discipline.BREASTSTROKE);
+        disciplines.add(Discipline.CRAWL);
+
+        memberController.addMember(0,
+                true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        memberController.addCompetitor(1,
+                true,
+                "Name",
+                "06-10-1996",
+                "53663634",
+                "Test@gmail.com",
+                disciplines);
+
+        memberController.addTrainer(2,
+                true,
+                "Trainer",
+                "06-10-1996",
+                "53663634",
+                "trainer@gmail.com");
+
+
+        assertTrue(memberController.getMembers().get(0) instanceof Member);
+        assertTrue(memberController.getMembers().get(1) instanceof Competitor);
+        assertTrue(memberController.getMembers().get(2) instanceof Trainer);
     }
 
     //**************************
