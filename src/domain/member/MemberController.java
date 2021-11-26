@@ -83,7 +83,15 @@ public class MemberController{
     public void deleteMember() {
         System.out.println("Her kan du se medlemmerne af svømmeklubben: " + memberDB.getMembers());
         System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
-        String memberNumber = userInput.nextLine();
-        memberDB.deleteMember(memberDB.getMember(memberNumber));
+        int memberNumber = userInput.nextInt();
+        userInput.nextLine();
+
+        Member member = memberDB.getMember(memberNumber);
+
+        if (member == null){
+            System.out.println("no member was found");
+        }else {
+            memberDB.deleteMember(member);
+        }
     }
 }
