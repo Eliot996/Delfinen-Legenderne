@@ -50,11 +50,11 @@ class MemberControllerTest {
         assertEquals(memberController.getMembers().get(1).getMemberNumber(), 1);
     }
 
-    //****************
+    //**************************
     // *
     // * Parse date from string
     // *
-    // ***************
+    // *************************
 
     @Test
     void dateParserTest_legal() {
@@ -86,5 +86,55 @@ class MemberControllerTest {
         assertThrows(DateTimeParseException.class, () -> memberController.getDateFromString(dateToParse));
     }
 
+    //***********************************
+    // *
+    // * Check uniqueness of memberNumber
+    // *
+    // **********************************
 
+    @Test
+    void uniquenessCheckTest_With2Member_Illegal(){
+        MemberController memberController = new MemberController();
+
+        memberController.addMember(0,
+                true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        memberController.addMember(1,
+                true,
+                "Name",
+                "06-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        int toCheck = 1;
+
+        assertThrows(IllegalArgumentException.class, () -> memberController.checkUniquenessOfMemberNumber(toCheck));
+    }
+
+    @Test
+    void uniquenessCheckTest_With2Member_legal(){
+        MemberController memberController = new MemberController();
+
+        memberController.addMember(0,
+                true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        memberController.addMember(1,
+                true,
+                "Name",
+                "06-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        int toCheck = 2;
+
+        assertDoesNotThrow(() -> memberController.checkUniquenessOfMemberNumber(toCheck));
+    }
 }
