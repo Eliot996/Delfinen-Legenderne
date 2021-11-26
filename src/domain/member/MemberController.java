@@ -26,6 +26,7 @@ public class MemberController{
                           String phoneNumber,
                           String email) {
 
+        checkUniquenessOfMemberNumber(memberNumber);
 
         memberDB.addMember(new Member(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
@@ -46,6 +47,14 @@ public class MemberController{
 
         // get the dates from the user and parse
         return LocalDate.parse(date, formatter);
+    }
+
+    public void checkUniquenessOfMemberNumber(int memberNumber){
+        for (Member member : getMembers()) {
+            if (member.getMemberNumber() == memberNumber){
+                throw new IllegalArgumentException("That memberNumber is allready in use!");
+            }
+        }
     }
 
     public List<Member> getMembers(){
