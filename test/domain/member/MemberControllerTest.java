@@ -1,9 +1,11 @@
 package domain.member;
 
+import domain.Discipline;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,6 +50,61 @@ class MemberControllerTest {
 
         assertEquals(memberController.getMembers().get(0).getMemberNumber(), 0);
         assertEquals(memberController.getMembers().get(1).getMemberNumber(), 1);
+    }
+
+    //****************
+    // *
+    // * Create Competitor
+    // *
+    // ***************
+
+    @Test
+    void createCompetitorTest_With1Member(){
+        MemberController memberController = new MemberController();
+
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        disciplines.add(Discipline.BREASTSTROKE);
+        disciplines.add(Discipline.CRAWL);
+
+        memberController.addCompetitor(1,
+                true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com",
+                disciplines);
+
+
+
+        assertTrue(memberController.getMembers().get(0) instanceof Competitor);
+    }
+
+    @Test
+    void createCompetitorTest_With2Member(){
+        MemberController memberController = new MemberController();
+
+        ArrayList<Discipline> disciplines = new ArrayList<>();
+        disciplines.add(Discipline.BREASTSTROKE);
+        disciplines.add(Discipline.CRAWL);
+
+        memberController.addMember(0,
+                true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+        memberController.addCompetitor(1,
+                true,
+                "Name",
+                "06-10-1996",
+                "53663634",
+                "Test@gmail.com",
+                disciplines);
+
+
+        assertTrue(memberController.getMembers().get(0) instanceof Member);
+        assertTrue(memberController.getMembers().get(1) instanceof Competitor);
     }
 
     //**************************
