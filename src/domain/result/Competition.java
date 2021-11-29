@@ -53,4 +53,13 @@ public class Competition {
     public void setCompetitionDiscipline(Discipline competitionDiscipline) {
         this.competitionDiscipline = competitionDiscipline;
     }
+
+    @Override
+    public String toString() {
+        return "----Stævneoplysninger----\n"+
+               "Stævne: " + competitionName +
+               "\nAdresse: " + competitionAdress +
+               "\nDato og tidspunkt for stævnestart: " + dateOfCompetetition +
+               "\nStævnediscipliner: " + competitionDiscipline + "\n";
+    }
 }
