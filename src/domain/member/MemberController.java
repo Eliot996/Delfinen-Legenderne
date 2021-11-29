@@ -1,7 +1,6 @@
 package domain.member;
 
 import database.MemberDatabase;
-import domain.Controller;
 import domain.Discipline;
 
 import java.time.LocalDate;
@@ -20,44 +19,36 @@ public class MemberController{
     Scanner userInput = new Scanner(System.in);
 
     // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
-    public void addMember(int memberNumber,
-                          boolean isPassiveMember,
+    public void addMember(boolean isPassiveMember,
                           String name,
                           String dateOfBirth,
                           String phoneNumber,
                           String email) {
 
-        checkUniquenessOfMemberNumber(memberNumber);
 
-        memberDB.addMember(new Member(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        memberDB.addMember(new Member(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
     // to add a competitor to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
-    public void addCompetitor(int memberNumber,
-                              boolean isPassiveMember,
+    public void addCompetitor(boolean isPassiveMember,
                               String name,
                               String dateOfBirth,
                               String phoneNumber,
                               String email,
                               List<Discipline> disciplines) {
 
-        checkUniquenessOfMemberNumber(memberNumber);
 
-        memberDB.addMember(new Competitor(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth),
-                                          phoneNumber, email, disciplines));
+        memberDB.addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email, disciplines));
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
-    public void addTrainer(int memberNumber,
-                           boolean isPassiveMember,
+    public void addTrainer(boolean isPassiveMember,
                            String name,
                            String dateOfBirth,
                            String phoneNumber,
                            String email) {
 
-        checkUniquenessOfMemberNumber(memberNumber);
-
-        memberDB.addMember(new Trainer(memberNumber, isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        memberDB.addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
     public LocalDate getDateFromString(String date) {
@@ -66,14 +57,6 @@ public class MemberController{
 
         // get the dates from the user and parse
         return LocalDate.parse(date.trim(), formatter);
-    }
-
-    public void checkUniquenessOfMemberNumber(int memberNumber) {
-        for (Member member : getMembers()) {
-            if (member.getMemberNumber() == memberNumber) {
-                throw new IllegalArgumentException("That memberNumber is allready in use!");
-            }
-        }
     }
 
     public List<Member> getMembers() {

@@ -22,36 +22,33 @@ class MemberControllerTest {
     @Test
     void createMemberTest_With1Member(){
     MemberController memberController = new MemberController();
-    memberController.addMember(1,
-            true,
+    memberController.addMember(true,
             "Name",
             "25-10-1996",
             "53663634",
             "Test@gmail.com");
-    assertEquals(memberController.getMembers().get(0).getMemberNumber(), 1);
+    assertNotNull(memberController.getMembers().get(0));
     }
 
     @Test
     void createMemberTest_With2Member(){
         MemberController memberController = new MemberController();
 
-        memberController.addMember(0,
-                true,
+        memberController.addMember(true,
                 "Name",
                 "25-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
-        memberController.addMember(1,
-                true,
+        memberController.addMember(true,
                 "Name",
                 "06-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
 
-        assertEquals(memberController.getMembers().get(0).getMemberNumber(), 0);
-        assertEquals(memberController.getMembers().get(1).getMemberNumber(), 1);
+        assertNotNull(memberController.getMembers().get(0));
+        assertNotNull(memberController.getMembers().get(1));
     }
 
     //********************
@@ -68,8 +65,7 @@ class MemberControllerTest {
         disciplines.add(Discipline.BREASTSTROKE);
         disciplines.add(Discipline.CRAWL);
 
-        memberController.addCompetitor(1,
-                true,
+        memberController.addCompetitor(true,
                 "Name",
                 "25-10-1996",
                 "53663634",
@@ -89,15 +85,13 @@ class MemberControllerTest {
         disciplines.add(Discipline.BREASTSTROKE);
         disciplines.add(Discipline.CRAWL);
 
-        memberController.addMember(0,
-                true,
+        memberController.addMember(true,
                 "Name",
                 "25-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
-        memberController.addCompetitor(1,
-                true,
+        memberController.addCompetitor(true,
                 "Name",
                 "06-10-1996",
                 "53663634",
@@ -123,23 +117,20 @@ class MemberControllerTest {
         disciplines.add(Discipline.BREASTSTROKE);
         disciplines.add(Discipline.CRAWL);
 
-        memberController.addMember(0,
-                true,
+        memberController.addMember(true,
                 "Name",
                 "25-10-1996",
                 "53663634",
                 "Test@gmail.com");
 
-        memberController.addCompetitor(1,
-                true,
+        memberController.addCompetitor(true,
                 "Name",
                 "06-10-1996",
                 "53663634",
                 "Test@gmail.com",
                 disciplines);
 
-        memberController.addTrainer(2,
-                true,
+        memberController.addTrainer(true,
                 "Trainer",
                 "06-10-1996",
                 "53663634",
@@ -185,57 +176,5 @@ class MemberControllerTest {
         String dateToParse = "1996-10-06";
 
         assertThrows(DateTimeParseException.class, () -> memberController.getDateFromString(dateToParse));
-    }
-
-    //***********************************
-    // *
-    // * Check uniqueness of memberNumber
-    // *
-    // **********************************
-
-    @Test
-    void uniquenessCheckTest_With2Member_Illegal(){
-        MemberController memberController = new MemberController();
-
-        memberController.addMember(0,
-                true,
-                "Name",
-                "25-10-1996",
-                "53663634",
-                "Test@gmail.com");
-
-        memberController.addMember(1,
-                true,
-                "Name",
-                "06-10-1996",
-                "53663634",
-                "Test@gmail.com");
-
-        int toCheck = 1;
-
-        assertThrows(IllegalArgumentException.class, () -> memberController.checkUniquenessOfMemberNumber(toCheck));
-    }
-
-    @Test
-    void uniquenessCheckTest_With2Member_legal(){
-        MemberController memberController = new MemberController();
-
-        memberController.addMember(0,
-                true,
-                "Name",
-                "25-10-1996",
-                "53663634",
-                "Test@gmail.com");
-
-        memberController.addMember(1,
-                true,
-                "Name",
-                "06-10-1996",
-                "53663634",
-                "Test@gmail.com");
-
-        int toCheck = 2;
-
-        assertDoesNotThrow(() -> memberController.checkUniquenessOfMemberNumber(toCheck));
     }
 }

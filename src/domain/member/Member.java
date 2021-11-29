@@ -6,24 +6,21 @@ import java.util.UUID;
 // @author Mathias og Sofia
 public class Member {
     // attributter
-    private int memberNumber;
+    private UUID memberID;
     private boolean isPassiveMember;
     private String name;
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String email;
-    private UUID memberID;
 
     //konstruktør
-    public Member(int memberNumber,
-                  boolean isPassiveMember,
+    public Member(boolean isPassiveMember,
                   String name,
                   LocalDate dateOfBirth,
                   String phoneNumber,
                   String email) {
 
         this.memberID = UUID.randomUUID();
-        this.memberNumber = memberNumber;
         this.isPassiveMember = isPassiveMember;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -65,14 +62,12 @@ public class Member {
                 "\nAlder: " + dateOfBirth +
                 "\nMedlemstype: " + memberType +
                 "\nAktivitetsform: " + isPassiveMember +
-                "\nMedlemsnummer: " + memberNumber +
                 "\nTelefonnummer: " + phoneNumber +
                 "\nEmail: " + email + "\n";
     }
 
     public String toCSV() {
         return  memberID + ";"+
-                memberNumber + ";" +
                 name + ";" +
                 dateOfBirth + ";"+
                 isPassiveMember + ";" +
@@ -85,12 +80,11 @@ public class Member {
         String[] elements = CSV.split(";");
 
         this.memberID = UUID.fromString(elements[0]);
-        this.memberNumber = Integer.parseInt(elements[1]);
-        this.name = elements[2];
-        this.dateOfBirth = LocalDate.parse(elements[3]);
-        this.isPassiveMember = Boolean.parseBoolean(elements[4]);
-        this.phoneNumber = elements[5];
-        this.email = elements[6];
+        this.name = elements[1];
+        this.dateOfBirth = LocalDate.parse(elements[2]);
+        this.isPassiveMember = Boolean.parseBoolean(elements[3]);
+        this.phoneNumber = elements[4];
+        this.email = elements[5];
     }
 
     // getter og setter for atributterne
@@ -99,13 +93,6 @@ public class Member {
     }
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setMemberNumber(int memberNumber) {
-        this.memberNumber = memberNumber;
-    }
-    public int getMemberNumber() {
-        return memberNumber;
     }
 
     public void setPassiveMember(boolean passiveMember) {
@@ -134,6 +121,14 @@ public class Member {
     }
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public UUID getMemberID() {
+        return memberID;
+    }
+
+    public void setMemberID(UUID memberID) {
+        this.memberID = memberID;
     }
 }
 

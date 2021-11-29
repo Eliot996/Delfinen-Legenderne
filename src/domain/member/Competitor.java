@@ -9,14 +9,13 @@ public class Competitor extends Member{
 
     private List<Discipline> disciplines;
 
-    public Competitor(int memberNumber,
-                      boolean isPassiveMember,
+    public Competitor(boolean isPassiveMember,
                       String name,
                       LocalDate dateOfBirth,
                       String phoneNumber,
                       String email,
                       List<Discipline> disciplines) {
-        super(memberNumber, isPassiveMember, name, dateOfBirth, phoneNumber, email);
+        super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
         this.disciplines = disciplines;
     }
 
