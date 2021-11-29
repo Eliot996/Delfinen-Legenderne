@@ -1,10 +1,10 @@
 package domain.member;
 
-import database.MemberDatabase;
 import domain.Discipline;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,8 +14,6 @@ import java.util.Scanner;
 
 //@author Sofia & Mathias
 public class MemberController{
-
-    private final MemberDatabase memberDB = new MemberDatabase();
     Scanner userInput = new Scanner(System.in);
 
     // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -26,7 +24,7 @@ public class MemberController{
                           String email) {
 
 
-        memberDB.addMember(new Member(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        addMember(new Member(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
     // to add a competitor to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -38,7 +36,7 @@ public class MemberController{
                               List<Discipline> disciplines) {
 
 
-        memberDB.addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email, disciplines));
+        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email, disciplines));
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -48,7 +46,7 @@ public class MemberController{
                            String phoneNumber,
                            String email) {
 
-        memberDB.addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
     public LocalDate getDateFromString(String date) {
@@ -60,21 +58,58 @@ public class MemberController{
     }
 
     public List<Member> getMembers() {
-        return memberDB.getMembers();
+        return members;
     }
 
     public void deleteMember() {
-        System.out.println("Her kan du se medlemmerne af svømmeklubben: " + memberDB.getMembers());
+        System.out.println("Her kan du se medlemmerne af svømmeklubben: " + getMembers());
         System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
         int memberNumber = userInput.nextInt();
         userInput.nextLine();
 
-        Member member = memberDB.getMember(memberNumber);
+        Member member = getMember(memberNumber);
 
         if (member == null){
             System.out.println("no member was found");
         }else {
-            memberDB.deleteMember(member);
+            deleteMember(member);
         }
+
+    }
+    // Memberdatabase methods
+    // @Author Mathias
+    private ArrayList<Member> members = new ArrayList<>();
+
+    public void addMember(Member member){
+        members.add(member);
+    }
+
+    public void deleteMember(Member member){
+        members.remove(member);
+    }
+
+    public Member getMember(String name){
+        for (Member member : members) {
+            if (member.getName().equals(name)){
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public void setMembers(ArrayList<Member> members) {
+        this.members = members;
+    }
+
+    public String toCSV() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member :
+                members) {
+            sb.append(member.toCSV()).append('\n');
+        }
+
+        return sb.toString();
     }
 }
+
