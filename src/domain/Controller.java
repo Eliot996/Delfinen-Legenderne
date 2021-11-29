@@ -1,7 +1,10 @@
 package domain;
+import domain.member.Member;
 import domain.member.MemberController;
 import ui.UserInterface;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //@author Sofia og Mathias
@@ -11,7 +14,7 @@ public class Controller {
     MemberController memberController = new MemberController();
     UserInterface ui = new UserInterface();
 
-    public void addMember(){
+    public void addMember() {
         System.out.print("ID: ");
         int membernumber = userInput.nextInt();
         System.out.print("is passive: ");
@@ -27,14 +30,14 @@ public class Controller {
         String email = userInput.nextLine();
 
         memberController.addMember(membernumber,
-                                   isPassive,
-                                   name,
-                                   DOB,
-                                   phone,
-                                   email);
+                isPassive,
+                name,
+                DOB,
+                phone,
+                email);
     }
 
-    public void runMenu(){
+    public void runMenu() {
         boolean keepRunning = true;
         while (keepRunning) {
             int choice = ui.menu();
@@ -51,5 +54,22 @@ public class Controller {
         }
     }
 
+    private ArrayList<Member> members = new ArrayList<>();
 
+    public void addMember(Member member) {
+        members.add(member);
+    }
+
+    public void deleteMember(Member member) {
+        members.remove(member);
+    }
+
+    public Member getMember(String name) {
+        for (Member member : members) {
+            if (member.getName().equals(name)) {
+                return member;
+            }
+        }
+        return null;
+    }
 }
