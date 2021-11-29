@@ -50,6 +50,8 @@ public class Member {
 
         if (isSenior()) {
             memberType = "seniormedlem";
+        } else if (isPensioner()) {
+            memberType = "pensionistmedlem";
         } else {
             memberType = "juniormedlem";
         }
