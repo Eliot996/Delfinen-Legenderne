@@ -1,7 +1,6 @@
 package domain.member;
 
 import domain.Discipline;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,13 +9,13 @@ import java.util.Scanner;
 
 //@author Sofia & Mathias
 // TODO: 26/11/2021 make an edit function
-//                  make delete function
+//                  remove all ui elements from the class
 
 //@author Sofia & Mathias
 public class MemberController{
     Scanner userInput = new Scanner(System.in);
 
-    // to add a member to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
+    // to add a member to the database parses date(of format "dd-MM-yyyy")
     public void addMember(boolean isPassiveMember,
                           String name,
                           String dateOfBirth,
@@ -49,25 +48,18 @@ public class MemberController{
         addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
-    public LocalDate getDateFromString(String date) {
-        // make a pattern to parse the given dates from
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
-        // get the dates from the user and parse
-        return LocalDate.parse(date.trim(), formatter);
-    }
 
     public List<Member> getMembers() {
         return members;
     }
 
-    public void deleteMember() { // TODO: 29/11/2021 needs to be fixed
+    public void deleteMember() {
         System.out.println("Her kan du se medlemmerne af svømmeklubben: " + getMembers());
-        System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
-        int memberNumber = userInput.nextInt();
+        System.out.println("Du bedes her indtaste medlemsindex på det medlem du ønsker at slette: ");
+        int memberIndex = userInput.nextInt();
         userInput.nextLine();
 
-        Member member = null;
+        Member member = members.get(memberIndex);
 
         if (member == null){
             System.out.println("no member was found");
@@ -76,7 +68,8 @@ public class MemberController{
         }
 
     }
-    // Memberdatabase methods
+
+    // methods from Memberdatabase
     // @Author Mathias
     private ArrayList<Member> members = new ArrayList<>();
 
@@ -104,12 +97,19 @@ public class MemberController{
     public String toCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Member member :
-                members) {
+        for (Member member : members) {
             sb.append(member.toCSV()).append('\n');
         }
 
         return sb.toString();
+    }
+
+    public LocalDate getDateFromString(String date) {
+        // make a pattern to parse the given dates from
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        // get the dates from the user and parse
+        return LocalDate.parse(date.trim(), formatter);
     }
 }
 
