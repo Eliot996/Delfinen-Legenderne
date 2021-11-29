@@ -61,13 +61,13 @@ public class MemberController{
         return members;
     }
 
-    public void deleteMember() {
+    public void deleteMember() { // TODO: 29/11/2021 needs to be fixed
         System.out.println("Her kan du se medlemmerne af svømmeklubben: " + getMembers());
         System.out.println("Du bedes her indtaste medlemsnummer på det medlem du ønsker at slette: ");
         int memberNumber = userInput.nextInt();
         userInput.nextLine();
 
-        Member member = getMember(memberNumber);
+        Member member = null;
 
         if (member == null){
             System.out.println("no member was found");

@@ -29,7 +29,7 @@ public class Controller {
         System.out.print("email: ");
         String email = userInput.nextLine();
 
-        memberController.addMember(membernumber,
+        memberController.addMember(
                 isPassive,
                 name,
                 DOB,
