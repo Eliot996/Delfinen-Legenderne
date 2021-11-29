@@ -1,6 +1,7 @@
 package domain.member;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 // @author Mathias og Sofia
 public class Member {
@@ -11,6 +12,7 @@ public class Member {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String email;
+    private UUID memberID;
 
     //konstruktør
     public Member(int memberNumber,
@@ -19,6 +21,8 @@ public class Member {
                   LocalDate dateOfBirth,
                   String phoneNumber,
                   String email) {
+
+        this.memberID = UUID.randomUUID();
         this.memberNumber = memberNumber;
         this.isPassiveMember = isPassiveMember;
         this.name = name;
@@ -67,12 +71,26 @@ public class Member {
     }
 
     public String toCSV() {
-        return  name + ";"+
+        return  memberID + ";"+
+                memberNumber + ";" +
+                name + ";" +
                 dateOfBirth + ";"+
-                isPassiveMember + ";"+
-                memberNumber + ";"+
-                phoneNumber + ";"+
+                isPassiveMember + ";" +
+                phoneNumber + ";" +
                 email;
+    }
+
+    //CSV konstruktør
+    public Member(String CSV) {
+        String[] elements = CSV.split(";");
+
+        this.memberID = UUID.fromString(elements[0]);
+        this.memberNumber = Integer.parseInt(elements[1]);
+        this.name = elements[2];
+        this.dateOfBirth = LocalDate.parse(elements[3]);
+        this.isPassiveMember = Boolean.parseBoolean(elements[4]);
+        this.phoneNumber = elements[5];
+        this.email = elements[6];
     }
 
     // getter og setter for atributterne
