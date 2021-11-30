@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
 
-    public void hello(){
+    public void hello() {
         System.out.println("""
                                                     _
                                                _.-~~.)
@@ -31,14 +31,14 @@ public class UserInterface {
         System.out.println("""
                 1. Login
                 0. Afslut program""");
-        return getInt(0,1);
+        return getInt(0, 1);
     }
 
     public int adminMenu() {
         System.out.println("""
                 1. Medlems menu
                 0. Afbryd""");
-        return getInt(0,1);
+        return getInt(0, 1);
     }
 
     public int memberMenu() {
@@ -54,7 +54,7 @@ public class UserInterface {
         return getInt(0, 4);
     }
 
-    public int editMemberMenu(){
+    public int editMemberMenu() {
         System.out.println("""
                 Hvad vil du ændre?
                 1. Navn
@@ -64,24 +64,37 @@ public class UserInterface {
                 5. Email
                 6. Tilføj disciplin
                 7. Fjern disciplin
-                
+                                
                 0. Annuler""");
 
-        return getInt(0,7);
+        return getInt(0, 7);
     }
 
 
-    public int competitionMenu(){
+    public int competitionMenu() {
         System.out.println("""
                 -------Stævnemenu-------
-                
+                                
                 1) Opret stævne
                 2) Slet stævne
                 3) Rediger stævne
                 4) Tilbage til hovedmenu
-                
+                                
                 """);
-        return getInt(1,4);
+        return getInt(1, 4);
+    }
+
+    public int teamMenu() {
+        System.out.println("""
+                -------Holdmenu-------
+                
+                1) Opret hold
+                2) Slet hold
+                3) Rediger hold
+                4) Sæt træner på et hold
+                5) Tilbage til hovedmenu
+                """);
+        return getInt(1,5);
     }
 
     public int getInt(int lowerLimit, int upperLimit) {
