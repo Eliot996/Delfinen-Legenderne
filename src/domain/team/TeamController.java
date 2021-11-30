@@ -60,25 +60,25 @@ public class TeamController {
             }
         }
         return null;
-    }*/ // getMember(String name) - skal bruges til at finde navn i fil.
+    }*/ // getTeam(String name) - skal bruges til at finde navn i fil for et hold.
 
        // edit teams
-    public void editMember(int memberIndex, String what, String to) {
-        Member member = members.get(memberIndex);
+    public void editTeam(int teamIndex, String what, String to) {
+        Team team = teams.get(teamIndex);
 
         switch (what){
-            case "name" -> member.setName(to);
-            case "isPassive" -> member.setPassiveMember(Boolean.parseBoolean(to));
-            case "dateOfBirth" -> member.setDateOfBirth(getDateFromString(to));
-            case "phoneNumber" -> member.setPhoneNumber(to);
-            case "email" -> member.setEmail(to);
+            case "name" -> team.setName(to);
+            case "description" -> team.setDescription(to);
+            //case "trainers" -> team.addTrainer(); TODO: skal finde træner på indexNummer.
         }
 
-        if (member instanceof Competitor competitor){
+       // if (team instanceof Trainer trainers){
             switch (what) {
-                case "add discipline" -> competitor.addDisciplines(Discipline.valueOf(to.toUpperCase()));
-                case "remove discipline" -> competitor.removeDisciplines(Discipline.valueOf(to.toUpperCase()));
+                //case "add trainer" -> trainers.ad
+                        //competitor.addDisciplines(Discipline.valueOf(to.toUpperCase()));
+               // case "remove trainer" -> team.removeTrainer
+                      //  competitor.removeDisciplines(Discipline.valueOf(to.toUpperCase()));
             }
         }
     }
-}
+
