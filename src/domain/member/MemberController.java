@@ -53,7 +53,7 @@ public class MemberController{
         return members;
     }
 
-    public void deleteMember() {
+    /*public void deleteMember() {
         System.out.println("Her kan du se medlemmerne af svømmeklubben: " + getMembers());
         System.out.println("Du bedes her indtaste medlemsindex på det medlem du ønsker at slette: ");
         int memberIndex = userInput.nextInt();
@@ -66,7 +66,7 @@ public class MemberController{
         }else {
             deleteMember(member);
         }
-    }
+    }*/
 
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
@@ -99,6 +99,10 @@ public class MemberController{
         return sb.toString();
     }
 
+    public int getAmountOfMembers() {
+        return members.size();
+    }
+
     // methods from MemberDatabase
     // @author Mathias
     private ArrayList<Member> members = new ArrayList<>();
@@ -107,8 +111,8 @@ public class MemberController{
         members.add(member);
     }
 
-    public void deleteMember(Member member){
-        members.remove(member);
+    public void deleteMember(int memberIndex){
+        members.remove(members.get(memberIndex));
     }
 
     public Member getMember(String name){
