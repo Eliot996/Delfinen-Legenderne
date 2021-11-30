@@ -73,6 +73,10 @@ public class Team {
     public String simplePrint() {
         return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): " + trainers;
     }
+
+    public void addTrainer(Trainer trainer){
+        trainers.add(trainer);
+    }
 }
 
 
