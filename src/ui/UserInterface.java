@@ -19,6 +19,8 @@ public class UserInterface {
                 4) Se medlemsoplysninger på et medlem
                 5) Se kontingenter
                 6) Se svømmeresultater
+                7) Opret hold
+                8) Se hold
                                 
                 0) Afslutte programmet""");
 
