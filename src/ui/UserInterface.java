@@ -1,5 +1,6 @@
 package ui;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 // @Author Sofia
@@ -24,6 +25,22 @@ public class UserInterface {
         return getInt(0, 6);
     }
 
+    public int editMemberMenu(){
+        System.out.println("""
+                Hvad vil du ændre?
+                1. Navn
+                2. Passivitet
+                3. Fødselsdato (dd-mm-åååå)
+                4. Telefonnummer
+                5. Email
+                6. Tilføj disciplin
+                7. Fjern disciplin
+                
+                0. Annuler""");
+
+        return getInt(0,7);
+    }
+
     public int getInt(int lowerLimit, int upperLimit) {
         int choice = getInt();
 
@@ -44,6 +61,24 @@ public class UserInterface {
             System.out.println("Indtast venligst et heltal");
             userInput.nextLine();
             return getInt();
+        }
+    }
+
+    public String getString() {
+        return userInput.nextLine().trim();
+    }
+
+    public Boolean getBoolean(){
+        System.out.println("test");
+        String input = userInput.nextLine().trim().toLowerCase();
+
+        if (input.equals("ja")){
+            return true;
+        } else if (input.equals("nej")) {
+            return false;
+        } else {
+            System.out.println("Indtast venligst enten 'ja' eller 'nej'");
+            return getBoolean();
         }
     }
 
