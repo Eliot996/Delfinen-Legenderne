@@ -108,10 +108,6 @@ public class MemberController{
         return null;
     }
 
-    public void setMembers(ArrayList<Member> members) {
-        this.members = members;
-    }
-
     public String toCSV() {
         StringBuilder sb = new StringBuilder();
 
