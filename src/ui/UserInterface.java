@@ -37,7 +37,7 @@ public class UserInterface {
     public int adminMenu() {
         System.out.println("""
                 1. Medlems menu
-                0. Afslut program""");
+                0. Afbryd""");
         return getInt(0,1);
     }
 
@@ -49,7 +49,7 @@ public class UserInterface {
                 3) Redigere medlem
                 4) Se medlemsoplysninger på et medlem
                                 
-                0) Afslutte programmet""");
+                0) Afbryd""");
 
         return getInt(0, 4);
     }
