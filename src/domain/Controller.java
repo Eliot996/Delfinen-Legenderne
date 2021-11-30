@@ -1,12 +1,21 @@
 package domain;
 
+import domain.member.Member;
 import domain.member.MemberController;
+import domain.result.ResultController;
 import ui.UserInterface;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 //@author Sofia og Mathias
 
 public class Controller {
+    Scanner userInput = new Scanner(System.in);
     MemberController memberController = new MemberController();
+    ResultController resultController = new ResultController();
     UserInterface ui = new UserInterface();
 
     public void memberMenu() {
@@ -111,4 +120,74 @@ public class Controller {
                 phone,
                 email);
     }
+
+    public void runMenu() {
+        boolean keepRunning = true;
+        while (keepRunning) {
+            int choice = ui.menu();
+            switch (choice) {
+                case 1 -> addMember();
+                case 2 -> memberController.deleteMember();
+                //case 3 -> // rediger medlem
+                case 4 -> memberController.getMembers();
+                //case 5 -> // se kontingenter
+                //case 6 ->  // se svømmeresultater
+
+                case 0 -> System.exit(0);
+            }
+        }
+    }
+
+    private ArrayList<Member> members = new ArrayList<>();
+
+    public void addMember(Member member) {
+        members.add(member);
+    }
+
+    public void deleteMember(Member member) {
+        members.remove(member);
+    }
+
+    public Member getMember(String name) {
+        for (Member member : members) {
+            if (member.getName().equals(name)) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public void competitionMenu(){
+        boolean keepRunning = true;
+        while (keepRunning){
+            int choice = ui.competitionMenu();
+            switch (choice) {
+                case 1 -> addCompetition();
+                case 2 -> deleteCompetition;
+                case 3 -> editCompetition;
+                case 4 -> backToMenu;
+            }
+        }
+    }
+
+    public void addCompetition(){
+        System.out.println("Stævnenavn: ");
+        String competitionName = userInput.nextLine();
+        System.out.println("Adresse: ");
+        String competitionAdress = userInput.nextLine();
+        System.out.println("Dato og tid for stævnet: ");
+        String dateOfCompetition = userInput.nextLine();
+        System.out.println("Stævne disciplin der skal svømmes i: ");
+        String discipline = userInput.nextLine();
+
+        resultController.addCompetition(competitionName,
+                                        competitionAdress,
+                                        dateOfCompetition,
+                                        discipline);
+    }
+    public void deleteCompetition(){
+
+    }
+
+
 }
