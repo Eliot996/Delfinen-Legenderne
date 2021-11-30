@@ -2,18 +2,61 @@ package domain;
 
 import domain.member.MemberController;
 import ui.UserInterface;
+import java.util.ArrayList;
 
 //@author Sofia og Mathias
-
 public class Controller {
+    ArrayList<User> users = new ArrayList<>();
+    User activeUser;
+
     MemberController memberController = new MemberController();
     UserInterface ui = new UserInterface();
+
+
+    public void mainMenu(){
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            int choice = ui.MainMenu();
+            switch (choice) {
+                case 1 -> login();
+
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
+
+    private void login() {
+        users.add(new User("emilie", "mathias", Roles.ADMIN));
+
+        ui.print("enter username: ");
+        String username = ui.getString();
+
+        ui.print("enter password: ");
+        String password = ui.getString();
+
+        for (User user : users) {
+            if (user.getUsername().equals(username) && user.matchPassword(password)){
+                activeUser = user;
+                break;
+            }
+        }
+
+        if (activeUser == null) {
+            ui.print("wrong username or password");
+        } else {
+            memberMenu();
+            activeUser = null;
+        }
+    }
+
+
 
     public void memberMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
-            int choice = ui.menu();
+            int choice = ui.memberMenu();
             switch (choice) {
                 case 1 -> addMember();
                 case 2 -> deleteMember();
