@@ -53,21 +53,6 @@ public class MemberController{
         return members;
     }
 
-    /*public void deleteMember() {
-        System.out.println("Her kan du se medlemmerne af svømmeklubben: " + getMembers());
-        System.out.println("Du bedes her indtaste medlemsindex på det medlem du ønsker at slette: ");
-        int memberIndex = userInput.nextInt();
-        userInput.nextLine();
-
-        Member member = members.get(memberIndex);
-
-        if (member == null){
-            System.out.println("no member was found");
-        }else {
-            deleteMember(member);
-        }
-    }*/
-
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
 
@@ -88,7 +73,7 @@ public class MemberController{
     }
 
     public String getStringOfMembers() {
-        int index = 0;
+        int index = 1;
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
