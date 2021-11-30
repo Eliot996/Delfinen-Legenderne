@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
 
-    public int MainMenu() {
+    public void hello(){
         System.out.println("""
                                                     _
                                                _.-~~.)
@@ -24,8 +24,19 @@ public class UserInterface {
                        - . -~            -. _ . - ~ - _   - ~     ~--..__~ _,. /   \\  - ~
                               . __ ..                   ~-               ~~_. (  `
                 )`. _ _               `-       ..  - .    . - ~ ~ .    \\    ~-` ` `  `. _
-                Velkommen til svømmeklubben Delfinen
+                Velkommen til svømmeklubben Delfinen""");
+    }
+
+    public int MainMenu() {
+        System.out.println("""
                 1. Login
+                0. Afslut program""");
+        return getInt(0,1);
+    }
+
+    public int adminMenu() {
+        System.out.println("""
+                1. Medlems menu
                 0. Afslut program""");
         return getInt(0,1);
     }
