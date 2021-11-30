@@ -1,6 +1,4 @@
 package ui;
-import java.util.InputMismatchException;
-import java.util.Locale;
 import java.util.Scanner;
 
 // @Author Sofia
@@ -8,21 +6,41 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
 
-    public int menu() {
+    public int MainMenu() {
         System.out.println("""
+                                                    _
+                                               _.-~~.)
+                         _.--~~~~~---....__  .' . .,'
+                       ,'. . . . . . . . . .~- ._ (
+                      ( .. .g. . . . . . . . . . .~-._
+                   .~__.-~    ~`. . . . . . . . . . . -.
+                   `----..._      ~-=~~-. . . . . . . . ~-.
+                             ~-._   `-._ ~=_~~--. . . . . .~.
+                              | .~-.._  ~--._-.    ~-. . . . ~-.
+                               \\ .(   ~~--.._~'       `. . . . .~-.                ,
+                                `._\\         ~~--.._    `. . . . . ~-.    .- .   ,'/
+                _  . _ . -~\\        _ ..  _          ~~--.`_. . . . . ~-_     ,-','`  .
+                             ` ._           ~                ~--. . . . .~=.-'. /. `
+                       - . -~            -. _ . - ~ - _   - ~     ~--..__~ _,. /   \\  - ~
+                              . __ ..                   ~-               ~~_. (  `
+                )`. _ _               `-       ..  - .    . - ~ ~ .    \\    ~-` ` `  `. _
                 Velkommen til svømmeklubben Delfinen
-                -----------------menu---------------
-                                
+                1. Login
+                0. Afslut program""");
+        return getInt(0,1);
+    }
+
+    public int memberMenu() {
+        System.out.println("""
+                -----------------medlemsmenu---------------
                 1) Oprette medlem
                 2) Slette medlem
                 3) Redigere medlem
                 4) Se medlemsoplysninger på et medlem
-                5) Se kontingenter
-                6) Se svømmeresultater
                                 
                 0) Afslutte programmet""");
 
-        return getInt(0, 6);
+        return getInt(0, 4);
     }
 
     public int editMemberMenu(){
