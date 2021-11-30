@@ -15,7 +15,7 @@ public class TeamController {
 
     public void addTeam(String name,
                         String description) {
-        addTeam(new Team(name, description));
+        addTeam(new Team(name,description));
     }
 
     private void addTeam(Team team) {

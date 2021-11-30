@@ -51,14 +51,15 @@ public class ResultController {
     }
 
     public String getStringOfCompetitions() {
-        int index = 1;
-        StringBuilder sb = new StringBuilder();
+            int index = 1;
+            StringBuilder sb = new StringBuilder();
 
-        for (Competition competition : competitions ) {
-            sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
-            index++;
+            for (Competition competition : competitions) {
+                sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
+                index++;
+            }
+
+            return sb.toString();
         }
-
-        return sb.toString();
     }
-}
+

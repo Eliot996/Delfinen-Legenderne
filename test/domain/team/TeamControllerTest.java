@@ -28,7 +28,7 @@ class TeamControllerTest {
     teamController.addTeam("name1",
                            "description1");
 
-    teamController.addTeam("navn2",
+    teamController.addTeam("name2",
                            "description2");
 
     assertNotNull(teamController.getTeams().get(0));
