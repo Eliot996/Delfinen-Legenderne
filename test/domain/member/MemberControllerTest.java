@@ -177,4 +177,171 @@ class MemberControllerTest {
 
         assertThrows(DateTimeParseException.class, () -> memberController.getDateFromString(dateToParse));
     }
+
+    //********************
+    // *
+    // * edit member
+    // *
+    // *******************
+
+    @Test
+    void editMemberTest_Name(){
+        MemberController memberController = new MemberController();
+        String current = "Name";
+        String changeTo = "Changed";
+
+        memberController.addMember(true,
+                current,
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+
+        assertEquals(current, memberController.getMembers().get(0).getName());
+
+        memberController.editMember(0,"name", changeTo);
+
+        assertEquals(changeTo, memberController.getMembers().get(0).getName());
+    }
+
+    @Test
+    void editMemberTest_isPassive(){
+        MemberController memberController = new MemberController();
+        String current = "false";
+        String changeTo = "true";
+
+        memberController.addMember(Boolean.parseBoolean(current),
+                "name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com");
+
+
+        assertFalse(memberController.getMembers().get(0).isPassiveMember());
+
+        memberController.editMember(0,"isPassive", changeTo);
+
+        assertTrue(memberController.getMembers().get(0).isPassiveMember());
+    }
+
+    @Test
+    void editMemberTest_DOB(){
+        MemberController memberController = new MemberController();
+        String current = "25-10-1996";
+        String changeTo = "26-10-1996";
+
+        memberController.addMember(false,
+                "name",
+                current,
+                "53663634",
+                "Test@gmail.com");
+
+
+        assertEquals(memberController.getDateFromString(current),memberController.getMembers().get(0).getDateOfBirth());
+
+        memberController.editMember(0,"dateOfBirth", changeTo);
+
+        assertEquals(memberController.getDateFromString(changeTo),memberController.getMembers().get(0).getDateOfBirth());
+    }
+
+    @Test
+    void editMemberTest_phoneNumber(){
+        MemberController memberController = new MemberController();
+        String current = "phone number";
+        String changeTo = "Changed phone number";
+
+        memberController.addMember(true,
+                "name",
+                "25-10-1996",
+                current,
+                "Test@gmail.com");
+
+
+        assertEquals(current, memberController.getMembers().get(0).getPhoneNumber());
+
+        memberController.editMember(0,"phoneNumber", changeTo);
+
+        assertEquals(changeTo, memberController.getMembers().get(0).getPhoneNumber());
+    }
+
+    @Test
+    void editMemberTest_email(){
+        MemberController memberController = new MemberController();
+        String current = "email";
+        String changeTo = "Changed email";
+
+        memberController.addMember(true,
+                "name",
+                "25-10-1996",
+                "phone number",
+                current);
+
+
+        assertEquals(current, memberController.getMembers().get(0).getEmail());
+
+        memberController.editMember(0,"email", changeTo);
+
+        assertEquals(changeTo, memberController.getMembers().get(0).getEmail());
+    }
+
+    @Test
+    void editCompetitorTest_addDisciplne(){
+        MemberController memberController = new MemberController();
+
+        ArrayList<Discipline> current = new ArrayList<>();
+        current.add(Discipline.BREASTSTROKE);
+        current.add(Discipline.CRAWL);
+
+        String toAdd = "backcrawl";
+
+        ArrayList<Discipline> changeTo = new ArrayList<>();
+        changeTo.add(Discipline.BREASTSTROKE);
+        changeTo.add(Discipline.CRAWL);
+        changeTo.add(Discipline.BACKCRAWL);
+
+        memberController.addCompetitor(true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com",
+                current);
+
+        Competitor competitor = (Competitor) memberController.getMembers().get(0);
+
+        assertEquals(current, competitor.getDisciplines());
+
+        memberController.editMember(0,"add discipline", toAdd);
+
+        assertEquals(changeTo, competitor.getDisciplines());
+    }
+
+    @Test
+    void editCompetitorTest_removeDisciplne(){
+        MemberController memberController = new MemberController();
+
+        ArrayList<Discipline> current = new ArrayList<>();
+        current.add(Discipline.BREASTSTROKE);
+        current.add(Discipline.CRAWL);
+
+        String toRemove = "crawl";
+
+        ArrayList<Discipline> changeTo = new ArrayList<>();
+        changeTo.add(Discipline.BREASTSTROKE);
+
+        memberController.addCompetitor(true,
+                "Name",
+                "25-10-1996",
+                "53663634",
+                "Test@gmail.com",
+                current);
+
+        Competitor competitor = (Competitor) memberController.getMembers().get(0);
+
+        assertEquals(current, competitor.getDisciplines());
+
+        memberController.editMember(0,"remove discipline", toRemove);
+
+        assertEquals(changeTo, competitor.getDisciplines());
+    }
+
 }
