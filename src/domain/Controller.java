@@ -14,6 +14,8 @@ public class Controller {
 
 
     public void mainMenu(){
+        ui.hello();
+
         boolean keepRunning = true;
 
         while (keepRunning) {
@@ -45,12 +47,30 @@ public class Controller {
         if (activeUser == null) {
             ui.print("wrong username or password");
         } else {
-            memberMenu();
+            userMenuSelector();
             activeUser = null;
         }
     }
 
+    public void userMenuSelector(){
+        switch (activeUser.getRole()){
+            case ADMIN -> adminMenu();
+            //case CASHIER -> ;
+            //case TRAINER -> ;
+        }
+    }
 
+    public void adminMenu(){
+        boolean keepRunning = true;
+
+        while (keepRunning){
+            int choice = ui.adminMenu();
+            switch (choice){
+                case 1 -> memberMenu();
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
 
     public void memberMenu() {
         boolean keepRunning = true;
