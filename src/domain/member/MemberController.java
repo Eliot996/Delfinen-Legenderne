@@ -75,14 +75,14 @@ public class MemberController{
             case "name" -> member.setName(to);
             case "isPassive" -> member.setPassiveMember(Boolean.parseBoolean(to));
             case "dateOfBirth" -> member.setDateOfBirth(getDateFromString(to));
-            case "phonenumber" -> member.setPhoneNumber(to);
+            case "phoneNumber" -> member.setPhoneNumber(to);
             case "email" -> member.setEmail(to);
         }
 
         if (member instanceof Competitor competitor){
             switch (what) {
-                case "add discipline" -> competitor.addDisciplines(Discipline.valueOf(to));
-                case "remove discipline" -> competitor.removeDisciplines(Discipline.valueOf(to));
+                case "add discipline" -> competitor.addDisciplines(Discipline.valueOf(to.toUpperCase()));
+                case "remove discipline" -> competitor.removeDisciplines(Discipline.valueOf(to.toUpperCase()));
             }
         }
     }
