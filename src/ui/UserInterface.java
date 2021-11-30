@@ -1,5 +1,4 @@
 package ui;
-import domain.member.MemberController;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -22,20 +21,29 @@ public class UserInterface {
                                 
                 0) Afslutte programmet""");
 
-        int choice;
-        while (true) {
-            try {
-                choice = userInput.nextInt();
-                if (choice <= 6 && choice >= 0) {
-                    break;
-                } else {
-                    System.out.println("Dette input er ikke muligt, du bedes vælge et tal fra 0-6");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Dette input er ikke muligt, du bedes vælge et tal fra 0-6");
-                userInput.nextLine();
-            }
+        return getInt(0, 6);
+    }
+
+    public int getInt(int lowerLimit, int upperLimit) {
+        int choice = getInt();
+
+        if (choice >= lowerLimit && choice <= upperLimit) {
+            return choice;
+        } else {
+            System.out.println("Skriv venligst et tal mellem " + lowerLimit + " og " + upperLimit);
+            return getInt(lowerLimit, upperLimit);
         }
-        return choice;
+    }
+
+    public int getInt() {
+        if (userInput.hasNextInt()){
+            int choice = userInput.nextInt();
+            userInput.nextLine(); // to prevent scanner bug
+            return choice;
+        } else {
+            System.out.println("Indtast venligst et heltal");
+            userInput.nextLine();
+            return getInt();
+        }
     }
 }
