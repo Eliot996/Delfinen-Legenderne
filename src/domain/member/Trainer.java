@@ -2,7 +2,7 @@ package domain.member;
 
 import java.time.LocalDate;
 
-public class Trainer extends Member{
+public class Trainer extends Member {
 
     public Trainer(boolean isPassiveMember,
                    String name,

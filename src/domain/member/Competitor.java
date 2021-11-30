@@ -5,7 +5,7 @@ import domain.Discipline;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Competitor extends Member{
+public class Competitor extends Member {
 
     private List<Discipline> disciplines;
 

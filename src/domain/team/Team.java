@@ -1,5 +1,5 @@
 package domain.team;
-//@author Mathias
+//@author Mathias og Sofia
 import domain.member.MemberController;
 import domain.member.Trainer;
 import java.util.ArrayList;
@@ -10,7 +10,10 @@ public class Team {
     private String description;
     private ArrayList<Trainer> trainers;
     //konstruktør
-    public Team(String name, String description){
+    public Team(String name,
+                String description,
+                ArrayList<Trainer> trainers) {
+
         this.name = name;
         this.description = description;
     }
@@ -52,6 +55,7 @@ public class Team {
                 trainers;
     }
 
+    //CSV konstruktør
     public Team(String CSV, MemberController memberController) {
     String[] elements = CSV.split(";");
     this.name = elements[0];
