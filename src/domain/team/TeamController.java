@@ -14,9 +14,8 @@ public class TeamController {
     private ArrayList<Team> teams = new ArrayList<>();
 
     public void addTeam(String name,
-                        String description,
-                        ArrayList<Trainer> trainers) {
-        addTeam(new Team(name, description, trainers));
+                        String description) {
+        addTeam(new Team(name, description));
     }
 
     private void addTeam(Team team) {

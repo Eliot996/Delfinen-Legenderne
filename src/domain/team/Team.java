@@ -11,8 +11,7 @@ public class Team {
     private ArrayList<Trainer> trainers;
     //konstruktør
     public Team(String name,
-                String description,
-                ArrayList<Trainer> trainers) {
+                String description) {
 
         this.name = name;
         this.description = description;
