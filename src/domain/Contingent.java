@@ -1,7 +1,5 @@
 package domain;
 
-import domain.member.Member;
-
 import java.util.*;
 
 public class Contingent {
