@@ -70,6 +70,9 @@ public class Team {
         this.trainers.add (memberController.getTrainerFromUUID(elements[2]));
         }
     }
+    public String simplePrint() {
+        return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): " + trainers;
+    }
 }
 
 
