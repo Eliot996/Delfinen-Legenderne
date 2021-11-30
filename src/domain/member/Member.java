@@ -45,10 +45,10 @@ public class Member {
     }
 
     public String getMemberType() {
-        if (isSenior()) {
-            return  "seniormedlem";
-        } else if (isPensioner()) {
+        if (isPensioner()) {
             return  "pensionistmedlem";
+        } else if (isSenior()) {
+            return  "seniormedlem";
         } else {
             return  "juniormedlem";
         }
@@ -58,11 +58,15 @@ public class Member {
     public String toString() {
         return "---- Medlemsoplysninger ----\n" +
                 "Fulde navn: " + name +
-                "\nAlder: " + dateOfBirth +
+                "\nFødselsdag: " + dateOfBirth +
                 "\nMedlemstype: " + getMemberType() +
                 "\nAktivitetsform: " + isPassiveMember +
                 "\nTelefonnummer: " + phoneNumber +
                 "\nEmail: " + email + "\n";
+    }
+
+    public String simplePrint() {
+        return "Navn: " + name + ", Medlemstype: " + getMemberType() + ", Fødselsdag: " + dateOfBirth;
     }
 
     public String toCSV() {
