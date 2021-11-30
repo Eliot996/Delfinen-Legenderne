@@ -2,12 +2,10 @@ package domain;
 
 import domain.member.MemberController;
 import ui.UserInterface;
-import java.util.Scanner;
 
 //@author Sofia og Mathias
 
 public class Controller {
-    Scanner userInput = new Scanner(System.in);
     MemberController memberController = new MemberController();
     UserInterface ui = new UserInterface();
 
