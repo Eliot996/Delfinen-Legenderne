@@ -19,7 +19,7 @@ public class Controller {
             int choice = ui.menu();
             switch (choice) {
                 case 1 -> addMember();
-                case 2 -> memberController.deleteMember();
+                case 2 -> deleteMember();
                 case 3 -> editMember();
                 case 4 -> memberController.getMembers();
                 //case 5 ->  se kontingenter
@@ -31,12 +31,22 @@ public class Controller {
     }
 
     private void editMember() {
+        ui.print(memberController.getStringOfMembers());
+    }
 
+    private void deleteMember() {
+        ui.print("Her kan du se medlemmerne af svømmeklubben: ");
+        ui.print(memberController.getStringOfMembers());
+
+        ui.print("Du bedes her indtaste medlemsindex på det medlem du ønsker at slette, eller fortryd ved at skrive '0': ");
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+        if (memberIndex > 0){
+            memberController.deleteMember(memberIndex - 1);
+        }
     }
 
     public void addMember() {
-        System.out.print("ID: ");
-        int membernumber = userInput.nextInt();
         System.out.print("is passive: ");
         boolean isPassive = userInput.nextBoolean();
         userInput.nextLine(); // scanner bug
