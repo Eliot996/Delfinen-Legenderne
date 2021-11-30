@@ -28,7 +28,6 @@ public class Member {
         this.email = email;
     }
 
-
     public boolean isSenior() {
         LocalDate eightteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
         LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
@@ -126,7 +125,6 @@ public class Member {
     public UUID getMemberID() {
         return memberID;
     }
-
     public void setMemberID(UUID memberID) {
         this.memberID = memberID;
     }

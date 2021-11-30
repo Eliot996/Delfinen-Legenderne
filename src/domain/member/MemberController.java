@@ -6,12 +6,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.UUID;
 
 //@author Sofia & Mathias
 // TODO: 26/11/2021 make an edit function
 //                  remove all ui elements from the class
 
-//@author Sofia & Mathias
 public class MemberController{
     Scanner userInput = new Scanner(System.in);
 
@@ -128,6 +128,17 @@ public class MemberController{
 
         // get the dates from the user and parse
         return LocalDate.parse(date.trim(), formatter);
+    }
+
+    public Trainer getTrainerFromUUID(String uuidString) {
+        UUID uuid;
+        uuid = UUID.fromString(uuidString);
+        for (Member member: members) {
+            if (member.getMemberID().equals(uuid)){
+                return (Trainer) member;
+            }
+        }
+        return null;
     }
 }
 
