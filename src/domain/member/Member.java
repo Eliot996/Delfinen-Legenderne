@@ -44,22 +44,22 @@ public class Member {
         return sixtyYearsLater.isBefore(today);
     }
 
+    public String getMemberType() {
+        if (isSenior()) {
+            return  "seniormedlem";
+        } else if (isPensioner()) {
+            return  "pensionistmedlem";
+        } else {
+            return  "juniormedlem";
+        }
+    }
+
     @Override
     public String toString() {
-        String memberType;
-
-        if (isSenior()) {
-            memberType = "seniormedlem";
-        } else if (isPensioner()) {
-            memberType = "pensionistmedlem";
-        } else {
-            memberType = "juniormedlem";
-        }
-
         return "---- Medlemsoplysninger ----\n" +
                 "Fulde navn: " + name +
                 "\nAlder: " + dateOfBirth +
-                "\nMedlemstype: " + memberType +
+                "\nMedlemstype: " + getMemberType() +
                 "\nAktivitetsform: " + isPassiveMember +
                 "\nTelefonnummer: " + phoneNumber +
                 "\nEmail: " + email + "\n";
