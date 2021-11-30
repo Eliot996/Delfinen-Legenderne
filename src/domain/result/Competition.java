@@ -14,11 +14,16 @@ public class Competition {
 
     //Konstruktør
     public Competition(String competitionName, String competitionAdress,
-                       LocalDateTime dateOfCompetetition, Discipline competitionDiscipline) {
+                       LocalDateTime dateOfCompetetition, String competitionDiscipline) {
         this.competitionName = competitionName;
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
         this.competitionDiscipline = competitionDiscipline;
+    }
+
+    public String simplePrint() {
+        return "Stævnenavn: " + competitionName + "Adresse: " + competitionAdress +
+                "Dato og tid: " + dateOfCompetetition + "Disciplin: " + competitionDiscipline;
     }
 
     //Getter og Setter af Attributter

@@ -1,8 +1,13 @@
 package domain;
 
 import domain.member.MemberController;
+import domain.result.ResultController;
 import ui.UserInterface;
 import java.util.ArrayList;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -10,6 +15,7 @@ public class Controller {
     User activeUser;
 
     MemberController memberController = new MemberController();
+    ResultController resultController = new ResultController();
     UserInterface ui = new UserInterface();
 
 

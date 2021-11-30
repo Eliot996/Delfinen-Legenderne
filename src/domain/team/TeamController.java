@@ -6,6 +6,7 @@ import domain.member.Member;
 import domain.member.Trainer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 // @Author Sofia
 
@@ -13,9 +14,8 @@ public class TeamController {
     private ArrayList<Team> teams = new ArrayList<>();
 
     public void addTeam(String name,
-                        String description,
-                        ArrayList<Trainer> trainers) {
-        addTeam(new Team(name, description, trainers));
+                        String description) {
+        addTeam(new Team(name, description));
     }
 
     private void addTeam(Team team) {
@@ -25,6 +25,23 @@ public class TeamController {
     public void deleteTeam(int teamIndex) {
         teams.remove(teams.get(teamIndex));
     }
+
+    public String getInfo(int teamIndex) {
+        Team team = teams.get(teamIndex);
+        return team.toString();
+    }
+
+    //TODO: fix under
+    /*public Team getTeamFromIndex(int teamIntex) {
+        int teamIndex;
+
+        for (Team team: teams) {
+            if (team.getTe.equals(teamIndex)){
+                return (Trainer) team;
+            }
+        }
+        return null;
+    }*/
 
     public List<Team> getTeams(){
         return teams;
@@ -62,6 +79,7 @@ public class TeamController {
         return null;
     }*/ // getTeam(String name) - skal bruges til at finde navn i fil for et hold.
 
+    //TODO: fix under.
        // edit teams
     public void editTeam(int teamIndex, String what, String to) {
         Team team = teams.get(teamIndex);

@@ -70,6 +70,20 @@ public class UserInterface {
         return getInt(0,7);
     }
 
+
+    public int competitionMenu(){
+        System.out.println("""
+                -------Stævnemenu-------
+                
+                1) Opret stævne
+                2) Slet stævne
+                3) Rediger stævne
+                4) Tilbage til hovedmenu
+                
+                """);
+        return getInt(1,4);
+    }
+
     public int getInt(int lowerLimit, int upperLimit) {
         int choice = getInt();
 
