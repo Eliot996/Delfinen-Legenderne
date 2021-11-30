@@ -66,11 +66,29 @@ public class MemberController{
         }else {
             deleteMember(member);
         }
-
     }
 
-    // methods from Memberdatabase
-    // @Author Mathias
+    public void editMember(int memberIndex, String what, String to) {
+        Member member = members.get(memberIndex);
+
+        switch (what){
+            case "name" -> member.setName(to);
+            case "isPassive" -> member.setPassiveMember(Boolean.parseBoolean(to));
+            case "dateOfBirth" -> member.setDateOfBirth(getDateFromString(to));
+            case "phonenumber" -> member.setPhoneNumber(to);
+            case "email" -> member.setEmail(to);
+        }
+
+        if (member instanceof Competitor competitor){
+            switch (what) {
+                case "add discipline" -> competitor.addDisciplines(Discipline.valueOf(to));
+                case "remove discipline" -> competitor.removeDisciplines(Discipline.valueOf(to));
+            }
+        }
+    }
+
+    // methods from MemberDatabase
+    // @author Mathias
     private ArrayList<Member> members = new ArrayList<>();
 
     public void addMember(Member member){

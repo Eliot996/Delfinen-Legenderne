@@ -26,4 +26,12 @@ public class Competitor extends Member{
     public void setDisciplines(List<Discipline> disciplines) {
         this.disciplines = disciplines;
     }
+
+    public void addDisciplines(Discipline discipline) {
+        this.disciplines.add(discipline);
+    }
+
+    public void removeDisciplines(Discipline discipline) {
+        this.disciplines.remove(discipline);
+    }
 }
