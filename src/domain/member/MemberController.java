@@ -127,6 +127,11 @@ public class MemberController{
         return LocalDate.parse(date.trim(), formatter);
     }
 
+    public String getInfo(int memberIndex) {
+        Member member = members.get(memberIndex);
+        return member.toString();
+    }
+
     public Trainer getTrainerFromUUID(String uuidString) {
         UUID uuid;
         uuid = UUID.fromString(uuidString);

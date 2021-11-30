@@ -18,10 +18,22 @@ public class Controller {
                 case 1 -> addMember();
                 case 2 -> deleteMember();
                 case 3 -> editMember();
-                case 4 -> memberController.getMembers();
+                case 4 -> seeMember();
 
                 case 0 -> keepRunning = false;
             }
+        }
+    }
+
+    public void seeMember(){
+        ui.print("Her kan du se medlemmerne af svømmeklubben: ");
+        ui.print(memberController.getStringOfMembers());
+
+        ui.print("Du bedes her indtaste medlemsindex på det medlem du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+        if (memberIndex > 0){
+            ui.print(memberController.getInfo(memberIndex - 1));
         }
     }
 
