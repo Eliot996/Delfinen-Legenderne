@@ -87,6 +87,18 @@ public class MemberController{
         }
     }
 
+    public String getStringOfMembers() {
+        int index = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member : members) {
+            sb.append(index).append(". ").append(member.simplePrint()).append('\n');
+            index++;
+        }
+
+        return sb.toString();
+    }
+
     // methods from MemberDatabase
     // @author Mathias
     private ArrayList<Member> members = new ArrayList<>();
