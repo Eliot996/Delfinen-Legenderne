@@ -46,4 +46,8 @@ public class UserInterface {
             return getInt();
         }
     }
+
+    public void print(String toPrint) {
+        System.out.println(toPrint);
+    }
 }
