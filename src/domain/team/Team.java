@@ -1,21 +1,26 @@
 package domain.team;
-//@author Mathias og Sofia
+
 import domain.member.Member;
 import domain.member.MemberController;
 import domain.member.Trainer;
 import java.util.ArrayList;
 
+//@author Mathias og Sofia
 public class Team {
     //attributter
     private String name;
     private String description;
     private ArrayList<Trainer> trainers;
+    private ArrayList<Member> members;
+
     //konstruktør
     public Team(String name,
                 String description) {
 
         this.name = name;
         this.description = description;
+        this.trainers = new ArrayList<>();
+        this.members = new ArrayList<>();
     }
 
     //@Author Sofia
@@ -94,6 +99,18 @@ public class Team {
 
     public void removeTrainer(int trainerIndex){
         trainers.remove(trainerIndex);
+    }
+
+    public void addMember(Member member){
+        members.add(member);
+    }
+
+    public void removeMember(Member member){
+        members.remove(member);
+    }
+
+    public boolean hasMember(Member member){
+        return members.contains(member);
     }
 }
 
