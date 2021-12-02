@@ -1,4 +1,5 @@
 package domain;
+
 // @author Mathias og Sofia
 public class User {
     private String username;
@@ -9,6 +10,18 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String CSV){
+        String[] elements = CSV.split(";");
+
+        this.username = elements[0];
+        this.password = elements[1];
+        this.role = Roles.valueOf(elements[2]);
+    }
+
+    public String toCSV(){
+        return username + ';' + password + ';' + role;
     }
 
     @Override
