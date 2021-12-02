@@ -72,6 +72,7 @@ public class Controller {
             switch (choice) {
                 case 1 -> memberMenu();
                 case 2 -> usermenu();
+                case 3 -> competitionMenu();
                 case 0 -> keepRunning = false;
             }
         }
@@ -308,6 +309,7 @@ public class Controller {
 
     public void deleteCompetition() {
         ui.print("Vælg hvilket stævne du ønsker at slette ud fra listen herunder\n");
+        ui.print(resultController.getStringOfCompetitions());
         ui.print("Indtast indekset på det stævne du ønsker at slette");
         int competitionIndex = ui.getInt(0, resultController.getAmountOfCompetition());
 
@@ -349,7 +351,8 @@ public class Controller {
 
 
     private void seeCompetitionMenu() {
-        ui.print("Her ");
+        ui.print("Her kan du se listen over hvilke stævner I er tilmeldt");
+        ui.print(resultController.getStringOfCompetitions());
     }
 
 

@@ -38,8 +38,9 @@ public class UserInterface {
         System.out.println("""
                 1. Medlems menu
                 2. Bruger menu
+                3. Stævne menu
                 0. Afbryd""");
-        return getInt(0, 2);
+        return getInt(0, 3);
     }
 
     public int memberMenu() {
