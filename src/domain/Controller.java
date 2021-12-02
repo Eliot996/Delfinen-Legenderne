@@ -30,7 +30,7 @@ public class Controller {
     }
 
     private void login() {
-        users.add(new User("admin", "admin", Roles.ADMIN));
+        users.add(new User("admin;admin;ADMIN"));
 
         ui.print("enter username: ");
         String username = ui.getString();
@@ -171,7 +171,7 @@ public class Controller {
         }
     }
 
-    public void addMember() {
+    public void addMember() { // TODO: 02/12/2021 Make better!
         System.out.print("is passive: ");
         boolean isPassive = ui.getBoolean();
         System.out.print("name: ");
@@ -251,13 +251,17 @@ public class Controller {
         }
     }
 
+    // method to add a user to the system
     private void addUser() {
+        // get username from user
         ui.print("Indtast venligst brugernavn: ");
         String userName = ui.getString();
 
+        // get password from user
         ui.print("Indtast venligst kodeord: ");
         String password = ui.getString(); // mask userinput?
 
+        // get a role to give to the user
         ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
         Roles role = null;
         switch (ui.getInt(1,3)){
@@ -266,33 +270,42 @@ public class Controller {
             case 3 -> role = Roles.TRAINER;
         }
 
+        // create user and add to the arraylist of users
         users.add(new User(userName, password, role));
+
+        // print confirmation message
         ui.print(userName + " er blevet oprettet som " + role.toString().toLowerCase());
     }
 
+    // method to edit a user based on the userindex given by the user
     private void editUser() {
+        // print all users and prompt user for the desired user index
         ui.print(getStringOfUsers());
         ui.print("Indtast nummeret på den bruger som du ønsker at redigere, eller fortryd ved at skrive '0': ");
         int choice = ui.getInt(0, users.size());
 
+        // get which attribute the users wants to change
         if (choice != 0) {
             choice--;
-            ui.print("Vælg venligst hvad du vil ændre: \n 1. brugernavn\n 2. kodeord\n 3. role ");
+            ui.print("Vælg venligst hvad du vil ændre, eller skriv '0' for at afbryde: \n 1. brugernavn\n 2. kodeord\n 3. role ");
             switch (ui.getInt(1, 3)) {
                 // set username
                 case 1 -> {
+                    // get the new username from user and set
                     ui.print("Indtast nyt brugernavn");
                     users.get(choice).setUsername(ui.getString());
                 }
 
                 // set password
                 case 2 -> {
+                    // get the new password from user and set
                     ui.print("Indtast nyt kodeord");
                     users.get(choice).setPassword(ui.getString());
                 }
 
                 // set role
                 case 3 -> {
+                    // get the new role of the user and set, based on the number of the role in the print
                     ui.print("Vælg venligst brugerens nye role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
                     Roles role = null;
                     switch (ui.getInt(1, 3)) {
@@ -306,11 +319,14 @@ public class Controller {
         }
     }
 
+    // method to remove a user from the
     private void removeUser() {
+        // print all users and prompt user for the desired user index
         ui.print(getStringOfUsers());
         ui.print("Indtast nummeret på den bruger som du ønsker at slette, eller fortryd ved at skrive '0': ");
         int choice = ui.getInt(0, users.size());
 
+        // if the choice is not 0, then print confirmation message and remove user
         if (choice != 0){
             choice--;
             ui.print(users.get(choice).getUsername() + " er blevet slettet");
@@ -320,11 +336,13 @@ public class Controller {
 
     private String getStringOfUsers() {
         StringBuilder sb = new StringBuilder();
-        int index = 1;
+        int index = 1; // starts at one, for UX and 0 is reserved for aborting the selection
+
         for (User user : users) {
             sb.append(index).append(". ").append(user).append('\n');
-            index++;
+            index++; // increment the index
         }
+
         return sb.toString();
     }
 
