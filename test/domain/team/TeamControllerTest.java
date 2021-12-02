@@ -1,4 +1,5 @@
 package domain.team;
+import domain.member.MemberController;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +16,7 @@ class TeamControllerTest {
     // test for creating 1 team
 @Test
     void createTeamTest_With1Team(){
-    TeamController teamController = new TeamController();
+    TeamController teamController = new TeamController(new MemberController());
     teamController.addTeam("name",
                            "description");
     assertNotNull(teamController.getTeams().get(0));
@@ -24,7 +25,7 @@ class TeamControllerTest {
     // test for creating 2 teams
 @Test
     void createTeamTest_With2Teams(){
-    TeamController teamController = new TeamController();
+    TeamController teamController = new TeamController(new MemberController());
     teamController.addTeam("name1",
                            "description1");
 
