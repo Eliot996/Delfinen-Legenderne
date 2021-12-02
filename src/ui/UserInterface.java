@@ -138,7 +138,6 @@ public class UserInterface {
     }
 
     public Boolean getBoolean(){
-        System.out.println("test");
         String input = userInput.nextLine().trim().toLowerCase();
 
         if (input.equals("ja")){
