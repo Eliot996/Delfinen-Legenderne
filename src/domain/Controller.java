@@ -236,7 +236,7 @@ public class Controller {
         while (keepRunning){
             switch (ui.userMenu()) {
                 case 1 -> addUser();
-                //change
+                case 2 -> editUser();
                 case 3 -> removeUser();
                 case 0 -> keepRunning = false;
             }
@@ -262,9 +262,45 @@ public class Controller {
         ui.print(userName + " er blevet oprettet som " + role.toString().toLowerCase());
     }
 
+    private void editUser() {
+        ui.print(getStringOfUsers());
+        ui.print("Indtast nummeret på den bruger som du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        int choice = ui.getInt(0, users.size());
+
+        if (choice != 0) {
+            choice--;
+            ui.print("Vælg venligst hvad du vil ændre: \n 1. brugernavn\n 2. kodeord\n 3. role ");
+            switch (ui.getInt(1, 3)) {
+                // set username
+                case 1 -> {
+                    ui.print("Indtast nyt brugernavn");
+                    users.get(choice).setUsername(ui.getString());
+                }
+
+                // set password
+                case 2 -> {
+                    ui.print("Indtast nyt kodeord");
+                    users.get(choice).setPassword(ui.getString());
+                }
+
+                // set role
+                case 3 -> {
+                    ui.print("Vælg venligst brugerens nye role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
+                    Roles role = null;
+                    switch (ui.getInt(1, 3)) {
+                        case 1 -> role = Roles.ADMIN;
+                        case 2 -> role = Roles.CASHIER;
+                        case 3 -> role = Roles.TRAINER;
+                    }
+                    users.get(choice).setRole(role);
+                }
+            }
+        }
+    }
+
     private void removeUser() {
         ui.print(getStringOfUsers());
-        ui.print("Du bedes her indtaste nummeret på den bruger som du ønsker at slette, eller fortryd ved at skrive '0': ");
+        ui.print("Indtast nummeret på den bruger som du ønsker at slette, eller fortryd ved at skrive '0': ");
         int choice = ui.getInt(0, users.size());
 
         if (choice != 0){
