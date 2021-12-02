@@ -8,18 +8,18 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 //@author Sofia og Mathias
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
     User activeUser;
-
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController();
     UserInterface ui = new UserInterface();
 
 
-    public void mainMenu(){
+    public void mainMenu() {
         ui.hello();
 
         boolean keepRunning = true;
@@ -43,8 +43,8 @@ public class Controller {
         ui.print("enter password: ");
         String password = ui.getString();
 
-        for (User user : users) {
-            if (user.getUsername().equals(username) && user.matchPassword(password)){
+        for(User user: users) {
+            if (user.getUsername().equals(username) && user.matchPassword(password)) {
                 activeUser = user;
                 break;
             }
@@ -58,20 +58,20 @@ public class Controller {
         }
     }
 
-    public void userMenuSelector(){
-        switch (activeUser.getRole()){
+    public void userMenuSelector() {
+        switch (activeUser.getRole()) {
             case ADMIN -> adminMenu();
             //case CASHIER -> ;
             //case TRAINER -> ;
         }
     }
 
-    public void adminMenu(){
+    public void adminMenu() {
         boolean keepRunning = true;
 
-        while (keepRunning){
+        while (keepRunning) {
             int choice = ui.adminMenu();
-            switch (choice){
+            switch (choice) {
                 case 1 -> memberMenu();
                 case 0 -> keepRunning = false;
             }
@@ -94,14 +94,14 @@ public class Controller {
         }
     }
 
-    public void seeMember(){
+    public void seeMember() {
         ui.print("Her kan du se medlemmerne af svømmeklubben: ");
         ui.print(memberController.getStringOfMembers());
 
         ui.print("Du bedes her indtaste medlemsindex på det medlem du ønsker at redigere, eller fortryd ved at skrive '0': ");
         int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
 
-        if (memberIndex > 0){
+        if (memberIndex > 0) {
             ui.print(memberController.getInfo(memberIndex - 1));
         }
     }
@@ -156,7 +156,7 @@ public class Controller {
         ui.print("Du bedes her indtaste medlemsindex på det medlem du ønsker at slette, eller fortryd ved at skrive '0': ");
         int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
 
-        if (memberIndex > 0){
+        if (memberIndex > 0) {
             memberController.deleteMember(memberIndex - 1);
         }
     }
@@ -179,5 +179,39 @@ public class Controller {
                 DOB,
                 phone,
                 email);
+    }
+
+
+    public void competitionMenu() {
+        boolean keepRunning = true;
+        while (keepRunning) {
+            int choice = ui.competitionMenu();
+            switch (choice) {
+                case 1 -> addCompetition();
+                case 2 -> deleteCompetition;
+                case 3 -> editCompetition;
+                case 4 -> backToMenu;
+            }
+        }
+    }
+
+    public void addCompetition() {
+        System.out.println("Stævnenavn: ");
+        String competitionName = userInput.nextLine();
+        System.out.println("Adresse: ");
+        String competitionAdress = userInput.nextLine();
+        System.out.println("Dato og tid for stævnet: ");
+        String dateOfCompetition = userInput.nextLine();
+        System.out.println("Stævne disciplin der skal svømmes i: ");
+        String discipline = userInput.nextLine();
+
+        resultController.addCompetition(competitionName,
+                competitionAdress,
+                dateOfCompetition,
+                discipline);
+    }
+
+    public void deleteCompetition() {
+
     }
 }
