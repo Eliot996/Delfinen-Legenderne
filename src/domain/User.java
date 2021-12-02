@@ -13,8 +13,10 @@ public class User {
     }
 
     public User(String CSV){
+        // splits the CSV
         String[] elements = CSV.split(";");
 
+        // assigns base on position
         this.username = elements[0];
         this.password = elements[1];
         this.role = Roles.valueOf(elements[2]);
@@ -26,6 +28,7 @@ public class User {
 
     @Override
     public String toString() {
+        // converts the Enum to an userreadable string
         String roleToPrint;
         switch (role) {
             case ADMIN   -> roleToPrint = "administrator";
