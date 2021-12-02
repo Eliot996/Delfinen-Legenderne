@@ -1,17 +1,12 @@
 package domain.team;
 
-import domain.Discipline;
-import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
 import domain.member.Trainer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 // @Author Sofia
-
-
 public class TeamController {
     private MemberController memberController;
     private ArrayList<Team> teams = new ArrayList<>();
@@ -83,10 +78,24 @@ public class TeamController {
             case "description" -> team.setDescription(to);
             case "add trainers" -> team.addTrainer((Trainer)memberController.getMember(Integer.parseInt(to)));
             case "remove trainers" -> team.removeTrainer(Integer.parseInt(to));
+            // add member
+            // remove member
         }
     }
 
     public Team getTeamFromIndex(int teamIntex) {
         return teams.get(teamIntex);
+    }
+
+    public List<Team> getTeamsWithMember(Member member) {
+        ArrayList<Team> teamsWithMember = new ArrayList<>();
+
+        for (Team team : teams) {
+            if (team.hasMember(member)){
+                teamsWithMember.add(team);
+            }
+        }
+
+        return teamsWithMember;
     }
 }
