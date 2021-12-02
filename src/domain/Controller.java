@@ -163,7 +163,7 @@ public class Controller {
         }
     }
 
-    public void addMember() {
+    public void addMember() { // TODO: 02/12/2021 Make better!
         System.out.print("is passive: ");
         boolean isPassive = ui.getBoolean();
         System.out.print("name: ");
