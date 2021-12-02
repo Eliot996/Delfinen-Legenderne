@@ -11,6 +11,19 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        String roleToPrint;
+        switch (role) {
+            case ADMIN   -> roleToPrint = "administrator";
+            case CASHIER -> roleToPrint = "kasser";
+            case TRAINER -> roleToPrint = "træner";
+            default -> roleToPrint = "role er ikke blevet defineret";
+        }
+
+        return username +  ", role: " + roleToPrint;
+    }
+
     public Roles getRole() {
         return role;
     }
