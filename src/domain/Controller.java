@@ -5,11 +5,6 @@ import domain.result.ResultController;
 import ui.UserInterface;
 import java.util.ArrayList;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 //@author Sofia og Mathias
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
@@ -242,7 +237,7 @@ public class Controller {
             switch (ui.userMenu()) {
                 case 1 -> addUser();
                 //change
-                //delete
+                case 3 -> removeUser();
                 case 0 -> keepRunning = false;
             }
         }
@@ -266,5 +261,28 @@ public class Controller {
         users.add(new User(userName, password, role));
         ui.print(userName + " er blevet oprettet som " + role.toString().toLowerCase());
     }
+
+    private void removeUser() {
+        ui.print(getStringOfUsers());
+        ui.print("Du bedes her indtaste nummeret på den bruger som du ønsker at slette, eller fortryd ved at skrive '0': ");
+        int choice = ui.getInt(0, users.size());
+
+        if (choice != 0){
+            choice--;
+            ui.print(users.get(choice).getUsername() + " er blevet slettet");
+            users.remove(choice);
+        }
+    }
+
+    private String getStringOfUsers() {
+        StringBuilder sb = new StringBuilder();
+        int index = 1;
+        for (User user : users) {
+            sb.append(index).append(". ").append(user).append('\n');
+            index++;
+        }
+        return sb.toString();
+    }
+
 
 }
