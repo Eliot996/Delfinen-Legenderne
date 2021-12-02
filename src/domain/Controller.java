@@ -2,6 +2,7 @@ package domain;
 
 import domain.member.MemberController;
 import domain.result.ResultController;
+import domain.team.TeamController;
 import ui.UserInterface;
 import java.util.ArrayList;
 
@@ -11,6 +12,7 @@ public class Controller {
     User activeUser;
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController();
+    TeamController teamController;
     UserInterface ui = new UserInterface();
 
 
@@ -108,14 +110,6 @@ public class Controller {
         }
     }
 
-    private void editTeam() {
-        ui.print("Her kan du se svømmeklubbens hold");
-        ui.print(memberController.getStringOfTrainers());
-
-        ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0'");
-
-    }
-
     private void editMember() {
         ui.print("Her kan du se medlemmerne af svømmeklubben: ");
         ui.print(memberController.getStringOfMembers());
@@ -191,6 +185,89 @@ public class Controller {
                 email);
     }
 
+    //**********************
+    //*
+    //* Team
+    //*
+    //**********************
+
+    public void teamMenu() {
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            int choice = ui.teamMenu();
+            switch (choice) {
+                case 1 -> addTeam();
+                case 2 -> deleteTeam();
+                case 3 -> editTeam();
+                case 4 -> seeTeam();
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
+
+    public void addTeam() {
+        ui.print("Navn: ");
+        String name = ui.getString();
+        ui.print("Beskrivelse: ");
+        String description = ui.getString();
+
+        teamController.addTeam(name, description);
+    }
+
+    public void deleteTeam() {
+        ui.print("Her kan du se svømmeklubbens hold: ");
+        ui.print(teamController.getStringOfTeams());
+
+        ui.print("Du bedes indtaste holdindex for det hold du ønsker at slette, eller fortryd ved at skrive '0': ");
+        int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
+
+        if (teamIndex > 0) {
+            teamController.deleteTeam(teamIndex - 1);
+        }
+    }
+
+    private void editTeam() {
+        ui.print("Her kan du se svømmeklubbens hold");
+        ui.print(memberController.getStringOfTrainers());
+
+        ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
+
+        if (teamIndex != 0) {
+            teamIndex--;
+            switch (ui.editTeamMenu()) {
+                case 1 -> {
+                    ui.print("Indtast navn; ");
+                    teamController.editTeam(teamIndex, "name", ui.getString());
+                }
+                case 2 -> {
+                    ui.print("Indtast beskrivelse");
+                    teamController.editTeam(teamIndex, "description", ui.getString());
+                }
+                case 3 -> {
+                    ui.print("Indtast hvilken træner du gerne vil have på et hold");
+                    teamController.editTeam(teamIndex, "add trainers", ui.getString());
+                }
+                case 4 -> {
+                    ui.print("Indtast hvilken træner du gerne vil fjerne på et hold");
+                    teamController.editTeam(teamIndex, "remove trainers", ui.getString());
+                }
+            }
+        }
+    }
+
+    public void seeTeam() {
+        ui.print("Her kan du se svømmeklubbens hold: ");
+        ui.print(teamController.getStringOfTeams());
+
+        ui.print("Du bedes her indtaste holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0'");
+        int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
+
+        if (teamIndex > 0) {
+            ui.print(teamController.getInfo(teamIndex - 1));
+        }
+    }
 
     //**********************
     //*
@@ -345,6 +422,4 @@ public class Controller {
 
         return sb.toString();
     }
-
-
 }

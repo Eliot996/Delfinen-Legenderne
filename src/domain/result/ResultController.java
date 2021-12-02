@@ -21,15 +21,11 @@ public class ResultController {
         return competitions;
     }
 
-    public void deleteCompetition(){
+   public void deleteCompetition(){
         System.out.println("Vælg hvilket stævne du ønsker at slette ud fra listen herunder\n" + getCompetetions());
         System.out.println("Indtast det indekset på det stævne du ønsker at slette");
             competitions.remove(competitions.get());
         }
-
-
-    }
-
 
     private ArrayList<Competition> competitions = new ArrayList<>();
 
