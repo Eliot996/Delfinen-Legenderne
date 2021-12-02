@@ -37,8 +37,9 @@ public class UserInterface {
     public int adminMenu() {
         System.out.println("""
                 1. Medlems menu
+                2. Bruger menu
                 0. Afbryd""");
-        return getInt(0, 1);
+        return getInt(0, 2);
     }
 
     public int memberMenu() {
@@ -94,7 +95,19 @@ public class UserInterface {
                 4) Sæt træner på et hold
                 5) Tilbage til hovedmenu
                 """);
-        return getInt(1,5);
+        return getInt(1, 5);
+    }
+
+    public int userMenu() {
+        System.out.println("""
+                -------Brugermenu-------
+                
+                1) Opret bruger
+                2) Rediger bruger
+                3) Slet bruger
+                0) Tilbage til hovedmenu
+                """);
+        return getInt(0, 3);
     }
 
     public int getInt(int lowerLimit, int upperLimit) {
