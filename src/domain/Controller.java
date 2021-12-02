@@ -35,7 +35,7 @@ public class Controller {
     }
 
     private void login() {
-        users.add(new User("emilie", "mathias", Roles.ADMIN));
+        users.add(new User("admin", "admin", Roles.ADMIN));
 
         ui.print("enter username: ");
         String username = ui.getString();
@@ -73,11 +73,18 @@ public class Controller {
             int choice = ui.adminMenu();
             switch (choice) {
                 case 1 -> memberMenu();
+                case 2 -> usermenu();
                 case 0 -> keepRunning = false;
             }
         }
     }
 
+
+    //**********************
+    //*
+    //* Member
+    //*
+    //**********************
     public void memberMenu() {
         boolean keepRunning = true;
 
@@ -182,15 +189,21 @@ public class Controller {
     }
 
 
-    public void competitionMenu() {
+    //**********************
+    //*
+    //* Competition
+    //*
+    //**********************
+
+   /* public void competitionMenu() {
         boolean keepRunning = true;
         while (keepRunning) {
             int choice = ui.competitionMenu();
             switch (choice) {
                 case 1 -> addCompetition();
-                case 2 -> deleteCompetition;
-                case 3 -> editCompetition;
-                case 4 -> backToMenu;
+                case 2 -> deleteCompetition();
+                case 3 -> editCompetition();
+                case 4 -> backToMenu();
             }
         }
     }
@@ -213,5 +226,45 @@ public class Controller {
 
     public void deleteCompetition() {
 
+    }*/
+
+
+    //**********************
+    //*
+    //* User
+    //*
+    //**********************
+
+    private void usermenu() {
+        boolean keepRunning = true;
+
+        while (keepRunning){
+            switch (ui.userMenu()) {
+                case 1 -> addUser();
+                //change
+                //delete
+                case 0 -> keepRunning = false;
+            }
+        }
     }
+
+    private void addUser() {
+        ui.print("Indtast venligst brugernavn: ");
+        String userName = ui.getString();
+
+        ui.print("Indtast venligst kodeord: ");
+        String password = ui.getString(); // mask userinput?
+
+        ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
+        Roles role = null;
+        switch (ui.getInt(1,3)){
+            case 1 -> role = Roles.ADMIN;
+            case 2 -> role = Roles.CASHIER;
+            case 3 -> role = Roles.TRAINER;
+        }
+
+        users.add(new User(userName, password, role));
+        ui.print(userName + " er blevet oprettet som " + role.toString().toLowerCase());
+    }
+
 }
