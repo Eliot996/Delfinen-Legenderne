@@ -108,6 +108,14 @@ public class Controller {
         }
     }
 
+    private void editTeam() {
+        ui.print("Her kan du se svømmeklubbens hold");
+        ui.print(memberController.getStringOfTrainers());
+
+        ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0'");
+
+    }
+
     private void editMember() {
         ui.print("Her kan du se medlemmerne af svømmeklubben: ");
         ui.print(memberController.getStringOfMembers());

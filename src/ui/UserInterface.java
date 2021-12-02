@@ -66,11 +66,10 @@ public class UserInterface {
                 6. Tilføj disciplin
                 7. Fjern disciplin
                                 
-                0. Annuler""");
+                0. Annuller""");
 
         return getInt(0, 7);
     }
-
 
     public int competitionMenu() {
         System.out.println("""
@@ -96,6 +95,17 @@ public class UserInterface {
                 5) Tilbage til hovedmenu
                 """);
         return getInt(1, 5);
+    }
+
+    public int editTeamMenu(){
+        System.out.println("""
+                Hvad vil du gerne ændre?
+                1) Navn
+                2) Beskrivelse
+                3) Sæt træner på et hold
+                4) Slet træner på et hold
+                0) Anullere""");
+        return getInt(0,4);
     }
 
     public int userMenu() {

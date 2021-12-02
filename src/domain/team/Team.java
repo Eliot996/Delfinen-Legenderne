@@ -1,5 +1,6 @@
 package domain.team;
 //@author Mathias og Sofia
+import domain.member.Member;
 import domain.member.MemberController;
 import domain.member.Trainer;
 import java.util.ArrayList;
@@ -73,8 +74,26 @@ public class Team {
         return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): " + trainers;
     }
 
+    public String getStringOfTrainers(){
+            int index = 1;
+            StringBuilder sb = new StringBuilder();
+
+            for (Member member : trainers) {
+                if(member instanceof Trainer) {
+                    sb.append(index).append(". ").append(member.simplePrint()).append('\n');
+                }
+                index++;
+            }
+
+            return sb.toString();
+    }
+
     public void addTrainer(Trainer trainer){
         trainers.add(trainer);
+    }
+
+    public void removeTrainer(int trainerIndex){
+        trainers.remove(trainerIndex);
     }
 }
 
