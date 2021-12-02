@@ -1,7 +1,7 @@
 package ui;
 import java.util.Scanner;
 
-// @Author Sofia
+// @Author Sofia og Mathias
 
 public class UserInterface {
     Scanner userInput = new Scanner(System.in);
@@ -105,7 +105,8 @@ public class UserInterface {
                 2) Slet hold
                 3) Rediger hold
                 4) Sæt træner på et hold
-                5) Tilbage til hovedmenu
+                
+                0) Afbryd
                 """);
         return getInt(1, 5);
     }
@@ -117,7 +118,7 @@ public class UserInterface {
                 2) Beskrivelse
                 3) Sæt træner på et hold
                 4) Slet træner på et hold
-                0) Anullere""");
+                0) Annuller""");
         return getInt(0,4);
     }
 
@@ -176,4 +177,7 @@ public class UserInterface {
     public void print(String toPrint) {
         System.out.println(toPrint);
     }
+
 }
+
+
