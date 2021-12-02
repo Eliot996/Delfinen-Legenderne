@@ -18,7 +18,7 @@ public class Competition {
         this.competitionName = competitionName;
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
-        this.competitionDiscipline = competitionDiscipline;
+        this.competitionDiscipline = Discipline.valueOf(competitionDiscipline);
     }
 
     public String simplePrint() {
@@ -51,7 +51,7 @@ public class Competition {
         this.dateOfCompetetition = dateOfCompetetition;
     }
 
-    public Discipline getCompetitionDiscipline() {
+    public Discipline getCompetitionDiscipline(String to) {
         return competitionDiscipline;
     }
 

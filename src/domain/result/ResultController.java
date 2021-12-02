@@ -9,57 +9,68 @@ import java.util.List;
 
 public class ResultController {
 
-    public void addCompetition (String competitionName,
-                                String competitionAdress,
-                                String dateOfCompetetition,
-                                String competitionDiscipline) {
+    public void addCompetition(String competitionName,
+                               String competitionAdress,
+                               String dateOfCompetetition,
+                               String competitionDiscipline) {
 
-        addCompetition(new Competition(competitionName, competitionAdress, getDateOfString(dateOfCompetetition),competitionDiscipline));
+        addCompetition(new Competition(competitionName, competitionAdress, getDateOfString(dateOfCompetetition), competitionDiscipline));
     }
 
     public List<Competition> getCompetetions() {
         return competitions;
     }
 
-    public void deleteCompetition(){
-        System.out.println("Vælg hvilket stævne du ønsker at slette ud fra listen herunder\n" + getCompetetions());
-        System.out.println("Indtast det indekset på det stævne du ønsker at slette");
-            competitions.remove(competitions.get());
-        }
-
-
+    public void deleteCompetition(int competitionIndex) {
+        competitions.remove(competitionIndex);
     }
 
 
     private ArrayList<Competition> competitions = new ArrayList<>();
 
-    public void addCompetition(Competition competition){
+    public void addCompetition(Competition competition) {
         competitions.add(competition);
     }
 
-    public void deleteCompetetion(Competition competition){
+    public void deleteCompetetion(Competition competition) {
         competitions.remove(competition);
     }
 
-    public LocalDateTime getDateOfString(String dateAndTime){
+    public void editCompetition(int competitionIndex, String what, String to) {
+        Competition competition = competitions.get(competitionIndex);
+
+        switch (what) {
+            case "competitionName" -> competition.setCompetitionName(to);
+            case "competitionAdress" -> competition.setCompetitionAdress(to);
+            case "dateOfCompetition" -> competition.setDateOfCompetetition(getDateOfString(to));
+            case "competitionDiscipline" -> competition.getCompetitionDiscipline(to);
+
+        }
+    }
+
+
+    public int getAmountOfCompetition() {
+        return competitions.size();
+    }
+
+    public LocalDateTime getDateOfString(String dateAndTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
     }
 
-    public Discipline getDisciplineToString(String discipline){
-        return Discipline.valueOf();
-    }
 
     public String getStringOfCompetitions() {
-            int index = 1;
-            StringBuilder sb = new StringBuilder();
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
 
-            for (Competition competition : competitions) {
-                sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
-                index++;
-            }
-
-            return sb.toString();
+        for(Competition competition: competitions) {
+            sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
+            index++;
         }
+
+        return sb.toString();
     }
+
+
+}
 

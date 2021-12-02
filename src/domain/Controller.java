@@ -3,6 +3,7 @@ package domain;
 import domain.member.MemberController;
 import domain.result.ResultController;
 import ui.UserInterface;
+
 import java.util.ArrayList;
 
 //@author Sofia og Mathias
@@ -198,7 +199,7 @@ public class Controller {
     //*
     //**********************
 
-   /* public void competitionMenu() {
+    public void competitionMenu() {
         boolean keepRunning = true;
         while (keepRunning) {
             int choice = ui.competitionMenu();
@@ -206,20 +207,21 @@ public class Controller {
                 case 1 -> addCompetition();
                 case 2 -> deleteCompetition();
                 case 3 -> editCompetition();
-                case 4 -> backToMenu();
+                case 4 -> seeCompetitionMenu();
+                case 0 -> keepRunning = false;
             }
         }
     }
 
     public void addCompetition() {
-        System.out.println("Stævnenavn: ");
-        String competitionName = userInput.nextLine();
-        System.out.println("Adresse: ");
-        String competitionAdress = userInput.nextLine();
-        System.out.println("Dato og tid for stævnet: ");
-        String dateOfCompetition = userInput.nextLine();
-        System.out.println("Stævne disciplin der skal svømmes i: ");
-        String discipline = userInput.nextLine();
+        ui.print("Stævnenavn: ");
+        String competitionName = ui.getString();
+        ui.print("Adresse: ");
+        String competitionAdress = ui.getString();
+        ui.print("Dato og tid for stævnet: ");
+        String dateOfCompetition = ui.getString();
+        ui.print("Stævne disciplin der skal svømmes i: ");
+        String discipline = ui.getString();
 
         resultController.addCompetition(competitionName,
                 competitionAdress,
@@ -228,8 +230,50 @@ public class Controller {
     }
 
     public void deleteCompetition() {
+        ui.print("Vælg hvilket stævne du ønsker at slette ud fra listen herunder\n");
+        ui.print("Indtast indekset på det stævne du ønsker at slette");
+        int competitionIndex = ui.getInt(0, resultController.getAmountOfCompetition());
 
-    }*/
+        if (competitionIndex > 0) {
+            resultController.deleteCompetition(competitionIndex - 1);
+        }
+    }
+
+    private void editCompetition() {
+        ui.print("Her kan du se de stævner der er indskrevet: ");
+        ui.print(resultController.getStringOfCompetitions());
+
+        ui.print("Du bedes her skrive det stævneindex på det stævne du ønsker at redigere i");
+        int competitionIndex = ui.getInt(0, resultController.getAmountOfCompetition());
+
+        if (competitionIndex != 0) {
+            competitionIndex--; // to match with the index
+
+            switch (ui.editCompetitionMenu()) {
+                case 1 -> {
+                    ui.print("Indtast navn på stævnet");
+                    resultController.editCompetition(competitionIndex, "competitionName", ui.getString());
+                }
+                case 2 -> {
+                    ui.print("Indtast adresse på stævnet");
+                    resultController.editCompetition(competitionIndex, "competitionAdress", ui.getString());
+                }
+                case 3 -> {
+                    ui.print("Indtast dato og tid på stævnet (dd-mm-åååå tt:mm)");
+                    resultController.editCompetition(competitionIndex, "dateOfCompetition", ui.getString());
+                }
+                case 4 -> {
+                    ui.print("Indtast disciplinen på stævnet");
+                    resultController.editCompetition(competitionIndex, "competitionDiscipline", ui.getString());
+                }
+            }
+        }
+    }
+
+
+    private void seeCompetitionMenu() {
+        ui.print("Her ");
+    }
 
 
     //**********************
@@ -241,7 +285,7 @@ public class Controller {
     private void usermenu() {
         boolean keepRunning = true;
 
-        while (keepRunning){
+        while (keepRunning) {
             switch (ui.userMenu()) {
                 case 1 -> addUser();
                 case 2 -> editUser();
@@ -264,7 +308,7 @@ public class Controller {
         // get a role to give to the user
         ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
         Roles role = null;
-        switch (ui.getInt(1,3)){
+        switch (ui.getInt(1, 3)) {
             case 1 -> role = Roles.ADMIN;
             case 2 -> role = Roles.CASHIER;
             case 3 -> role = Roles.TRAINER;
@@ -327,7 +371,7 @@ public class Controller {
         int choice = ui.getInt(0, users.size());
 
         // if the choice is not 0, then print confirmation message and remove user
-        if (choice != 0){
+        if (choice != 0) {
             choice--;
             ui.print(users.get(choice).getUsername() + " er blevet slettet");
             users.remove(choice);
@@ -338,13 +382,11 @@ public class Controller {
         StringBuilder sb = new StringBuilder();
         int index = 1; // starts at one, for UX and 0 is reserved for aborting the selection
 
-        for (User user : users) {
+        for(User user: users) {
             sb.append(index).append(". ").append(user).append('\n');
             index++; // increment the index
         }
 
         return sb.toString();
     }
-
-
 }

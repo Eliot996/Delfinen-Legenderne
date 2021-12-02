@@ -78,10 +78,23 @@ public class UserInterface {
                 1) Opret stævne
                 2) Slet stævne
                 3) Rediger stævne
-                4) Tilbage til hovedmenu
+                4) Se liste med stævner
+                0) Tilbage til hovedmenu
                                 
                 """);
-        return getInt(1, 4);
+        return getInt(0, 4);
+    }
+
+    public int editCompetitionMenu(){
+        System.out.println("""
+                Hvad vil du gerne ændre?
+                1) Stævnenavn
+                2) Adresse
+                3) Dato og tid
+                4) Stævnedisciplin
+                0) Annuller
+                """);
+        return getInt(0,4);
     }
 
     public int teamMenu() {
