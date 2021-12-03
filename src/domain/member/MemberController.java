@@ -1,19 +1,23 @@
 package domain.member;
 
 import domain.Discipline;
+import domain.team.TeamController;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 
 //@author Sofia & Mathias
-// TODO: 26/11/2021 make an edit function
-//                  remove all ui elements from the class
+// TODO: 26/11/2021 remove all ui elements from the class
 
 public class MemberController{
-    Scanner userInput = new Scanner(System.in);
+    TeamController teamController;
+
+    public void setTeamController(TeamController teamController) {
+        this.teamController = teamController;
+    }
 
     // to add a member to the database parses date(of format "dd-MM-yyyy")
     public void addMember(boolean isPassiveMember,
@@ -62,6 +66,8 @@ public class MemberController{
             case "dateOfBirth" -> member.setDateOfBirth(getDateFromString(to));
             case "phoneNumber" -> member.setPhoneNumber(to);
             case "email" -> member.setEmail(to);
+            case "add to team" -> teamController.addMemberToTeam(member, Integer.parseInt(to));
+            case "remove from team" -> teamController.removeMemberToTeam(member, Integer.parseInt(to));
         }
 
         if (member instanceof Competitor competitor){
