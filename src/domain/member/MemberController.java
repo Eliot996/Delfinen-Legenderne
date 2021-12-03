@@ -12,7 +12,7 @@ import java.util.UUID;
 //@author Sofia & Mathias
 // TODO: 26/11/2021 remove all ui elements from the class
 
-public class MemberController{
+public class MemberController {
     TeamController teamController;
 
     public void setTeamController(TeamController teamController) {
@@ -35,11 +35,18 @@ public class MemberController{
                               String name,
                               String dateOfBirth,
                               String phoneNumber,
-                              String email,
-                              List<Discipline> disciplines) {
+                              String email) {
 
 
-        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email, disciplines));
+        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+    }
+
+    public void addCompetitor(int memberIndex) {
+        Member member = members.get(memberIndex);
+
+        addMember(new Competitor(member.isPassiveMember(), member.getName(), member.getDateOfBirth(), member.getPhoneNumber(), member.getEmail()));
+
+        members.remove(member);
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -65,6 +72,23 @@ public class MemberController{
         return members;
     }
 
+    public  List<Trainer> getTrainers() {
+        ArrayList<Trainer> trainers = new ArrayList<>();
+        for (Member member : trainers)
+            if (member instanceof Trainer trainer) {
+                trainers.add(trainer);
+            }
+        return trainers;
+    }
+    public  List<Competitor> getCompetitors() {
+        ArrayList<Competitor> competitors = new ArrayList<>();
+        for (Member member : competitors)
+            if (member instanceof Competitor competitor) {
+                competitors.add(competitor);
+            }
+        return competitors;
+    }
+
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
 
@@ -85,7 +109,6 @@ public class MemberController{
             }
         }
     }
-
     public String getStringOfMembers() {
         int index = 1;
         StringBuilder sb = new StringBuilder();
@@ -97,6 +120,7 @@ public class MemberController{
 
         return sb.toString();
     }
+
     public String getStringOfTrainers(){
         int index = 1;
         StringBuilder sb = new StringBuilder();
@@ -107,16 +131,15 @@ public class MemberController{
             }
             index++;
         }
-
         return sb.toString();
     }
 
     public int getAmountOfMembers() {
         return members.size();
     }
-
     // methods from MemberDatabase
     // @author Mathias
+
     private ArrayList<Member> members = new ArrayList<>();
 
     public void addMember(Member member){

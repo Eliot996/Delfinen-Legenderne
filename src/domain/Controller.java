@@ -1,17 +1,15 @@
 package domain;
 
+import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
-import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
+import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -26,7 +24,9 @@ public class Controller {
 
     public void mainMenu() {
         fileHandler.writeToUsers(userToCSV());
-        fileHandler.writeToUsers(memberToCSV());
+        fileHandler.writeToMembers(memberToCSV());
+        fileHandler.writeToCompetitors(competitorToCSV());
+        fileHandler.writeToTrainers(trainersToCSV());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -57,7 +57,7 @@ public class Controller {
 
         for (Member member :
                 memberController.getMembers()) {
-            sb.append(userToCSV()).append("\n");
+            sb.append(memberToCSV()).append("\n");
         }
         return sb.toString();
     }
@@ -65,9 +65,29 @@ public class Controller {
  /*   private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Trainer trainer :
-                ) {
-            sb.append(userToCSV()).append("\n");
+        for (Member trainer :
+                memberController.getTrainers()) {
+            sb.append(trainersToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String competitorToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Competitor competitor :
+                memberController.getCompetitors()) {
+            sb.append(competitorToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String teamsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Team team :
+                teamController.getTeams()) {
+            sb.append(teamsToCSV()).append("\n");
         }
         return sb.toString();
     }*/
@@ -132,12 +152,80 @@ public class Controller {
             int choice = ui.memberMenu();
             switch (choice) {
                 case 1 -> addMember();
-                case 2 -> deleteMember();
-                case 3 -> editMember();
-                case 4 -> seeMember();
+                case 2 -> addCompetitor();
+                case 3 -> addTrainer();
+                case 5 -> deleteMember();
+                case 6 -> editMember();
+                case 7 -> seeMember();
 
                 case 0 -> keepRunning = false;
             }
+        }
+    }
+
+    private void addTrainer() {
+        ui.print("Vil du konverer et eksiterende medlem til en træner?: ");
+        if (ui.getBoolean()){
+            ui.print("Indtast nummeret på det medlem du ønsker at konvertere til en træner, eller fortryd ved at skrive '0': ");
+            ui.print(memberController.getStringOfMembers());
+            int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+            if (memberIndex != 0){
+                memberIndex--;
+                memberController.addTrainer(memberIndex);
+            }
+        } else {
+            ui.print("Indtast navn på træneren");
+            String name = ui.getString();
+
+            ui.print("Indtast fødselsdato(dd-mm-åååå)");
+            String DOB = ui.getString();
+
+            ui.print("Indtast telefonnummer");
+            String phoneNumber = ui.getString();
+
+            ui.print("Indtast email");
+            String email = ui.getString();
+
+            ui.print("er medlemmet passiv?");
+            boolean isPassive = ui.getBoolean();
+
+            memberController.addTrainer(isPassive, name, DOB, phoneNumber, email);
+
+            ui.print(name + " er blevet oprettet som træner");
+        }
+    }
+
+    private void addCompetitor() {
+        ui.print("Vil du konverer et eksiterende medlem til en konkurrencesvømmer?: ");
+        if (ui.getBoolean()) {
+            ui.print("Indtast nummeret på det medlem du ønsker at konvertere til en konkurrencesvømmer, eller fortryd ved at skrive '0': ");
+            ui.print(memberController.getStringOfMembers());
+            int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+            if (memberIndex != 0) {
+                memberIndex--;
+                memberController.addCompetitor(memberIndex);
+            }
+        } else {
+            ui.print("Indtast navn");
+            String name = ui.getString();
+
+            ui.print("Indtast fødselsdato(dd-mm-åååå)");
+            String DOB = ui.getString();
+
+            ui.print("Indtast telefonnummer");
+            String phoneNumber = ui.getString();
+
+            ui.print("Indtast email");
+            String email = ui.getString();
+
+            ui.print("er medlemmet passiv?");
+            boolean isPassive = ui.getBoolean();
+
+            memberController.addCompetitor(isPassive, name, DOB, phoneNumber, email);
+
+            ui.print(name + " er blevet oprettet som konkurrencesvømmer");
         }
     }
 
@@ -185,12 +273,12 @@ public class Controller {
                     memberController.editMember(memberIndex, "email", ui.getString());
                 }
                 case 6 -> {
-                    ui.print("Indtast disciplin til at tilføje (kun mulig på en konkurrencesvømmer:");
-                    memberController.editMember(memberIndex, "add discipline", ui.getString());
+                    ui.print("Vælg disciplin til at tilføje (kun mulig på en konkurrencesvømmer):");
+                    memberController.editMember(memberIndex, "add discipline", ui.getDiscipline().toString());
                 }
                 case 7 -> {
-                    ui.print("Indtast disciplin til at fjerne (kun mulig på en konkurrencesvømmer:");
-                    memberController.editMember(memberIndex, "remove discipline", ui.getString());
+                    ui.print("Vælg disciplin til at fjerne (kun mulig på en konkurrencesvømmer):");
+                    memberController.editMember(memberIndex, "remove discipline", ui.getDiscipline().toString());
                 }
                 case 8 -> {
                     ui.print("Indtast nummeret på det hold som du vil tilføje medlemmet til, eller skriv '0' for at anullere: ");
@@ -315,6 +403,18 @@ public class Controller {
                 case 4 -> {
                     ui.print("Indtast hvilken træner du gerne vil fjerne på et hold");
                     teamController.editTeam(teamIndex, "remove trainers", ui.getString());
+                }
+                case 5 -> {
+                    ui.print(memberController.getStringOfMembers());
+                    ui.print("Indtast nummeret på medlemmet du vil tilføje til holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"add member", Integer.toString(memberIndex));
+                }
+                case 6 -> {
+                    ui.print(teamController.getMembersOnTeam(teamIndex));
+                    ui.print("Indtast nummeret på medlemmet du vil fjerne fra holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"remove member", Integer.toString(memberIndex));
                 }
             }
         }
@@ -462,13 +562,7 @@ public class Controller {
         String password = ui.getString(); // mask userinput?
 
         // get a role to give to the user
-        ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
-        Roles role = null;
-        switch (ui.getInt(1, 3)) {
-            case 1 -> role = Roles.ADMIN;
-            case 2 -> role = Roles.CASHIER;
-            case 3 -> role = Roles.TRAINER;
-        }
+        Roles role = ui.getRole();
 
         // create user and add to the arraylist of users
         users.add(new User(userName, password, role));
@@ -507,13 +601,7 @@ public class Controller {
                 case 3 -> {
                     // get the new role of the user and set, based on the number of the role in the print
                     ui.print("Vælg venligst brugerens nye role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
-                    Roles role = null;
-                    switch (ui.getInt(1, 3)) {
-                        case 1 -> role = Roles.ADMIN;
-                        case 2 -> role = Roles.CASHIER;
-                        case 3 -> role = Roles.TRAINER;
-                    }
-                    users.get(choice).setRole(role);
+                    users.get(choice).setRole(ui.getRole());
                 }
             }
         }
