@@ -1,11 +1,15 @@
 package domain;
 
+import domain.member.Member;
 import domain.member.MemberController;
+import domain.member.Trainer;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
+import database.fileHandler;
 
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -18,6 +22,9 @@ public class Controller {
 
 
     public void mainMenu() {
+        fileHandler.writeToUsers(userToCSV());
+        fileHandler.writeToUsers(memberToCSV());
+
         memberController.setTeamController(teamController);
         ui.hello();
 
@@ -31,6 +38,35 @@ public class Controller {
                 case 0 -> keepRunning = false;
             }
         }
+    }
+    private String userToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (User user :
+            users) {
+            sb.append(userToCSV()).append("\n");
+        }
+           return sb.toString();
+    }
+
+    private String memberToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member :
+                memberController.getMembers()) {
+            sb.append(userToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String trainersToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Trainer trainer :
+                ) {
+            sb.append(userToCSV()).append("\n");
+        }
+        return sb.toString();
     }
 
     private void login() {
