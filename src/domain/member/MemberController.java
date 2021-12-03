@@ -80,6 +80,14 @@ public class MemberController {
             }
         return trainers;
     }
+    public  List<Competitor> getCompetitors() {
+        ArrayList<Competitor> competitors = new ArrayList<>();
+        for (Member member : competitors)
+            if (member instanceof Competitor competitor) {
+                competitors.add(competitor);
+            }
+        return competitors;
+    }
 
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);

@@ -1,10 +1,12 @@
 package domain;
 
+import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
 import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
+import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
@@ -26,7 +28,9 @@ public class Controller {
 
     public void mainMenu() {
         fileHandler.writeToUsers(userToCSV());
-        fileHandler.writeToUsers(memberToCSV());
+        fileHandler.writeToMembers(memberToCSV());
+        fileHandler.writeToCompetitors(competitorToCSV());
+        fileHandler.writeToTrainers(trainersToCSV());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -57,18 +61,37 @@ public class Controller {
 
         for (Member member :
                 memberController.getMembers()) {
-            sb.append(userToCSV()).append("\n");
+            sb.append(memberToCSV()).append("\n");
         }
         return sb.toString();
     }
 
-    //
     private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
         for (Member trainer :
                 memberController.getTrainers()) {
-            sb.append(userToCSV()).append("\n");
+            sb.append(trainersToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String competitorToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Competitor competitor :
+                memberController.getCompetitors()) {
+            sb.append(competitorToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String teamsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Team team :
+                teamController.getTeams()) {
+            sb.append(teamsToCSV()).append("\n");
         }
         return sb.toString();
     }
