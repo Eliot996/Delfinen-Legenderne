@@ -383,6 +383,18 @@ public class Controller {
                     ui.print("Indtast hvilken træner du gerne vil fjerne på et hold");
                     teamController.editTeam(teamIndex, "remove trainers", ui.getString());
                 }
+                case 5 -> {
+                    ui.print(memberController.getStringOfMembers());
+                    ui.print("Indtast nummeret på medlemmet du vil tilføje til holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"add member", Integer.toString(memberIndex));
+                }
+                case 6 -> {
+                    ui.print(teamController.getMembersOnTeam(teamIndex));
+                    ui.print("Indtast nummeret på medlemmet du vil fjerne fra holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"remove member", Integer.toString(memberIndex));
+                }
             }
         }
     }
