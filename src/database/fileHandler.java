@@ -12,6 +12,22 @@ public class fileHandler {
     private final String COMPETITIONS = "data/competitions.csv";
     private final String COMPETITORS_RESULTS = "data/competitor_results.csv";
     private final String CONTINGENT = "data/contingent.csv";
+
+    private String[] readFromFile(String filepath){
+        return null;
+    }
+
+    private void writeToFile(String filepath, String toWrite) {
+
+    }
+
+    public String[] getUSERSFromFile() {
+        return readFromFile(USERS);
+    }
+
+    public void writeToUsers(String toWrite) {
+        writeToFile(USERS, toWrite);
+    }
 }
 // Delfinen
 /*
