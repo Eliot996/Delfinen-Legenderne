@@ -48,14 +48,16 @@ public class UserInterface {
     public int memberMenu() {
         System.out.println("""
                 -----------------medlemsmenu---------------
-                1) Oprette medlem
-                2) Slette medlem
-                3) Redigere medlem
-                4) Se medlemsoplysninger på et medlem
+                1) Opret medlem
+                2) Opret konkurrencesvømmer
+                3) Opret træner
+                4) Slet medlem
+                5) Redigere medlem
+                6) Se medlemsoplysninger på et medlem
                                 
                 0) Afbryd""");
 
-        return getInt(0, 4);
+        return getInt(0, 6);
     }
 
     public int editMemberMenu() {
