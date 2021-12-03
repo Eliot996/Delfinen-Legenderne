@@ -43,11 +43,10 @@ public class ResultController {
             case "competitionName" -> competition.setCompetitionName(to);
             case "competitionAdress" -> competition.setCompetitionAdress(to);
             case "dateOfCompetition" -> competition.setDateOfCompetetition(getDateOfString(to));
-            case "competitionDiscipline" -> competition.getCompetitionDiscipline(Discipline.valueOf(competition.toString()));
+            // case "competitionDiscipline" -> competition.getCompetitionDiscipline((Discipline.valueOf(competition.toString()));
 
         }
     }
-
 
     public int getAmountOfCompetition() {
         return competitions.size();
@@ -57,7 +56,6 @@ public class ResultController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
     }
-
 
     public String getStringOfCompetitions() {
             int index = 1;

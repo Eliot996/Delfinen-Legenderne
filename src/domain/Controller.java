@@ -10,6 +10,8 @@ import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +31,7 @@ public class Controller {
         fileHandler.writeToMembers(memberToCSV());
         fileHandler.writeToCompetitors(competitorsToCSV());
         fileHandler.writeToTrainers(trainersToCSV());
+        fileHandler.writeToTrainers(teamsToCSV());
         fileHandler.writeToCompetitors(competitionsToCSV());
 
         memberController.setTeamController(teamController);
@@ -65,7 +68,7 @@ public class Controller {
         return sb.toString();
     }
 
- /*   private String trainersToCSV(){
+    private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
         for (Member trainer :
@@ -93,7 +96,7 @@ public class Controller {
             sb.append(teamsToCSV()).append("\n");
         }
         return sb.toString();
-    }*/
+    }
 
     private String competitionsToCSV(){
         StringBuilder sb = new StringBuilder();
