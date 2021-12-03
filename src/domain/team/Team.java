@@ -93,6 +93,20 @@ public class Team {
             return sb.toString();
     }
 
+    public String getStringOfMembers() {
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member : members) {
+            if(member instanceof Trainer) {
+                sb.append(index).append(". ").append(member.simplePrint()).append('\n');
+            }
+            index++;
+        }
+
+        return sb.toString();
+    }
+
     public void addTrainer(Trainer trainer){
         trainers.add(trainer);
     }
