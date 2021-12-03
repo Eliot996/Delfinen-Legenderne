@@ -109,6 +109,10 @@ public class Team {
         members.remove(member);
     }
 
+    public void removeMember(int memberIndex) {
+        members.remove(memberIndex);
+    }
+
     public boolean hasMember(Member member){
         return members.contains(member);
     }
