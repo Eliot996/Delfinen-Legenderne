@@ -3,17 +3,13 @@ package domain;
 import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
-import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
 import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -408,6 +404,18 @@ public class Controller {
                     ui.print("Indtast hvilken træner du gerne vil fjerne på et hold");
                     teamController.editTeam(teamIndex, "remove trainers", ui.getString());
                 }
+                case 5 -> {
+                    ui.print(memberController.getStringOfMembers());
+                    ui.print("Indtast nummeret på medlemmet du vil tilføje til holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"add member", Integer.toString(memberIndex));
+                }
+                case 6 -> {
+                    ui.print(teamController.getMembersOnTeam(teamIndex));
+                    ui.print("Indtast nummeret på medlemmet du vil fjerne fra holdet: ");
+                    int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+                    teamController.editTeam(teamIndex,"remove member", Integer.toString(memberIndex));
+                }
             }
         }
     }
@@ -555,7 +563,6 @@ public class Controller {
         String password = ui.getString(); // mask userinput?
 
         // get a role to give to the user
-        ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
         Roles role = ui.getRole();
 
         // create user and add to the arraylist of users
@@ -595,13 +602,7 @@ public class Controller {
                 case 3 -> {
                     // get the new role of the user and set, based on the number of the role in the print
                     ui.print("Vælg venligst brugerens nye role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
-                    Roles role = null;
-                    switch (ui.getInt(1, 3)) {
-                        case 1 -> role = Roles.ADMIN;
-                        case 2 -> role = Roles.CASHIER;
-                        case 3 -> role = Roles.TRAINER;
-                    }
-                    users.get(choice).setRole(role);
+                    users.get(choice).setRole(ui.getRole());
                 }
             }
         }
