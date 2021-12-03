@@ -166,7 +166,7 @@ public class Controller {
 
             memberController.addCompetitor(isPassive, name, DOB, phoneNumber, email);
 
-            ui.print(name + " er blevet oprettet som træner");
+            ui.print(name + " er blevet oprettet som konkurrencesvømmer");
         }
     }
 
@@ -214,12 +214,12 @@ public class Controller {
                     memberController.editMember(memberIndex, "email", ui.getString());
                 }
                 case 6 -> {
-                    ui.print("Indtast disciplin til at tilføje (kun mulig på en konkurrencesvømmer:");
-                    memberController.editMember(memberIndex, "add discipline", ui.getString());
+                    ui.print("Vælg disciplin til at tilføje (kun mulig på en konkurrencesvømmer):");
+                    memberController.editMember(memberIndex, "add discipline", ui.getDiscipline().toString());
                 }
                 case 7 -> {
-                    ui.print("Indtast disciplin til at fjerne (kun mulig på en konkurrencesvømmer:");
-                    memberController.editMember(memberIndex, "remove discipline", ui.getString());
+                    ui.print("Vælg disciplin til at fjerne (kun mulig på en konkurrencesvømmer):");
+                    memberController.editMember(memberIndex, "remove discipline", ui.getDiscipline().toString());
                 }
                 case 8 -> {
                     ui.print("Indtast nummeret på det hold som du vil tilføje medlemmet til, eller skriv '0' for at anullere: ");
@@ -477,12 +477,7 @@ public class Controller {
 
         // get a role to give to the user
         ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
-        Roles role = null;
-        switch (ui.getInt(1, 3)) {
-            case 1 -> role = Roles.ADMIN;
-            case 2 -> role = Roles.CASHIER;
-            case 3 -> role = Roles.TRAINER;
-        }
+        Roles role = ui.getRole();
 
         // create user and add to the arraylist of users
         users.add(new User(userName, password, role));
