@@ -18,6 +18,7 @@ public class Controller {
 
 
     public void mainMenu() {
+        memberController.setTeamController(teamController);
         ui.hello();
 
         boolean keepRunning = true;
@@ -151,6 +152,26 @@ public class Controller {
                 case 7 -> {
                     ui.print("Indtast disciplin til at fjerne (kun mulig på en konkurrencesvømmer:");
                     memberController.editMember(memberIndex, "remove discipline", ui.getString());
+                }
+                case 8 -> {
+                    ui.print("Indtast nummeret på det hold som du vil tilføje medlemmet til, eller skriv '0' for at anullere: ");
+                    ui.print(teamController.getStringOfTeams());
+                    int teamindex = ui.getInt(0,teamController.getAmountOfTeams());
+
+                    if (teamindex != 0){
+                        teamindex--;
+                        memberController.editMember(memberIndex, "add to team", Integer.toString(teamindex));
+                    }
+                }
+                case 9 -> {
+                    ui.print("Indtast nummeret på det hold som du vil fjerne medlemmet fra, eller skriv '0' for at anullere: ");
+                    ui.print(teamController.getTeamsWithMember(memberController.getMember(memberIndex)));
+                    int teamindex = ui.getInt(0,teamController.getAmountOfTeams());
+
+                    if (teamindex != 0){
+                        teamindex--;
+                        memberController.editMember(memberIndex, "remove from team", Integer.toString(teamindex));
+                    }
                 }
             }
         }
