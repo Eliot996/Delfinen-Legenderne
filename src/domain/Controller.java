@@ -62,15 +62,14 @@ public class Controller {
         return sb.toString();
     }
 
-    private String trainersToCSV(){
+    /*private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Trainer trainer :
-                ) {
+        for (Trainer trainer :) {
             sb.append(userToCSV()).append("\n");
         }
         return sb.toString();
-    }
+    }*/
 
     private void login() {
         users.add(new User("admin;admin;ADMIN"));
@@ -531,7 +530,6 @@ public class Controller {
         String password = ui.getString(); // mask userinput?
 
         // get a role to give to the user
-        ui.print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
         Roles role = ui.getRole();
 
         // create user and add to the arraylist of users
@@ -571,13 +569,7 @@ public class Controller {
                 case 3 -> {
                     // get the new role of the user and set, based on the number of the role in the print
                     ui.print("Vælg venligst brugerens nye role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
-                    Roles role = null;
-                    switch (ui.getInt(1, 3)) {
-                        case 1 -> role = Roles.ADMIN;
-                        case 2 -> role = Roles.CASHIER;
-                        case 3 -> role = Roles.TRAINER;
-                    }
-                    users.get(choice).setRole(role);
+                    users.get(choice).setRole(ui.getRole());
                 }
             }
         }
