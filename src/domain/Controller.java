@@ -2,16 +2,12 @@ package domain;
 
 import domain.member.Member;
 import domain.member.MemberController;
-import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -62,14 +58,16 @@ public class Controller {
         return sb.toString();
     }
 
-    /*private String trainersToCSV(){
+    //
+    private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Trainer trainer :) {
+        for (Member trainer :
+                memberController.getTrainers()) {
             sb.append(userToCSV()).append("\n");
         }
         return sb.toString();
-    }*/
+    }
 
     private void login() {
         users.add(new User("admin;admin;ADMIN"));

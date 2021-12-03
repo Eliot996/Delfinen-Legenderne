@@ -12,7 +12,7 @@ import java.util.UUID;
 //@author Sofia & Mathias
 // TODO: 26/11/2021 remove all ui elements from the class
 
-public class MemberController{
+public class MemberController {
     TeamController teamController;
 
     public void setTeamController(TeamController teamController) {
@@ -72,6 +72,15 @@ public class MemberController{
         return members;
     }
 
+    public  List<Trainer> getTrainers() {
+        ArrayList<Trainer> trainers = new ArrayList<>();
+        for (Member member : trainers)
+            if (member instanceof Trainer trainer) {
+                trainers.add(trainer);
+            }
+        return trainers;
+    }
+
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
 
@@ -114,7 +123,6 @@ public class MemberController{
             }
             index++;
         }
-
         return sb.toString();
     }
 
