@@ -69,8 +69,7 @@ class MemberControllerTest {
                 "Name",
                 "25-10-1996",
                 "53663634",
-                "Test@gmail.com",
-                disciplines);
+                "Test@gmail.com");
 
 
 
@@ -95,8 +94,7 @@ class MemberControllerTest {
                 "Name",
                 "06-10-1996",
                 "53663634",
-                "Test@gmail.com",
-                disciplines);
+                "Test@gmail.com");
 
 
         assertTrue(memberController.getMembers().get(0) instanceof Member);
@@ -127,8 +125,7 @@ class MemberControllerTest {
                 "Name",
                 "06-10-1996",
                 "53663634",
-                "Test@gmail.com",
-                disciplines);
+                "Test@gmail.com");
 
         memberController.addTrainer(true,
                 "Trainer",
@@ -303,8 +300,7 @@ class MemberControllerTest {
                 "Name",
                 "25-10-1996",
                 "53663634",
-                "Test@gmail.com",
-                current);
+                "Test@gmail.com");
 
         Competitor competitor = (Competitor) memberController.getMembers().get(0);
 
@@ -332,8 +328,7 @@ class MemberControllerTest {
                 "Name",
                 "25-10-1996",
                 "53663634",
-                "Test@gmail.com",
-                current);
+                "Test@gmail.com");
 
         Competitor competitor = (Competitor) memberController.getMembers().get(0);
 
