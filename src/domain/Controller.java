@@ -3,6 +3,7 @@ package domain;
 import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
+import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
 import domain.team.Team;
@@ -10,6 +11,7 @@ import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
 import java.util.ArrayList;
+import java.util.List;
 
 //@author Sofia og Mathias
 public class Controller {
@@ -25,8 +27,9 @@ public class Controller {
     public void mainMenu() {
         fileHandler.writeToUsers(userToCSV());
         fileHandler.writeToMembers(memberToCSV());
-        fileHandler.writeToCompetitors(competitorToCSV());
+        fileHandler.writeToCompetitors(competitorsToCSV());
         fileHandler.writeToTrainers(trainersToCSV());
+        fileHandler.writeToCompetitors(competitionsToCSV());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -72,12 +75,12 @@ public class Controller {
         return sb.toString();
     }
 
-    private String competitorToCSV(){
+    private String competitorsToCSV(){
         StringBuilder sb = new StringBuilder();
 
         for (Competitor competitor :
                 memberController.getCompetitors()) {
-            sb.append(competitorToCSV()).append("\n");
+            sb.append(competitorsToCSV()).append("\n");
         }
         return sb.toString();
     }
@@ -91,6 +94,19 @@ public class Controller {
         }
         return sb.toString();
     }
+
+    private String competitionsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Competition competition :
+                ResultController.getCompetitions()) {
+            sb.append(competitionsToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    // TODO: make compititions_results for write to file
+    // TODO: make contingent results for write to file
 
     private void login() {
         users.add(new User("admin;admin;ADMIN"));

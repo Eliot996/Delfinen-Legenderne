@@ -1,6 +1,8 @@
 package domain.result;
 
 import domain.Discipline;
+import domain.member.Member;
+import domain.member.Trainer;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -48,7 +50,6 @@ public class ResultController {
         }
     }
 
-
     public int getAmountOfCompetition() {
         return competitions.size();
     }
@@ -57,7 +58,6 @@ public class ResultController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
     }
-
 
     public String getStringOfCompetitions() {
             int index = 1;
@@ -70,5 +70,14 @@ public class ResultController {
 
             return sb.toString();
         }
+
+    public static List<Competition> getCompetitions() {
+        ArrayList<Competition> competitions = new ArrayList<>();
+        for (Competition competition : competitions)
+            if (competition instanceof Competition) {
+                competitions.add(competition);
+            }
+        return competitions;
+    }
     }
 
