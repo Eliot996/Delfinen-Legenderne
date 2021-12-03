@@ -155,7 +155,7 @@ public class Controller {
                 }
                 case 8 -> {
                     ui.print("Indtast nummeret på det hold som du vil tilføje medlemmet til, eller skriv '0' for at anullere: ");
-                    ui.print(teamController.getStringOfTeams());
+                    ui.print(teamController.getStringOfTeams(memberController.getMember(memberIndex)));
                     int teamindex = ui.getInt(0,teamController.getAmountOfTeams());
 
                     if (teamindex != 0){
