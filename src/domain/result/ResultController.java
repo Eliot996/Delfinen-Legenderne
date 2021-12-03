@@ -12,7 +12,7 @@ public class ResultController {
     public void addCompetition (String competitionName,
                                 String competitionAdress,
                                 String dateOfCompetetition,
-                                String competitionDiscipline) {
+                                Discipline competitionDiscipline) {
 
         addCompetition(new Competition(competitionName, competitionAdress, getDateOfString(dateOfCompetetition),competitionDiscipline));
     }
@@ -43,7 +43,7 @@ public class ResultController {
             case "competitionName" -> competition.setCompetitionName(to);
             case "competitionAdress" -> competition.setCompetitionAdress(to);
             case "dateOfCompetition" -> competition.setDateOfCompetetition(getDateOfString(to));
-            case "competitionDiscipline" -> competition.getCompetitionDiscipline(to);
+            case "competitionDiscipline" -> competition.getCompetitionDiscipline(Discipline.valueOf(competition.toString()));
 
         }
     }
