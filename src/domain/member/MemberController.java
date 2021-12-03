@@ -52,6 +52,14 @@ public class MemberController{
         addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
     }
 
+    public void addTrainer(int memberIndex) {
+        Member member = members.get(memberIndex);
+
+        addMember(new Trainer(member.isPassiveMember(), member.getName(), member.getDateOfBirth(), member.getPhoneNumber(), member.getEmail()));
+
+        members.remove(member);
+    }
+
 
     public List<Member> getMembers() {
         return members;
