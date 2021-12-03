@@ -42,10 +42,14 @@ public class TeamController {
     }
 
     public String getStringOfTeams() {
+        return getStringOfTeams(teams);
+    }
+
+    public String getStringOfTeams(List<Team> listOfTeams) {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Team team : teams) {
+        for (Team team : listOfTeams) {
             sb.append(index).append(". ").append(team.simplePrint()).append('\n');
             index++;
         }
@@ -87,7 +91,7 @@ public class TeamController {
         return teams.get(teamIntex);
     }
 
-    public List<Team> getTeamsWithMember(Member member) {
+    public String getTeamsWithMember(Member member) {
         ArrayList<Team> teamsWithMember = new ArrayList<>();
 
         for (Team team : teams) {
@@ -96,6 +100,14 @@ public class TeamController {
             }
         }
 
-        return teamsWithMember;
+        return getStringOfTeams(teamsWithMember);
+    }
+
+    public void addMemberToTeam(Member member, int teamIndex){
+        teams.get(teamIndex).addMember(member);
+    }
+
+    public void removeMemberToTeam(Member member, int teamIndex) {
+        teams.get(teamIndex).removeMember(member);
     }
 }

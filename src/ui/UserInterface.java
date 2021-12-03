@@ -68,10 +68,12 @@ public class UserInterface {
                 5. Email
                 6. Tilføj disciplin
                 7. Fjern disciplin
+                8. Tilføj til hold
+                9. Fjern fra hold
                                 
                 0. Annuller""");
 
-        return getInt(0, 7);
+        return getInt(0, 9);
     }
 
     public int competitionMenu() {
