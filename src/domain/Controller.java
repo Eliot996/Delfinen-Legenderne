@@ -62,7 +62,7 @@ public class Controller {
         return sb.toString();
     }
 
-    private String trainersToCSV(){
+ /*   private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
         for (Trainer trainer :
@@ -70,7 +70,7 @@ public class Controller {
             sb.append(userToCSV()).append("\n");
         }
         return sb.toString();
-    }
+    }*/
 
     private void login() {
         users.add(new User("admin;admin;ADMIN"));
@@ -358,20 +358,19 @@ public class Controller {
         ui.print("Adresse: ");
         String competitionAdress = ui.getString();
         ui.print("Dato og tid for stævnet: ");
-        String dateOfCompetition = ui.getString();
+        String dateOfCompetition = String.valueOf(LocalDateTime.parse(ui.getString()));
         ui.print("Stævne disciplin der skal svømmes i: \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
-        Discipline discipline = null;
+        Discipline competitionDiscipline = null;
         switch (ui.getInt(1, 4)) {
-            case 1 -> discipline = Discipline.BREASTSTROKE;
-            case 2 -> discipline = Discipline.CRAWL;
-            case 3 -> discipline = Discipline.BACKCRAWL;
-            case 4 -> discipline = Discipline.BUTTERFLY;
+            case 1 -> competitionDiscipline = Discipline.BREASTSTROKE;
+            case 2 -> competitionDiscipline = Discipline.CRAWL;
+            case 3 -> competitionDiscipline = Discipline.BACKCRAWL;
+            case 4 -> competitionDiscipline = Discipline.BUTTERFLY;
         }
 
-        resultController.addCompetition(competitionName,
-                competitionAdress,
-                dateOfCompetition,
-                Discipline.valueOf(discipline.toString()));
+        assert competitionDiscipline != null;
+        resultController.addCompetition(competitionName,competitionAdress,dateOfCompetition, competitionDiscipline);
+
     }
 
     public void deleteCompetition() {
@@ -390,7 +389,7 @@ public class Controller {
         ui.print(resultController.getStringOfCompetitions());
 
         ui.print("Du bedes her skrive det stævneindex på det stævne du ønsker at redigere i");
-        int competitionIndex = ui.getInt(0, resultController.getAmountOfCompetition());
+        int competitionIndex = ui.getInt(0, comp.size());
 
         if (competitionIndex != 0) {
             competitionIndex--; // to match with the index
