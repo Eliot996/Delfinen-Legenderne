@@ -1,4 +1,7 @@
 package ui;
+import domain.Discipline;
+import domain.Roles;
+
 import java.util.Scanner;
 
 // @Author Sofia og Mathias
@@ -182,6 +185,27 @@ public class UserInterface {
         } else {
             System.out.println("Indtast venligst enten 'ja' eller 'nej'");
             return getBoolean();
+        }
+    }
+
+    public Roles getRole() {
+        print("Vælg venligst brugerens role:\n 1. Admin\n 2. Kasser\n 3. Træner ");
+        switch (getInt(1, 3)) {
+            case 1  -> {return Roles.ADMIN;}
+            case 2  -> {return Roles.CASHIER;}
+            case 3  -> {return Roles.TRAINER;}
+            default -> {return null;}
+        }
+    }
+
+    public Discipline getDiscipline() {
+        print(" 1. crawl\n 2. rygcrawl\n 3. brystsvømning\n 3. butterfly");
+        switch (getInt(1, 3)) {
+            case 1  -> {return Discipline.CRAWL;}
+            case 2  -> {return Discipline.BACKCRAWL;}
+            case 3  -> {return Discipline.BREASTSTROKE;}
+            case 4  -> {return Discipline.BUTTERFLY;}
+            default -> {return null;}
         }
     }
 
