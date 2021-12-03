@@ -152,7 +152,8 @@ public class MemberController{
 
     public String getInfo(int memberIndex) {
         Member member = members.get(memberIndex);
-        return member.toString();
+
+        return member.toString() + "Medlem af hold:\n " + teamController.getTeamsWithMember(member);
     }
 
     public Trainer getTrainerFromUUID(String uuidString) {
