@@ -62,11 +62,12 @@ public class Controller {
         return sb.toString();
     }
 
+    //
     private String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Trainer trainer :
-                ) {
+        for (Member trainer :
+                memberController.getTrainers()) {
             sb.append(userToCSV()).append("\n");
         }
         return sb.toString();
