@@ -52,7 +52,7 @@ public class Competition {
         this.dateOfCompetetition = dateOfCompetetition;
     }
 
-    public Discipline getCompetitionDiscipline(Discipline competitionDiscipline) {
+    public Discipline getCompetitionDiscipline() {
         return competitionDiscipline;
     }
 
@@ -72,7 +72,6 @@ public class Competition {
         }
         return disciplineToPrint;
     }
-
     public LocalDateTime getDateOfString(String dateAndTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
