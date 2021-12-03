@@ -13,10 +13,8 @@ public class Competitor extends Member {
                       String name,
                       LocalDate dateOfBirth,
                       String phoneNumber,
-                      String email,
-                      List<Discipline> disciplines) {
+                      String email) {
         super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
-        this.disciplines = disciplines;
     }
 
     public List<Discipline> getDisciplines() {
