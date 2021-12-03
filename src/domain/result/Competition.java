@@ -3,6 +3,7 @@ package domain.result;
 import domain.Discipline;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //@author Oliver
 public class Competition {
@@ -14,16 +15,16 @@ public class Competition {
 
     //Konstruktør
     public Competition(String competitionName, String competitionAdress,
-                       LocalDateTime dateOfCompetetition, String competitionDiscipline) {
+                       LocalDateTime dateOfCompetetition, Discipline competitionDiscipline) {
         this.competitionName = competitionName;
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
-        this.competitionDiscipline = Discipline.valueOf(competitionDiscipline);
+        this.competitionDiscipline = Discipline.valueOf(competitionDiscipline.toString());
     }
 
     public String simplePrint() {
-        return "Stævnenavn: " + competitionName + "Adresse: " + competitionAdress +
-                "Dato og tid: " + dateOfCompetetition + "Disciplin: " + competitionDiscipline;
+        return "Stævnenavn: " + competitionName + " Adresse: " + competitionAdress +
+                " Dato og tid: " + dateOfCompetetition + " Disciplin: " + competitionDiscipline;
     }
 
     //Getter og Setter af Attributter
@@ -43,7 +44,7 @@ public class Competition {
         this.competitionAdress = competitionAdress;
     }
 
-    public LocalDateTime getDateOfCompetetition() {
+    public LocalDateTime getDateOfCompetetition(LocalDateTime dateOfCompetetition) {
         return dateOfCompetetition;
     }
 
@@ -51,7 +52,7 @@ public class Competition {
         this.dateOfCompetetition = dateOfCompetetition;
     }
 
-    public Discipline getCompetitionDiscipline(String to) {
+    public Discipline getCompetitionDiscipline(Discipline competitionDiscipline) {
         return competitionDiscipline;
     }
 
@@ -61,10 +62,19 @@ public class Competition {
 
     @Override
     public String toString() {
-        return "----Stævneoplysninger----\n"+
-               "Stævne: " + competitionName +
-               "\nAdresse: " + competitionAdress +
-               "\nDato og tidspunkt for stævnestart: " + dateOfCompetetition +
-               "\nStævnediscipliner: " + competitionDiscipline + "\n";
+        String disciplineToPrint;
+        switch (competitionDiscipline){
+            case BREASTSTROKE -> disciplineToPrint = "Brystsvømning";
+            case CRAWL -> disciplineToPrint = "Crawl";
+            case BACKCRAWL -> disciplineToPrint = "Ryg crawl";
+            case BUTTERFLY -> disciplineToPrint = "Butterfly";
+            default -> disciplineToPrint = "Disciplin er ikke blevet defineret";
+        }
+        return disciplineToPrint;
+    }
+
+    public LocalDateTime getDateOfString(String dateAndTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        return LocalDateTime.parse(dateAndTime.trim(), formatter);
     }
 }

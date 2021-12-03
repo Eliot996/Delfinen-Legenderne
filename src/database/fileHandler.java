@@ -1,17 +1,18 @@
 package database;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class fileHandler {
-    private final String USERS = "data/users.csv";
-    private final String MEMBERS = "data/members.csv";
-    private final String TRAINERS = "data/trainers.csv";
-    private final String COMPETITORS = "data/competitors.csv";
-    private final String TEAMS = "data/teams.csv";
-    private final String COMPETITIONS = "data/competitions.csv";
-    private final String COMPETITORS_RESULTS = "data/competitor_results.csv";
-    private final String CONTINGENT = "data/contingent.csv";
+    private static final String USERS = "data/users.csv";
+    private static final String MEMBERS = "data/members.csv";
+    private static final String TRAINERS = "data/trainers.csv";
+    private static final String COMPETITORS = "data/competitors.csv";
+    private static final String TEAMS = "data/teams.csv";
+    private static final String COMPETITIONS = "data/competitions.csv";
+    private static final String COMPETITORS_RESULTS = "data/competitor_results.csv";
+    private static final String CONTINGENT = "data/contingent.csv";
 
     //**********************
     //*
@@ -23,41 +24,72 @@ public class fileHandler {
         return null;
     }
 
-    private void writeToFile(String filepath, String toWrite) {
-
-    }
     //**********************
     //*
     //* write to file
     //*
     //**********************
 
+    private static void writeToFile(String filepath, String toWrite) {
+        try {
+            FileWriter fw = new FileWriter(filepath);
+            fw.write(toWrite);
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println();
+    }
+
     public String[] getUSERSFromFile() {
         return readFromFile(USERS);
     }
+    public String[] getMEMBERSFromFile() {
+        return readFromFile(MEMBERS);
+    }
+    public String [] getTRAINERSFromFile() {
+        return readFromFile(TRAINERS);
+    }
+    public String [] getCOMPETITORSFromFile() {
+        return readFromFile(COMPETITORS);
+    }
+    public String [] getTEAMSFromFile() {
+        return readFromFile(TEAMS);
+    }
+    public String [] getCOMPETITIONSFromFile() {
+        return readFromFile(COMPETITIONS);
+    }
+    public String [] getCOMPETITORS_RESULTFromFile() {
+        return readFromFile(COMPETITORS_RESULTS);
+    }
+    public String [] getCONTINGENTFromFile() {
+        return readFromFile(CONTINGENT);
+    }
 
-    public void writeToUsers(String toWrite) {
+
+
+    public static void writeToUsers(String toWrite) {
         writeToFile(USERS, toWrite);
     }
-    public void writeToMembers(String toWrite) {
+    public static void writeToMembers(String toWrite) {
         writeToFile(MEMBERS, toWrite);
     }
-    public void writeToTrainers(String toWrite) {
+    public static void writeToTrainers(String toWrite) {
         writeToFile(TRAINERS,toWrite);
     }
-    public void writeToCompetitors(String toWrite) {
+    public static void writeToCompetitors(String toWrite) {
         writeToFile(COMPETITORS, toWrite);
     }
-    public void WriteToTeams(String toWrite) {
+    public static void WriteToTeams(String toWrite) {
         writeToFile(TEAMS, toWrite);
     }
-    public void writeToCompetitions(String toWrite) {
+    public static void writeToCompetitions(String toWrite) {
         writeToFile(COMPETITIONS, toWrite);
     }
-    public void writeToCompetitorsResults(String toWrite) {
+    public static void writeToCompetitors_Results(String toWrite) {
         writeToFile(COMPETITORS_RESULTS, toWrite);
     }
-    public void writeToContingent(String toWrite) {
+    public static void writeToContingent(String toWrite) {
         writeToFile(CONTINGENT, toWrite);
     }
 }

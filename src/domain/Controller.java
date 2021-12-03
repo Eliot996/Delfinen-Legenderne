@@ -1,15 +1,22 @@
 package domain;
 
+import domain.member.Member;
 import domain.member.MemberController;
+import domain.member.Trainer;
+import domain.result.Competition;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
+import database.fileHandler;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 //@author Sofia og Mathias
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
+    ArrayList<Competition> comp = new ArrayList<>();
     User activeUser;
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController();
@@ -18,6 +25,9 @@ public class Controller {
 
 
     public void mainMenu() {
+        fileHandler.writeToUsers(userToCSV());
+        fileHandler.writeToUsers(memberToCSV());
+
         memberController.setTeamController(teamController);
         ui.hello();
 
@@ -31,6 +41,35 @@ public class Controller {
                 case 0 -> keepRunning = false;
             }
         }
+    }
+    private String userToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (User user :
+            users) {
+            sb.append(userToCSV()).append("\n");
+        }
+           return sb.toString();
+    }
+
+    private String memberToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member :
+                memberController.getMembers()) {
+            sb.append(userToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    private String trainersToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Trainer trainer :
+                ) {
+            sb.append(userToCSV()).append("\n");
+        }
+        return sb.toString();
     }
 
     private void login() {
@@ -388,13 +427,19 @@ public class Controller {
         String competitionAdress = ui.getString();
         ui.print("Dato og tid for stævnet: ");
         String dateOfCompetition = ui.getString();
-        ui.print("Stævne disciplin der skal svømmes i: ");
-        String discipline = ui.getString();
+        ui.print("Stævne disciplin der skal svømmes i: \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
+        Discipline discipline = null;
+        switch (ui.getInt(1, 4)) {
+            case 1 -> discipline = Discipline.BREASTSTROKE;
+            case 2 -> discipline = Discipline.CRAWL;
+            case 3 -> discipline = Discipline.BACKCRAWL;
+            case 4 -> discipline = Discipline.BUTTERFLY;
+        }
 
         resultController.addCompetition(competitionName,
                 competitionAdress,
                 dateOfCompetition,
-                discipline);
+                Discipline.valueOf(discipline.toString()));
     }
 
     public void deleteCompetition() {
@@ -418,22 +463,32 @@ public class Controller {
         if (competitionIndex != 0) {
             competitionIndex--; // to match with the index
 
-            switch (ui.editCompetitionMenu()) {
+            switch (ui.getInt(1,4)) {
                 case 1 -> {
-                    ui.print("Indtast navn på stævnet");
-                    resultController.editCompetition(competitionIndex, "competitionName", ui.getString());
+                    ui.print("Indtast nyt navn på stævnet");
+                    comp.get(competitionIndex).setCompetitionName(ui.getString());
                 }
                 case 2 -> {
-                    ui.print("Indtast adresse på stævnet");
-                    resultController.editCompetition(competitionIndex, "competitionAdress", ui.getString());
+                    ui.print("Indtast ny adresse på stævnet");
+                    comp.get(competitionIndex).setCompetitionAdress(ui.getString());
                 }
                 case 3 -> {
                     ui.print("Indtast dato og tid på stævnet (dd-mm-åååå tt:mm)");
-                    resultController.editCompetition(competitionIndex, "dateOfCompetition", ui.getString());
+                    comp.get(competitionIndex).getDateOfString(ui.getString());
                 }
                 case 4 -> {
-                    ui.print("Indtast disciplinen på stævnet");
-                    resultController.editCompetition(competitionIndex, "competitionDiscipline", ui.getString());
+                    ui.print("Vælg venligst den disciplin du vil ændre \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
+                    Discipline competitionDiscipline = null;
+                    switch (ui.getInt(1, 4)) {
+                        case 1 -> competitionDiscipline = Discipline.BREASTSTROKE;
+                        case 2 -> competitionDiscipline = Discipline.CRAWL;
+                        case 3 -> competitionDiscipline = Discipline.BACKCRAWL;
+                        case 4 -> competitionDiscipline = Discipline.BUTTERFLY;
+                    }
+                    comp.get(competitionIndex).setCompetitionDiscipline(competitionDiscipline);
+
+
+                    ui.print(resultController.getStringOfCompetitions());
                 }
             }
         }
