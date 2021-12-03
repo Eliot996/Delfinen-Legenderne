@@ -95,8 +95,8 @@ public class TeamController {
             case "description" -> team.setDescription(to);
             case "add trainers" -> team.addTrainer((Trainer)memberController.getMember(Integer.parseInt(to)));
             case "remove trainers" -> team.removeTrainer(Integer.parseInt(to));
-            // add member
-            // remove member
+            case "add member" -> team.addMember(memberController.getMember(Integer.parseInt(to)));
+            case "remove member" -> team.removeMember(Integer.parseInt(to));
         }
     }
 
@@ -122,5 +122,9 @@ public class TeamController {
 
     public void removeMemberToTeam(Member member, int teamIndex) {
         teams.get(teamIndex).removeMember(member);
+    }
+
+    public String getMembersOnTeam(int teamIndex) {
+        return teams.get(teamIndex).getStringOfMembers();
     }
 }
