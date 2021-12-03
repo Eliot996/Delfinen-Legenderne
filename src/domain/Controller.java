@@ -93,12 +93,80 @@ public class Controller {
             int choice = ui.memberMenu();
             switch (choice) {
                 case 1 -> addMember();
-                case 2 -> deleteMember();
-                case 3 -> editMember();
-                case 4 -> seeMember();
+                case 2 -> addCompetitor();
+                case 3 -> addTrainer();
+                case 5 -> deleteMember();
+                case 6 -> editMember();
+                case 7 -> seeMember();
 
                 case 0 -> keepRunning = false;
             }
+        }
+    }
+
+    private void addTrainer() {
+        ui.print("Vil du konverer et eksiterende medlem til en træner?: ");
+        if (ui.getBoolean()){
+            ui.print("Indtast nummeret på det medlem du ønsker at konvertere til en træner, eller fortryd ved at skrive '0': ");
+            ui.print(memberController.getStringOfMembers());
+            int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+            if (memberIndex != 0){
+                memberIndex--;
+                memberController.addTrainer(memberIndex);
+            }
+        } else {
+            ui.print("Indtast navn på træneren");
+            String name = ui.getString();
+
+            ui.print("Indtast fødselsdato(dd-mm-åååå)");
+            String DOB = ui.getString();
+
+            ui.print("Indtast telefonnummer");
+            String phoneNumber = ui.getString();
+
+            ui.print("Indtast email");
+            String email = ui.getString();
+
+            ui.print("er medlemmet passiv?");
+            boolean isPassive = ui.getBoolean();
+
+            memberController.addTrainer(isPassive, name, DOB, phoneNumber, email);
+
+            ui.print(name + " er blevet oprettet som træner");
+        }
+    }
+
+    private void addCompetitor() {
+        ui.print("Vil du konverer et eksiterende medlem til en konkurrencesvømmer?: ");
+        if (ui.getBoolean()) {
+            ui.print("Indtast nummeret på det medlem du ønsker at konvertere til en konkurrencesvømmer, eller fortryd ved at skrive '0': ");
+            ui.print(memberController.getStringOfMembers());
+            int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+            if (memberIndex != 0) {
+                memberIndex--;
+                memberController.addCompetitor(memberIndex);
+            }
+        } else {
+            ui.print("Indtast navn");
+            String name = ui.getString();
+
+            ui.print("Indtast fødselsdato(dd-mm-åååå)");
+            String DOB = ui.getString();
+
+            ui.print("Indtast telefonnummer");
+            String phoneNumber = ui.getString();
+
+            ui.print("Indtast email");
+            String email = ui.getString();
+
+            ui.print("er medlemmet passiv?");
+            boolean isPassive = ui.getBoolean();
+
+            memberController.addCompetitor(isPassive, name, DOB, phoneNumber, email);
+
+            ui.print(name + " er blevet oprettet som træner");
         }
     }
 
