@@ -35,11 +35,18 @@ public class MemberController{
                               String name,
                               String dateOfBirth,
                               String phoneNumber,
-                              String email,
-                              List<Discipline> disciplines) {
+                              String email) {
 
 
-        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email, disciplines));
+        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+    }
+
+    public void addCompetitor(int memberIndex) {
+        Member member = members.get(memberIndex);
+
+        addMember(new Competitor(member.isPassiveMember(), member.getName(), member.getDateOfBirth(), member.getPhoneNumber(), member.getEmail()));
+
+        members.remove(member);
     }
 
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
@@ -85,7 +92,6 @@ public class MemberController{
             }
         }
     }
-
     public String getStringOfMembers() {
         int index = 1;
         StringBuilder sb = new StringBuilder();
@@ -97,6 +103,7 @@ public class MemberController{
 
         return sb.toString();
     }
+
     public String getStringOfTrainers(){
         int index = 1;
         StringBuilder sb = new StringBuilder();
@@ -114,9 +121,9 @@ public class MemberController{
     public int getAmountOfMembers() {
         return members.size();
     }
-
     // methods from MemberDatabase
     // @author Mathias
+
     private ArrayList<Member> members = new ArrayList<>();
 
     public void addMember(Member member){
