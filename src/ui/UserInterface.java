@@ -39,8 +39,9 @@ public class UserInterface {
                 1. Medlems menu
                 2. Bruger menu
                 3. Stævne menu
+                4. Hold menu
                 0. Afbryd""");
-        return getInt(0, 3);
+        return getInt(0, 4);
     }
 
     public int memberMenu() {
@@ -105,11 +106,11 @@ public class UserInterface {
                 1) Opret hold
                 2) Slet hold
                 3) Rediger hold
-                4) Sæt træner på et hold
+                4) Se alle hold
                 
                 0) Afbryd
                 """);
-        return getInt(1, 5);
+        return getInt(0,4);
     }
 
     public int editTeamMenu(){

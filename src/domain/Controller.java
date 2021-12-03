@@ -13,7 +13,7 @@ public class Controller {
     User activeUser;
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController();
-    TeamController teamController;
+    TeamController teamController = new TeamController(memberController);
     UserInterface ui = new UserInterface();
 
 
@@ -73,6 +73,7 @@ public class Controller {
                 case 1 -> memberMenu();
                 case 2 -> usermenu();
                 case 3 -> competitionMenu();
+                case 4 -> teamMenu();
                 case 0 -> keepRunning = false;
             }
         }
@@ -231,7 +232,7 @@ public class Controller {
 
     private void editTeam() {
         ui.print("Her kan du se svømmeklubbens hold");
-        ui.print(memberController.getStringOfTrainers());
+        ui.print(teamController.getStringOfTeams());
 
         ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0': ");
         int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
