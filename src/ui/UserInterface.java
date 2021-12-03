@@ -40,6 +40,7 @@ public class UserInterface {
                 2. Bruger menu
                 3. Stævne menu
                 4. Hold menu
+                
                 0. Afbryd""");
         return getInt(0, 4);
     }
@@ -81,6 +82,7 @@ public class UserInterface {
                 2) Slet stævne
                 3) Rediger stævne
                 4) Se liste med stævner
+                
                 0) Tilbage til hovedmenu
                                 
                 """);
@@ -94,6 +96,7 @@ public class UserInterface {
                 2) Adresse
                 3) Dato og tid
                 4) Stævnedisciplin
+                
                 0) Annuller
                 """);
         return getInt(0,4);
@@ -120,6 +123,7 @@ public class UserInterface {
                 2) Beskrivelse
                 3) Sæt træner på et hold
                 4) Slet træner på et hold
+                
                 0) Annuller""");
         return getInt(0,4);
     }
@@ -131,6 +135,7 @@ public class UserInterface {
                 1) Opret bruger
                 2) Rediger bruger
                 3) Slet bruger
+                
                 0) Tilbage til hovedmenu
                 """);
         return getInt(0, 3);
