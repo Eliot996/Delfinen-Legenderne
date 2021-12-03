@@ -56,6 +56,19 @@ public class TeamController {
         return sb.toString();
     }
 
+    public String getStringOfTeams(Member excludeMember) {
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
+
+        for (Team team : teams) {
+            if (!team.hasMember(excludeMember)){
+                sb.append(index).append(". ").append(team.simplePrint()).append('\n');
+            }
+            index++;
+        }
+        return sb.toString();
+    }
+
     public int getAmountOfTeams() {
         return teams.size();
     }
