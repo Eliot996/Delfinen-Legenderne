@@ -644,8 +644,16 @@ public class Controller {
         resultController.addResult(memberIndex, time, date, competitionIndex, discipline);
     }
 
-    private void deleteResult() {
+   private void deleteResult() {
+    ui.print("Her kan du se resultaterne for konkurrencesvømmerne af svømmeklubben: ");
+    ui.print(resultController.getStringOfResults());
 
+    ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at slette, eller fortryd ved at skrive '0': ");
+    int resultIndex = ui.getInt(0,resultController.getAmountOfResults());
+
+    if (resultIndex > 0) {
+        resultController.deleteResult(resultIndex - 1);
+        }
     }
 
     private void editResult() {
@@ -653,8 +661,17 @@ public class Controller {
     }
 
     private void viewResults() {
+    ui.print("Her kan du se resultaterne for konkurrencesvømmer af svømmeklubben: ");
+    ui.print(resultController.getStringOfResults());
 
+    ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
+    int resultIndex = ui.getInt(0,resultController.getAmountOfResults());
+
+    if (resultIndex > 0) {
+        ui.print(resultController.getInfo(resultIndex - 1));
+        }
     }
+
 
     private void saveData() {
         fileHandler.writeToUsers(userToCSV());
@@ -684,3 +701,4 @@ public class Controller {
         }
     }
 }
+//brugerens input

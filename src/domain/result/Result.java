@@ -41,4 +41,26 @@ public class Result {
                 + competition.getId() + ";"
                 + discipline;
     }
+
+    public String simplePrint() {
+        return "ID: " + id +
+                ", Konkurrencesvømmer: " + competitor +
+                ", Tid: " + time +
+                ", Dato: " + date +
+                ", Konkurrence: " + competition +
+                ", Disciplin: " + discipline;
+    }
+
+    @Override
+    public String toString() {
+        return "Resultat= " +
+                "Id: " + id +
+                ", Konkurrencesvømmer:" + competitor +
+                ", Tid: " + time +
+                ", Dato: " + date +
+                ", Konkurrence: " + competition +
+                ", disciplin: " + discipline +
+                ';';
+    }
+
 }

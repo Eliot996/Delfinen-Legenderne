@@ -130,6 +130,23 @@ public class ResultController {
             return sb.toString();
         }
 
+    public String getStringOfResults() {
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
+
+        for (Result result : results) {
+            sb.append(index).append(". ").append(result.simplePrint()).append('\n');
+            index++;
+        }
+
+        return sb.toString();
+    }
+
+    public String getInfo(int resultIndex) {
+        Result result = results.get(resultIndex);
+        return result.toString();
+    }
+
     public static List<Competition> getCompetitions() {
         ArrayList<Competition> competitions = new ArrayList<>();
         for (Competition competition : competitions)
@@ -153,6 +170,13 @@ public class ResultController {
         return results;
     }
 
+    public int getAmountOfResults() {
+        return results.size();
+    }
+    public void deleteResult(int resultIndex) {
+        results.remove(results.get(resultIndex));
+    }
+
     public String resultToCSV(){
         StringBuilder sb = new StringBuilder();
 
@@ -170,7 +194,7 @@ public class ResultController {
     }
 
     public void initResults(List<String> competitors_resultFromFile) {
-        for (String resultsString : competitors_resultFromFile) {
+        for (String     resultsString : competitors_resultFromFile) {
             competitions.add(new Competition(resultsString));
         }
     }
