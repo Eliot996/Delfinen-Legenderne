@@ -28,11 +28,11 @@ public class Controller {
 
     public void mainMenu() {
         fileHandler.writeToUsers(userToCSV());
-        fileHandler.writeToMembers(memberToCSV());
-        fileHandler.writeToCompetitors(competitorsToCSV());
-        fileHandler.writeToTrainers(trainersToCSV());
-        fileHandler.writeToTrainers(teamsToCSV());
-        fileHandler.writeToCompetitors(competitionsToCSV());
+        fileHandler.writeToMembers(memberController.memberToCSV());
+        fileHandler.writeToCompetitors(memberController.competitorsToCSV());
+        fileHandler.writeToTrainers(memberController.trainersToCSV());
+        fileHandler.writeToTrainers(teamController.teamsToCSV());
+        fileHandler.writeToCompetitors(resultController.competitionsToCSV());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -56,56 +56,6 @@ public class Controller {
             sb.append(userToCSV()).append("\n");
         }
            return sb.toString();
-    }
-
-    private String memberToCSV(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Member member :
-                memberController.getMembers()) {
-            sb.append(memberToCSV()).append("\n");
-        }
-        return sb.toString();
-    }
-
-    private String trainersToCSV(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Member trainer :
-                memberController.getTrainers()) {
-            sb.append(trainersToCSV()).append("\n");
-        }
-        return sb.toString();
-    }
-
-    private String competitorsToCSV(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Competitor competitor :
-                memberController.getCompetitors()) {
-            sb.append(competitorsToCSV()).append("\n");
-        }
-        return sb.toString();
-    }
-
-    private String teamsToCSV(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Team team :
-                teamController.getTeams()) {
-            sb.append(teamsToCSV()).append("\n");
-        }
-        return sb.toString();
-    }
-
-    private String competitionsToCSV(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Competition competition :
-                ResultController.getCompetitions()) {
-            sb.append(competitionsToCSV()).append("\n");
-        }
-        return sb.toString();
     }
 
     // TODO: make compititions_results for write to file

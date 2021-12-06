@@ -127,4 +127,15 @@ public class TeamController {
     public String getMembersOnTeam(int teamIndex) {
         return teams.get(teamIndex).getStringOfMembers();
     }
+
+    public String teamsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Team team :
+                getTeams()) {
+            sb.append(teamsToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
 }
