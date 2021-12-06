@@ -1,6 +1,7 @@
 package domain.member;
 
 import domain.Discipline;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -19,9 +20,15 @@ class MemberControllerTest {
     // *
     // ***************
 
+    private MemberController memberController;
+
+    @BeforeEach
+    public  void setup(){
+        memberController = new MemberController();
+    }
+
     @Test
-    void createMemberTest_With1Member(){
-    MemberController memberController = new MemberController();
+    void createMemberTest_With1Member() {
     memberController.addMember(true,
             "Name",
             "25-10-1996",
@@ -32,8 +39,6 @@ class MemberControllerTest {
 
     @Test
     void createMemberTest_With2Member(){
-        MemberController memberController = new MemberController();
-
         memberController.addMember(true,
                 "Name",
                 "25-10-1996",
@@ -49,6 +54,8 @@ class MemberControllerTest {
 
         assertNotNull(memberController.getMembers().get(0));
         assertNotNull(memberController.getMembers().get(1));
+        assertEquals(memberController.getMembers().get(0).getDateOfBirth(), LocalDate.of(1996,10,6));
+        assertEquals(memberController.getMembers().get(0).getDateOfBirth(), LocalDate.of(1996,10,6));
     }
 
     //********************
