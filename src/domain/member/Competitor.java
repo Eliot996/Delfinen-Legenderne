@@ -3,11 +3,12 @@ package domain.member;
 import domain.Discipline;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Competitor extends Member {
 
-    private List<Discipline> disciplines;
+    private List<Discipline> disciplines = new ArrayList<>();
 
     public Competitor(boolean isPassiveMember,
                       String name,
@@ -17,8 +18,15 @@ public class Competitor extends Member {
         super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
     }
 
-    public Competitor(String competitorString) {
-        super(competitorString);
+    public Competitor(String csv) {
+        super(csv);
+
+        String discpinesToAdd = csv.substring(csv.lastIndexOf(";") + 1);
+        String[] elements = discpinesToAdd.split(":");
+
+        for (String element : elements){
+            addDisciplines(Discipline.valueOf(element));
+        }
     }
 
     public List<Discipline> getDisciplines() {
@@ -41,6 +49,7 @@ public class Competitor extends Member {
     public String toCSV() {
         StringBuilder sb = new StringBuilder(super.toCSV());
 
+        sb.append(";");
         if (disciplines.size() > 1) {
             sb.append(disciplines);
             for (int i = 1; i < disciplines.size(); i++) {
