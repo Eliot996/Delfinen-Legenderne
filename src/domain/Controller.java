@@ -1,11 +1,8 @@
 package domain;
 
-import domain.member.Competitor;
-import domain.member.Member;
 import domain.member.MemberController;
 import domain.result.Competition;
 import domain.result.ResultController;
-import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
@@ -27,14 +24,7 @@ public class Controller {
 
 
     public void mainMenu() {
-        fileHandler.writeToUsers(userToCSV());
-        fileHandler.writeToMembers(memberController.memberToCSV());
-        fileHandler.writeToCompetitors(memberController.competitorsToCSV());
-        fileHandler.writeToTrainers(memberController.trainersToCSV());
-        fileHandler.writeToTrainers(teamController.teamsToCSV());
-        fileHandler.writeToCompetitors(resultController.competitionsToCSV());
-        fileHandler.writeToCompetitors_Results(resultController.resultToCSV());
-      //  fileHandler.writeToContingent(); TODO: lav det færdigt.
+        initializaData();
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -49,6 +39,8 @@ public class Controller {
                 case 0 -> keepRunning = false;
             }
         }
+
+        saveData();
     }
     private String userToCSV(){
         StringBuilder sb = new StringBuilder();
@@ -124,9 +116,9 @@ public class Controller {
                 case 1 -> addMember();
                 case 2 -> addCompetitor();
                 case 3 -> addTrainer();
-                case 5 -> deleteMember();
-                case 6 -> editMember();
-                case 7 -> seeMember();
+                case 4 -> deleteMember();
+                case 5 -> editMember();
+                case 6 -> seeMember();
 
                 case 0 -> keepRunning = false;
             }
@@ -647,5 +639,20 @@ public class Controller {
 
     private void viewResults() {
 
+    }
+
+    private void saveData() {
+        fileHandler.writeToUsers(userToCSV());
+        fileHandler.writeToMembers(memberController.memberToCSV());
+        fileHandler.writeToCompetitors(memberController.competitorsToCSV());
+        fileHandler.writeToTrainers(memberController.trainersToCSV());
+        fileHandler.writeToTrainers(teamController.teamsToCSV());
+        fileHandler.writeToCompetitors(resultController.competitionsToCSV());
+        fileHandler.writeToCompetitors_Results(resultController.resultToCSV());
+        //  fileHandler.writeToContingent(); TODO: lav det færdigt.
+    }
+
+    private void  initializaData() {
+        memberController.initMembers(fileHandler.getMEMBERSFromFile());
     }
 }
