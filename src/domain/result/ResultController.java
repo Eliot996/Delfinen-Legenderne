@@ -120,7 +120,7 @@ public class ResultController {
         StringBuilder sb = new StringBuilder();
 
         for (Competition competition :
-                ResultController.getCompetitions()) {
+                getCompetitions()) {
             sb.append(competition.toCSV()).append("\n");
         }
         return sb.toString();
