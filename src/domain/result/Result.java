@@ -35,6 +35,11 @@ public class Result {
     }
 
     public String toCSV() {
-        return id.toString() + ";" + competitor + ";" + time.toString() + ";" + date.toString() + ";" + competition.getId() + ";" + discipline;
+        return id.toString() + ";"
+                + competitor + ";"
+                + time.toString() + ";"
+                + date.toString() + ";"
+                + competition.getId() + ";"
+                + discipline;
     }
 }
