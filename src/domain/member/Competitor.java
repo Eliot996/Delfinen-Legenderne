@@ -37,12 +37,20 @@ public class Competitor extends Member {
         this.disciplines.remove(discipline);
     }
 
+    @Override
     public String toCSV() {
-        return  isPassiveMember() + ";" +
-                getName() + ";" +
-                getDateOfBirth() + ";" +
-                getPhoneNumber() + ";" +
-                getEmail();
+        StringBuilder sb = new StringBuilder(super.toCSV());
+
+        if (disciplines.size() > 1) {
+            sb.append(disciplines);
+            for (int i = 1; i < disciplines.size(); i++) {
+                sb.append(":").append(disciplines.get(i));
+            }
+        }else if (disciplines.size() == 1){
+            sb.append(disciplines.get(0));
+        }
+
+        return  sb.toString();
     }
 }
 
