@@ -2,6 +2,12 @@ package ui;
 import domain.Discipline;
 import domain.Roles;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.Scanner;
 
 // @Author Sofia og Mathias
@@ -135,6 +141,20 @@ public class UserInterface {
         return getInt(0,4);
     }
 
+    public int resultMenu() {
+        System.out.println("""
+                -------Resultatmenu-------
+                
+                1) Opret resultat
+                2) Slet resultat
+                3) Rediger resultat
+                4) Se alle resultater
+                
+                0) Afbryd
+                """);
+        return getInt(0,4);
+    }
+
     public int userMenu() {
         System.out.println("""
                 -------Brugermenu-------
@@ -213,6 +233,33 @@ public class UserInterface {
         System.out.println(toPrint);
     }
 
+    private final DateTimeFormatter TIMEFORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss,SSS");
+
+    public LocalTime getTime() {
+        print("Indtast venligst tid (HH:mm:ss,SSS)");
+        String input = userInput.nextLine();
+
+        try {
+            return LocalTime.parse(input, TIMEFORMATTER);
+        } catch (DateTimeParseException e) {
+            print("Forkert input, prøv igen");
+            return getTime();
+        }
+    }
+
+    private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    public LocalDate getDate() {
+        print("Indtast venligst tid (HH:mm:ss,SSS)");
+        String input = userInput.nextLine();
+
+        try {
+            return LocalDate.parse(input, DATEFORMATTER);
+        } catch (DateTimeParseException e) {
+            print("Forkert input, prøv igen");
+            return getDate();
+        }
+    }
 }
 
 
