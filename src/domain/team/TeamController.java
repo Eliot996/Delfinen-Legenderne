@@ -131,8 +131,7 @@ public class TeamController {
     public String teamsToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Team team :
-                getTeams()) {
+        for (Team team : teams) {
             sb.append(team.toCSV()).append("\n");
         }
         return sb.toString();
