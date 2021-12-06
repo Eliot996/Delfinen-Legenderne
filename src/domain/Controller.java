@@ -19,7 +19,7 @@ public class Controller {
     ArrayList<Competition> comp = new ArrayList<>(); // TODO: 06/12/2021 move to resultcontroller
     User activeUser;
     MemberController memberController = new MemberController();
-    ResultController resultController = new ResultController();
+    ResultController resultController = new ResultController(memberController);
     TeamController teamController = new TeamController(memberController);
     UserInterface ui = new UserInterface();
 
@@ -522,7 +522,7 @@ public class Controller {
                 }
                 case 3 -> {
                     ui.print("Indtast dato og tid på stævnet (dd-mm-åååå tt:mm)");
-                    comp.get(competitionIndex).getDateOfString(ui.getString());
+                    comp.get(competitionIndex).getDateAndTimeOfString(ui.getString());
                 }
                 case 4 -> {
                     ui.print("Vælg venligst den disciplin du vil ændre \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
