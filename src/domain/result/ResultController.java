@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class ResultController {
 
@@ -38,6 +39,18 @@ public class ResultController {
                 date,
                 competition,
                 discipline));
+    }
+
+    private void addResultFromCSV(String csv) { // might work, but properly doesn't
+        String[] elemets = csv.split(";");
+
+        results.add(new Result(
+                UUID.fromString(elemets[0]),
+                memberController.getCompetitor(UUID.fromString(elemets[1])),
+                LocalTime.parse(elemets[2]),
+                LocalDate.parse(elemets[3]),
+                getCompetitionFromID(UUID.fromString(elemets[4])),
+                Discipline.valueOf(elemets[5])));
     }
 
 
@@ -84,6 +97,15 @@ public class ResultController {
             case "competitionDiscipline" -> competition.setCompetitionDiscipline((Discipline.valueOf(competition.toString())));
 
         }
+    }
+
+    public Competition getCompetitionFromID(UUID id) {
+        for (Competition competition : competitions) {
+            if (competition.getId().equals(id)) {
+                return competition;
+            }
+        }
+        return null;
     }
 
     public int getAmountOfCompetition() {
