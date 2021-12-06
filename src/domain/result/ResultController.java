@@ -168,5 +168,11 @@ public class ResultController {
             competitions.add(new Competition(competitionString));
         }
     }
+
+    public void initResults(List<String> competitors_resultFromFile) {
+        for (String resultsString : competitors_resultFromFile) {
+            competitions.add(new Competition(resultsString));
+        }
+    }
 }
 
