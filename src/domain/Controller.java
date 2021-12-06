@@ -670,6 +670,10 @@ public class Controller {
     private void  initializaData() {
         initializeUsers();
         memberController.initMembers(fileHandler.getMEMBERSFromFile());
+        memberController.initCompetitors(fileHandler.getCOMPETITORSFromFile());
+        memberController.initTrainers(fileHandler.getTRAINERSFromFile());
+        teamController.initTeams(fileHandler.getTEAMSFromFile());
+        resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
     }
 
     private void initializeUsers() {

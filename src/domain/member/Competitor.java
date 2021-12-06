@@ -17,6 +17,10 @@ public class Competitor extends Member {
         super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
     }
 
+    public Competitor(String competitorString) {
+        super(competitorString);
+    }
+
     public List<Discipline> getDisciplines() {
         return disciplines;
     }
@@ -32,6 +36,7 @@ public class Competitor extends Member {
     public void removeDisciplines(Discipline discipline) {
         this.disciplines.remove(discipline);
     }
+
     public String toCSV() {
         return  isPassiveMember() + ";" +
                 getName() + ";" +

@@ -4,6 +4,7 @@ import domain.Discipline;
 import domain.User;
 import domain.member.Competitor;
 import domain.member.MemberController;
+import domain.team.Team;
 
 
 import java.time.LocalDate;
@@ -160,6 +161,12 @@ public class ResultController {
             sb.append(result.toCSV()).append("\n");
         }
         return sb.toString();
+    }
+
+    public void initCompetitions(List<String> competitionsFromFile) {
+        for (String competitionString : competitionsFromFile) {
+            competitions.add(new Competition(competitionString));
+        }
     }
 }
 

@@ -137,4 +137,9 @@ public class TeamController {
         return sb.toString();
     }
 
+    public void initTeams(List<String> teamsFromFile) {
+        for (String teamString : teamsFromFile) {
+            teams.add(new Team(teamString));
+        }
+    }
 }

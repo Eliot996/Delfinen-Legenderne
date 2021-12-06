@@ -23,6 +23,11 @@ public class Team {
         this.members = new ArrayList<>();
     }
 
+    //CSV konstruktør
+    public Team(String teamString) {
+
+    }
+
     //@Author Sofia
     // getter og setter
     public String getName() {

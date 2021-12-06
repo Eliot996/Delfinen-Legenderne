@@ -202,39 +202,52 @@ public class MemberController {
         }
         return null;
     }
-    public String memberToCSV(){
+
+    public String memberToCSV() {
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
             if (!(member instanceof Competitor) && !(member instanceof Trainer))
-            sb.append(member.toCSV()).append("\n");
+                sb.append(member.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
-    public String trainersToCSV(){
+    public String trainersToCSV() {
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
             if (member instanceof Trainer trainer)
-            sb.append(trainer.toCSV()).append("\n");
+                sb.append(trainer.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
-    public String competitorsToCSV(){
+    public String competitorsToCSV() {
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
             if (member instanceof Competitor competitor)
-            sb.append(competitor.toCSV()).append("\n");
+                sb.append(competitor.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
     public void initMembers(List<String> membersFromFile) {
-        for (String memberString : membersFromFile){
+        for (String memberString : membersFromFile) {
             members.add(new Member(memberString));
+        }
+    }
+
+    public void initCompetitors(List<String> competitorsFromFile) {
+        for (String competitorString : competitorsFromFile) {
+            members.add(new Competitor(competitorString));
+        }
+    }
+
+    public void initTrainers(List<String> trainersFromFile) {
+        for (String trainerString : trainersFromFile) {
+            members.add(new Trainer(trainerString));
         }
     }
 

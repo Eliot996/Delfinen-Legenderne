@@ -1,6 +1,7 @@
 package domain.result;
 
 import domain.Discipline;
+import domain.Roles;
 import jdk.dynalink.beans.StaticClass;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,19 @@ public class Competition {
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
         this.competitionDiscipline = Discipline.valueOf(competitionDiscipline.toString());
+    }
+
+    //CSV konstruktør
+    public Competition(String competitionString) {
+        // splits the CSV
+        String[] elements = competitionString.split(";");
+
+        //assigns base on position
+        this.id = UUID.fromString(elements[0]);
+        this.competitionName = elements [1];
+        this.competitionAdress = elements [2];
+        this.dateOfCompetetition = LocalDateTime.parse(elements [3]);
+        this.competitionDiscipline = Discipline.valueOf(elements [4]);
     }
 
     public String simplePrint() {
