@@ -202,5 +202,36 @@ public class MemberController {
         }
         return null;
     }
+    public String memberToCSV(){
+        MemberController memberController = new MemberController();
+        StringBuilder sb = new StringBuilder();
+
+        for (Member member :
+                memberController.getMembers()) {
+            sb.append(memberToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String trainersToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Member trainer :
+                getTrainers()) {
+            sb.append(trainersToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String competitorsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Competitor competitor :
+                getCompetitors()) {
+            sb.append(competitorsToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
 }
 

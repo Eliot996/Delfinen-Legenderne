@@ -114,5 +114,16 @@ public class ResultController {
             }
         return competitions;
     }
+
+    public String competitionsToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Competition competition :
+                ResultController.getCompetitions()) {
+            sb.append(competitionsToCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+
     }
 
