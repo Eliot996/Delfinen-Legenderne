@@ -133,7 +133,7 @@ public class TeamController {
 
         for (Team team :
                 getTeams()) {
-            sb.append(teamsToCSV()).append("\n");
+            sb.append(team.toCSV()).append("\n");
         }
         return sb.toString();
     }

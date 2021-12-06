@@ -208,7 +208,7 @@ public class MemberController {
 
         for (Member member :
                 memberController.getMembers()) {
-            sb.append(memberToCSV()).append("\n");
+            sb.append(member.toCSV()).append("\n");
         }
         return sb.toString();
     }
@@ -218,7 +218,7 @@ public class MemberController {
 
         for (Member trainer :
                 getTrainers()) {
-            sb.append(trainersToCSV()).append("\n");
+            sb.append(trainer.toCSV()).append("\n");
         }
         return sb.toString();
     }
@@ -228,7 +228,7 @@ public class MemberController {
 
         for (Competitor competitor :
                 getCompetitors()) {
-            sb.append(competitorsToCSV()).append("\n");
+            sb.append(competitor.toCSV()).append("\n");
         }
         return sb.toString();
     }

@@ -84,4 +84,12 @@ public class Competition {
     public UUID getId() {
         return id;
     }
+
+    public String toCSV() {
+        return  id + ";" +
+                competitionName + ";" +
+                competitionAdress + ";" +
+                dateOfCompetetition + ";" +
+                competitionDiscipline;
+    }
 }

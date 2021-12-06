@@ -24,23 +24,6 @@ public class fileHandler {
         return null;
     }
 
-    //**********************
-    //*
-    //* write to file
-    //*
-    //**********************
-
-    private static void writeToFile(String filepath, String toWrite) {
-        try {
-            FileWriter fw = new FileWriter(filepath);
-            fw.write(toWrite);
-            fw.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        System.out.println();
-    }
-
     public String[] getUSERSFromFile() {
         return readFromFile(USERS);
     }
@@ -66,7 +49,22 @@ public class fileHandler {
         return readFromFile(CONTINGENT);
     }
 
+    //**********************
+    //*
+    //* write to file
+    //*
+    //**********************
 
+    private static void writeToFile(String filepath, String toWrite) {
+        try {
+            FileWriter fw = new FileWriter(filepath);
+            fw.write(toWrite);
+            fw.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println();
+    }
 
     public static void writeToUsers(String toWrite) {
         writeToFile(USERS, toWrite);
