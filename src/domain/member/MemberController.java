@@ -203,11 +203,10 @@ public class MemberController {
         return null;
     }
     public String memberToCSV(){
-        MemberController memberController = new MemberController();
         StringBuilder sb = new StringBuilder();
 
-        for (Member member :
-                memberController.getMembers()) {
+        for (Member member : members) {
+            if (!(member instanceof Competitor) && !(member instanceof Trainer))
             sb.append(member.toCSV()).append("\n");
         }
         return sb.toString();
@@ -216,8 +215,8 @@ public class MemberController {
     public String trainersToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Member trainer :
-                getTrainers()) {
+        for (Member member : members) {
+            if (member instanceof Trainer trainer)
             sb.append(trainer.toCSV()).append("\n");
         }
         return sb.toString();
@@ -226,12 +225,17 @@ public class MemberController {
     public String competitorsToCSV(){
         StringBuilder sb = new StringBuilder();
 
-        for (Competitor competitor :
-                getCompetitors()) {
+        for (Member member : members) {
+            if (member instanceof Competitor competitor)
             sb.append(competitor.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
+    public void initMembers(List<String> membersFromFile) {
+        for (String memberString : membersFromFile){
+            members.add(new Member(memberString));
+        }
+    }
 }
 
