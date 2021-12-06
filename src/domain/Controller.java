@@ -55,8 +55,6 @@ public class Controller {
     // TODO: make contingent results for write to file
 
     private void login() {
-        users.add(new User("admin;admin;ADMIN"));
-
         ui.print("enter username: ");
         String username = ui.getString();
 
