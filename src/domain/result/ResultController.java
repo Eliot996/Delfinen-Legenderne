@@ -80,7 +80,7 @@ public class ResultController {
             case "competitionName" -> competition.setCompetitionName(to);
             case "competitionAdress" -> competition.setCompetitionAdress(to);
             case "dateOfCompetition" -> competition.setDateOfCompetetition(getDateOfString(to));
-            // case "competitionDiscipline" -> competition.getCompetitionDiscipline((Discipline.valueOf(competition.toString()));
+            case "competitionDiscipline" -> competition.setCompetitionDiscipline((Discipline.valueOf(competition.toString())));
 
         }
     }
