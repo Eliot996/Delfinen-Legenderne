@@ -246,5 +246,18 @@ public class MemberController {
         }
         return null;
     }
-}
+
+    public String getStringOfCompetitors() {
+            int index = 1;
+            StringBuilder sb = new StringBuilder();
+
+            for (Member member : members) {
+                if (member instanceof Competitor) {
+                    sb.append(index).append(". ").append(member.simplePrint()).append('\n');
+                }
+                index++;
+            }
+            return sb.toString();
+        }
+    }
 

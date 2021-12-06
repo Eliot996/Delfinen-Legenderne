@@ -11,4 +11,8 @@ public class Trainer extends Member {
                    String email) {
         super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
     }
+
+    public Trainer(String csv){
+        super(csv);
+    }
 }
