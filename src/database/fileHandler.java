@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class fileHandler {
@@ -22,7 +23,7 @@ public class fileHandler {
     //*
     //**********************
 
-    private ArrayList<String> readFromFile(String filePath) throws IOException {
+    private static ArrayList<String> readFromFile(String filePath) throws IOException {
             ArrayList<String> lines = new ArrayList<>();
 
             File file = new File(filePath);
@@ -34,7 +35,7 @@ public class fileHandler {
             return lines;
         }
 
-    public ArrayList<String> getUSERSFromFile() {
+    public static List<String> getUSERSFromFile() {
         try {
             return readFromFile(USERS);
         } catch (IOException e) {
@@ -42,49 +43,49 @@ public class fileHandler {
         }
     }
 
-    public ArrayList<String> getMEMBERSFromFile() {
+    public static List<String> getMEMBERSFromFile() {
         try {
             return readFromFile(MEMBERS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getTRAINERSFromFile() {
+    public static List<String> getTRAINERSFromFile() {
         try {
             return readFromFile(TRAINERS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getCOMPETITORSFromFile() {
+    public static List<String> getCOMPETITORSFromFile() {
         try {
             return readFromFile(COMPETITORS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getTEAMSFromFile() {
+    public static List<String> getTEAMSFromFile() {
         try {
             return readFromFile(TEAMS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getCOMPETITIONSFromFile() {
+    public static List<String> getCOMPETITIONSFromFile() {
         try {
             return readFromFile(COMPETITIONS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getCOMPETITORS_RESULTFromFile() {
+    public static List<String> getCOMPETITORS_RESULTFromFile() {
         try {
             return readFromFile(COMPETITORS_RESULTS);
         } catch (IOException e) {
             return null;
         }
     }
-    public ArrayList<String> getCONTINGENTFromFile() {
+    public static List<String> getCONTINGENTFromFile() {
         try {
             return readFromFile(CONTINGENT);
         } catch (IOException e) {
