@@ -32,4 +32,12 @@ public class Competitor extends Member {
     public void removeDisciplines(Discipline discipline) {
         this.disciplines.remove(discipline);
     }
+    public String toCSV() {
+        return  isPassiveMember() + ";" +
+                getName() + ";" +
+                getDateOfBirth() + ";" +
+                getPhoneNumber() + ";" +
+                getEmail();
+    }
 }
+
