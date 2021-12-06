@@ -24,19 +24,18 @@ public class Result {
         this.discipline = discipline;
     }
 
-    public Result(String csv) {
-        String[] elemets = csv.split(";");
-
-        this.id = UUID.fromString(elemets[0]);
-        this.time = LocalTime.parse(elemets[1]);
-        this.date = LocalDate.parse(elemets[2]);
-        //this.competition = Competition; todo connect to competion
-        this.discipline = Discipline.valueOf(elemets[4]);
+    public Result(UUID id, Competitor competitor, LocalTime time, LocalDate date, Competition competition, Discipline discipline) {
+        this.id = id;
+        this.competitor = competitor;
+        this.time = time;
+        this.date = date;
+        this.competition = competition;
+        this.discipline = discipline;
     }
 
     public String toCSV() {
         return id.toString() + ";"
-                + competitor + ";"
+                + competitor.getMemberID() + ";"
                 + time.toString() + ";"
                 + date.toString() + ";"
                 + competition.getId() + ";"
