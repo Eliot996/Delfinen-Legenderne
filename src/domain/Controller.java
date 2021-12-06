@@ -10,7 +10,9 @@ import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 //@author Sofia og Mathias
@@ -599,5 +601,50 @@ public class Controller {
         }
 
         return sb.toString();
+    }
+
+    //**********************
+    //*
+    //* results
+    //*
+    //**********************
+
+    public void resultMenu() {
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            switch (ui.resultMenu()){
+                case 1 -> addResult();
+                case 2 -> deleteResult();
+                case 3 -> editResult();
+                case 4 -> viewResults();
+
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
+
+    private void addResult() {
+        // gets member
+        ui.print("Indtaste nummeret på det medlem du ønsker at oprette et resultat for, eller fortryd ved at skrive '0': ");
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+        // gets time
+        LocalTime time = ui.getTime();
+
+        // gets date
+        LocalDate date = ui.getDate();
+    }
+
+    private void deleteResult() {
+
+    }
+
+    private void editResult() {
+
+    }
+
+    private void viewResults() {
+
     }
 }
