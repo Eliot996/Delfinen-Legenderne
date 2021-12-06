@@ -250,7 +250,7 @@ public class UserInterface {
     private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public LocalDate getDate() {
-        print("Indtast venligst tid (HH:mm:ss,SSS)");
+        print("Indtast venligst tid (dd-MM-yyyy)");
         String input = userInput.nextLine();
 
         try {
