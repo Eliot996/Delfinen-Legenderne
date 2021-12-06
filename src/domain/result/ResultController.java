@@ -1,13 +1,50 @@
 package domain.result;
 
 import domain.Discipline;
+import domain.member.Competitor;
+import domain.member.MemberController;
 
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultController {
+
+    MemberController memberController;
+    ArrayList<Result> results = new ArrayList<>();
+
+    public ResultController(MemberController memberController) {
+        this.memberController = memberController;
+    }
+
+    // **************
+    // *
+    // * Results
+    // *
+    // **************
+
+    public void addResult(int memberIndex,
+                          LocalTime time,
+                          LocalDate date,
+                          Competition competition,
+                          Discipline discipline){
+        results.add(new Result((Competitor) memberController.getMember(memberIndex),
+                time,
+                date,
+                competition,
+                discipline));
+    }
+
+
+    // **************
+    // *
+    // * Competition
+    // *
+    // **************
 
     public void addCompetition (String competitionName,
                                 String competitionAdress,
