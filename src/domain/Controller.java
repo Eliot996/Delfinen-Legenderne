@@ -3,7 +3,6 @@ package domain;
 import domain.member.Competitor;
 import domain.member.Member;
 import domain.member.MemberController;
-import domain.member.Trainer;
 import domain.result.Competition;
 import domain.result.ResultController;
 import domain.team.Team;
@@ -13,12 +12,11 @@ import database.fileHandler;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 //@author Sofia og Mathias
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
-    ArrayList<Competition> comp = new ArrayList<>();
+    ArrayList<Competition> comp = new ArrayList<>(); // TODO: 06/12/2021 move to resultcontroller
     User activeUser;
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController();
@@ -479,7 +477,7 @@ public class Controller {
         ui.print("Dato og tid for stævnet: ");
         String dateOfCompetition = String.valueOf(LocalDateTime.parse(ui.getString()));
         ui.print("Stævne disciplin der skal svømmes i: \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
-        Discipline competitionDiscipline = null;
+        Discipline competitionDiscipline = null; // todo remove and convert
         switch (ui.getInt(1, 4)) {
             case 1 -> competitionDiscipline = Discipline.BREASTSTROKE;
             case 2 -> competitionDiscipline = Discipline.CRAWL;
