@@ -618,6 +618,7 @@ public class Controller {
     private void addResult() {
         // gets member
         ui.print("Indtaste nummeret på det medlem du ønsker at oprette et resultat for, eller fortryd ved at skrive '0': ");
+        ui.print(memberController.getStringOfCompetitors());
         int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
 
         // gets time
@@ -625,6 +626,22 @@ public class Controller {
 
         // gets date
         LocalDate date = ui.getDate();
+
+        // get competition
+        int competitionIndex = -1;
+        ui.print("Vil du tilføje et stævne til resultatet?");
+        if (ui.getBoolean()){
+            ui.print(resultController.getStringOfCompetitions());
+            ui.print("Indtaste nummeret på det stævne du ønsker at tilføje til resultatet: ");
+            competitionIndex = ui.getInt(1, resultController.getAmountOfCompetition());
+        }
+
+        // get discipline
+        ui.print("Indtast resultatets disciplin");
+        Discipline discipline = ui.getDiscipline();
+
+        // add to results
+        resultController.addResult(memberIndex, time, date, competitionIndex, discipline);
     }
 
     private void deleteResult() {
