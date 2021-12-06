@@ -72,7 +72,7 @@ public class MemberController {
         return members;
     }
 
-    public  List<Trainer> getTrainers() {
+    public List<Trainer> getTrainers() {
         ArrayList<Trainer> trainers = new ArrayList<>();
         for (Member member : trainers)
             if (member instanceof Trainer trainer) {
@@ -80,7 +80,8 @@ public class MemberController {
             }
         return trainers;
     }
-    public  List<Competitor> getCompetitors() {
+
+    public List<Competitor> getCompetitors() {
         ArrayList<Competitor> competitors = new ArrayList<>();
         for (Member member : competitors)
             if (member instanceof Competitor competitor) {
@@ -92,7 +93,7 @@ public class MemberController {
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
 
-        switch (what){
+        switch (what) {
             case "name" -> member.setName(to);
             case "isPassive" -> member.setPassiveMember(Boolean.parseBoolean(to));
             case "dateOfBirth" -> member.setDateOfBirth(getDateFromString(to));
@@ -102,31 +103,35 @@ public class MemberController {
             case "remove from team" -> teamController.removeMemberToTeam(member, Integer.parseInt(to));
         }
 
-        if (member instanceof Competitor competitor){
+        if (member instanceof Competitor competitor) {
             switch (what) {
                 case "add discipline" -> competitor.addDisciplines(Discipline.valueOf(to.toUpperCase()));
                 case "remove discipline" -> competitor.removeDisciplines(Discipline.valueOf(to.toUpperCase()));
             }
         }
     }
+
     public String getStringOfMembers() {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
-            sb.append(index).append(". ").append(member.simplePrint()).append('\n');
+            sb.append(index).
+                    append(". ").
+                    append(member.simplePrint()).
+                    append('\n');
             index++;
         }
 
         return sb.toString();
     }
 
-    public String getStringOfTrainers(){
+    public String getStringOfTrainers() {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
-            if(member instanceof Trainer) {
+            if (member instanceof Trainer) {
                 sb.append(index).append(". ").append(member.simplePrint()).append('\n');
             }
             index++;
@@ -142,25 +147,25 @@ public class MemberController {
 
     private ArrayList<Member> members = new ArrayList<>();
 
-    public void addMember(Member member){
+    public void addMember(Member member) {
         members.add(member);
     }
 
-    public void deleteMember(int memberIndex){
+    public void deleteMember(int memberIndex) {
         members.remove(members.get(memberIndex));
     }
 
-    public Member getMember(String name){
+    public Member getMember(String name) {
         for (Member member : members) {
-            if (member.getName().equals(name)){
+            if (member.getName().equals(name)) {
                 return member;
             }
         }
         return null;
     }
 
-    public Member getMember(int memberIndex){
-       return members.get(memberIndex);
+    public Member getMember(int memberIndex) {
+        return members.get(memberIndex);
     }
 
     public String toCSV() {
@@ -190,8 +195,8 @@ public class MemberController {
     public Trainer getTrainerFromUUID(String uuidString) {
         UUID uuid;
         uuid = UUID.fromString(uuidString);
-        for (Member member: members) {
-            if (member.getMemberID().equals(uuid)){
+        for (Member member : members) {
+            if (member.getMemberID().equals(uuid)) {
                 return (Trainer) member;
             }
         }
