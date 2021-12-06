@@ -32,12 +32,12 @@ public class ResultController {
     public void addResult(int memberIndex,
                           LocalTime time,
                           LocalDate date,
-                          Competition competition,
+                          int competitionIndex,
                           Discipline discipline){
         results.add(new Result((Competitor) memberController.getMember(memberIndex),
                 time,
                 date,
-                competition,
+                competitions.get(competitionIndex),
                 discipline));
     }
 
