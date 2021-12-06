@@ -3,6 +3,7 @@ package domain.result;
 import domain.Discipline;
 import domain.User;
 import domain.member.Competitor;
+import domain.member.Member;
 import domain.member.MemberController;
 import domain.team.Team;
 
@@ -177,6 +178,18 @@ public class ResultController {
         results.remove(results.get(resultIndex));
     }
 
+    public void editResult(int resultIndex, String what, String to) {
+        Result result = results.get(resultIndex);
+
+        switch (what) {
+         //   case "competitor" -> result.setCompetitor(to); TODO: fix to så den ikke er rød
+            case "time" -> result.setTime(LocalTime.parse(to));
+            case "date" -> result.setDate(LocalDate.parse(to)) ;
+            // case "competition" -> result.setCompetition(to); TODO: fix to så den ikke er rød
+            // case "disciplin" -> result.setDiscipline(to); TODO: fix to så den ikke er rød
+        }
+    }
+
     public String resultToCSV(){
         StringBuilder sb = new StringBuilder();
 
@@ -198,5 +211,6 @@ public class ResultController {
             competitions.add(new Competition(resultsString));
         }
     }
+
 }
 

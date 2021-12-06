@@ -10,6 +10,7 @@ import java.util.UUID;
 public class Result {
     private UUID id;
     private Competitor competitor;
+
     private LocalTime time;
     private LocalDate date;
     private Competition competition;
@@ -63,4 +64,51 @@ public class Result {
                 ';';
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public Competitor getCompetitor() {
+        return competitor;
+    }
+
+    public void setCompetitor(Competitor competitor) {
+        this.competitor = competitor;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Competition getCompetition() {
+        return competition;
+    }
+
+    public void setCompetition(Competition competition) {
+        this.competition = competition;
+    }
+
+    public Discipline getDiscipline() {
+        return discipline;
+    }
+
+    public void setDiscipline(Discipline discipline) {
+        this.discipline = discipline;
+    }
 }
