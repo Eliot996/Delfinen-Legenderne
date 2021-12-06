@@ -237,5 +237,14 @@ public class MemberController {
             members.add(new Member(memberString));
         }
     }
+
+    public Competitor getCompetitor(UUID id) {
+        for (Member member : members) {
+            if (member.getMemberID().equals(id) && member instanceof Competitor competitor) {
+                return competitor;
+            }
+        }
+        return null;
+    }
 }
 
