@@ -674,6 +674,8 @@ public class Controller {
         memberController.initTrainers(fileHandler.getTRAINERSFromFile());
         teamController.initTeams(fileHandler.getTEAMSFromFile());
         resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
+        resultController.initResults(fileHandler.getCOMPETITORS_RESULTFromFile());
+        //contingent.initContingents(fileHandler.getCONTINGENTFromFile()); TODO: fix
     }
 
     private void initializeUsers() {
