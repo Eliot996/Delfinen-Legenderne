@@ -1,6 +1,7 @@
 package domain.result;
 
 import domain.Discipline;
+import domain.User;
 import domain.member.Competitor;
 import domain.member.MemberController;
 
@@ -119,11 +120,24 @@ public class ResultController {
         StringBuilder sb = new StringBuilder();
 
         for (Competition competition :
-                ResultController.getCompetitions()) {
-            sb.append(competitionsToCSV()).append("\n");
+                getCompetitions()) {
+            sb.append(competition.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
+    public ArrayList<Result> getResults() {
+        return results;
     }
+
+    public String resultToCSV(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Result result :
+               getResults()) {
+            sb.append(result.toCSV()).append("\n");
+        }
+        return sb.toString();
+    }
+}
 

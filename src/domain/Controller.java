@@ -33,6 +33,8 @@ public class Controller {
         fileHandler.writeToTrainers(memberController.trainersToCSV());
         fileHandler.writeToTrainers(teamController.teamsToCSV());
         fileHandler.writeToCompetitors(resultController.competitionsToCSV());
+        fileHandler.writeToCompetitors_Results(resultController.resultToCSV());
+      //  fileHandler.writeToContingent(); TODO: lav det færdigt.
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -53,12 +55,11 @@ public class Controller {
 
         for (User user :
             users) {
-            sb.append(userToCSV()).append("\n");
+            sb.append(user.toCSV()).append("\n");
         }
            return sb.toString();
     }
 
-    // TODO: make compititions_results for write to file
     // TODO: make contingent results for write to file
 
     private void login() {

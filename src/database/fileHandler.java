@@ -3,6 +3,8 @@ package database;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class fileHandler {
     private static final String USERS = "data/users.csv";
@@ -20,8 +22,74 @@ public class fileHandler {
     //*
     //**********************
 
-    private String[] readFromFile(String filepath){
-        return null;
+    private ArrayList<String> readFromFile(String filePath) throws IOException {
+            ArrayList<String> lines = new ArrayList<>();
+
+            File file = new File(filePath);
+
+            Scanner load = new Scanner(file);
+            while (load.hasNextLine()) {
+                lines.add(load.nextLine());
+            }
+            return lines;
+        }
+
+    public ArrayList<String> getUSERSFromFile() {
+        try {
+            return readFromFile(USERS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    public ArrayList<String> getMEMBERSFromFile() {
+        try {
+            return readFromFile(MEMBERS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getTRAINERSFromFile() {
+        try {
+            return readFromFile(TRAINERS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getCOMPETITORSFromFile() {
+        try {
+            return readFromFile(COMPETITORS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getTEAMSFromFile() {
+        try {
+            return readFromFile(TEAMS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getCOMPETITIONSFromFile() {
+        try {
+            return readFromFile(COMPETITIONS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getCOMPETITORS_RESULTFromFile() {
+        try {
+            return readFromFile(COMPETITORS_RESULTS);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+    public ArrayList<String> getCONTINGENTFromFile() {
+        try {
+            return readFromFile(CONTINGENT);
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     //**********************
@@ -40,33 +108,6 @@ public class fileHandler {
         }
         System.out.println();
     }
-
-    public String[] getUSERSFromFile() {
-        return readFromFile(USERS);
-    }
-    public String[] getMEMBERSFromFile() {
-        return readFromFile(MEMBERS);
-    }
-    public String [] getTRAINERSFromFile() {
-        return readFromFile(TRAINERS);
-    }
-    public String [] getCOMPETITORSFromFile() {
-        return readFromFile(COMPETITORS);
-    }
-    public String [] getTEAMSFromFile() {
-        return readFromFile(TEAMS);
-    }
-    public String [] getCOMPETITIONSFromFile() {
-        return readFromFile(COMPETITIONS);
-    }
-    public String [] getCOMPETITORS_RESULTFromFile() {
-        return readFromFile(COMPETITORS_RESULTS);
-    }
-    public String [] getCONTINGENTFromFile() {
-        return readFromFile(CONTINGENT);
-    }
-
-
 
     public static void writeToUsers(String toWrite) {
         writeToFile(USERS, toWrite);
