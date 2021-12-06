@@ -4,10 +4,12 @@ import domain.Discipline;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 //@author Oliver
 public class Competition {
 
+    private UUID id;
     private String competitionName;
     private String competitionAdress;
     private LocalDateTime dateOfCompetetition;
@@ -16,6 +18,7 @@ public class Competition {
     //Konstruktør
     public Competition(String competitionName, String competitionAdress,
                        LocalDateTime dateOfCompetetition, Discipline competitionDiscipline) {
+        this.id = UUID.randomUUID();
         this.competitionName = competitionName;
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
@@ -72,8 +75,12 @@ public class Competition {
         }
         return disciplineToPrint;
     }
-    public LocalDateTime getDateOfString(String dateAndTime) {
+    public LocalDateTime getDateAndTimeOfString(String dateAndTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
+    }
+
+    public UUID getId() {
+        return id;
     }
 }
