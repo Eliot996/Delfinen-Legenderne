@@ -651,6 +651,13 @@ public class Controller {
     }
 
     private void  initializaData() {
+        initializeUsers();
         memberController.initMembers(fileHandler.getMEMBERSFromFile());
+    }
+
+    private void initializeUsers() {
+        for (String userString : fileHandler.getUSERSFromFile()) {
+            users.add(new User(userString));
+        }
     }
 }
