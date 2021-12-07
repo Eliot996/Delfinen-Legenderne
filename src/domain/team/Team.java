@@ -1,7 +1,6 @@
 package domain.team;
 
 import domain.member.Member;
-import domain.member.MemberController;
 import domain.member.Trainer;
 import java.util.ArrayList;
 
@@ -24,8 +23,10 @@ public class Team {
     }
 
     //CSV konstruktør
-    public Team(String teamString) {
-
+    public Team(String csv) {
+        String[] elements = csv.split(";");
+        this.name = elements[0];
+        this.description = elements [1];
     }
 
     //@Author Sofia
@@ -60,26 +61,38 @@ public class Team {
     }
 
     public String toCSV() {
-        return  name + ";" +
-                description + ";" +
-                trainers;
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(";");
+        sb.append(description).append(";");
+
+        sb.append(listOfTrainersToCSV(trainers));
+
+        sb.append(";");
+
+        sb.append(listToCSV(members));
+
+        return  sb.toString();
     }
 
-    //CSV konstruktør
-    public Team(String CSV, MemberController memberController) {
-    String[] elements = CSV.split(";");
-    this.name = elements[0];
-    this.description = elements [1];
+    private String listToCSV(ArrayList<Member> list) {
+        StringBuilder sb = new StringBuilder();
+        if (list.size() > 0) {
+            sb.append((list.get(0).getMemberID()));
+            if (list.size() > 1) {
+                for (int i = 1; i < list.size(); i++) {
+                    sb.append(":").append(list.get(i).getMemberID());
+                }
+            }
+        }
 
-    if (elements[2].contains(":")){
-        String[] trainerCSVs = elements[2].split(":");
-        for (String trainerCSV: trainerCSVs) {
-            this.trainers.add (memberController.getTrainerFromUUID(trainerCSV));
-        }
-    } else{
-        this.trainers.add (memberController.getTrainerFromUUID(elements[2]));
-        }
+        return sb.toString();
     }
+
+    private String listOfTrainersToCSV(ArrayList<Trainer> listOfTrainers) {
+        ArrayList<Member> list = new ArrayList<>(listOfTrainers);
+        return listToCSV(list);
+    }
+
     public String simplePrint() {
         return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): " + trainers;
     }
