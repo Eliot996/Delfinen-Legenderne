@@ -85,8 +85,15 @@ public class ResultController {
     }
 
     public void initResults(List<String> competitors_resultFromFile) {
-        for (String     resultsString : competitors_resultFromFile) {
-            competitions.add(new Competition(resultsString));
+        for (String resultsString : competitors_resultFromFile) {
+            String[] elements = resultsString.split(";");
+
+            results.add(new Result(UUID.fromString(elements[0]),
+                    memberController.getCompetitor(UUID.fromString(elements[1])),
+                    LocalTime.parse(elements[2]),
+                    LocalDate.parse(elements[3]),
+                    elements[4].equals("null") ? null : getCompetitionFromID(UUID.fromString(elements[4])),
+                    Discipline.valueOf(elements[5])));
         }
     }
 
