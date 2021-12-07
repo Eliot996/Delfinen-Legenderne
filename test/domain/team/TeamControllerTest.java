@@ -44,6 +44,19 @@ class TeamControllerTest {
     }
 
     @Test
+    void testInitTeams_NoMembersOrTrainers() {
+        MemberController memberController = new MemberController();
+        TeamController teamController = new TeamController(memberController);
+
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("name;description;;");
+
+        teamController.initTeams(strings);
+
+        assertNotNull(teamController.getTeamFromIndex(0));
+    }
+
+    @Test
     void testInitTeams_SingleMemberAndTrainer() {
         MemberController memberController = new MemberController();
         TeamController teamController = new TeamController(memberController);
