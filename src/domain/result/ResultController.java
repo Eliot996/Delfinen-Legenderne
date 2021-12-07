@@ -33,11 +33,19 @@ public class ResultController {
                           LocalDate date,
                           int competitionIndex,
                           Discipline discipline){
-        results.add(new Result((Competitor) memberController.getMember(memberIndex),
-                time,
-                date,
-                competitions.get(competitionIndex),
-                discipline));
+        if (competitionIndex == -1) {
+            results.add(new Result((Competitor) memberController.getMember(memberIndex),
+                    time,
+                    date,
+                    null,
+                    discipline));
+        } else {
+            results.add(new Result((Competitor) memberController.getMember(memberIndex),
+                    time,
+                    date,
+                    competitions.get(competitionIndex),
+                    discipline));
+        }
     }
 
     private void addResultFromCSV(String csv) { // might work, but properly doesn't
