@@ -140,7 +140,7 @@ public class Controller {
             String name = ui.getString();
 
             ui.print("Indtast fødselsdato(dd-mm-åååå)");
-            String DOB = ui.getString();
+            LocalDate DOB = ui.getDate();
 
             ui.print("Indtast telefonnummer");
             String phoneNumber = ui.getString();
@@ -173,7 +173,7 @@ public class Controller {
             String name = ui.getString();
 
             ui.print("Indtast fødselsdato(dd-mm-åååå)");
-            String DOB = ui.getString();
+            LocalDate DOB = ui.getDate();
 
             ui.print("Indtast telefonnummer");
             String phoneNumber = ui.getString();
