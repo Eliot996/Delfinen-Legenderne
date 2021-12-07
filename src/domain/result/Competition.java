@@ -46,6 +46,8 @@ public class Competition {
                 " Dato og tid: " + dateOfCompetition + " Discipliner: "; // todo fix and add + competitionDiscipline;
     }
 
+
+
     //Getter og Setter af Attributter
     public String getCompetitionName() {
         return competitionName;
