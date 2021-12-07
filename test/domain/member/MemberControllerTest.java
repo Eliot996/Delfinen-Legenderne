@@ -83,10 +83,6 @@ class MemberControllerTest {
     void createCompetitorTest_With2Member(){
         MemberController memberController = new MemberController();
 
-        ArrayList<Discipline> disciplines = new ArrayList<>();
-        disciplines.add(Discipline.BREASTSTROKE);
-        disciplines.add(Discipline.CRAWL);
-
         memberController.addMember(true,
                 "Name",
                 "25-10-1996",
@@ -100,7 +96,7 @@ class MemberControllerTest {
                 "Test@gmail.com");
 
 
-        assertTrue(memberController.getMembers().get(0) instanceof Member);
+        assertNotNull(memberController.getMembers().get(0));
         assertTrue(memberController.getMembers().get(1) instanceof Competitor);
     }
 
@@ -113,10 +109,6 @@ class MemberControllerTest {
     @Test
     void createTrainerTest_With2Member() {
         MemberController memberController = new MemberController();
-
-        ArrayList<Discipline> disciplines = new ArrayList<>();
-        disciplines.add(Discipline.BREASTSTROKE);
-        disciplines.add(Discipline.CRAWL);
 
         memberController.addMember(true,
                 "Name",
@@ -137,7 +129,7 @@ class MemberControllerTest {
                 "trainer@gmail.com");
 
 
-        assertTrue(memberController.getMembers().get(0) instanceof Member);
+        assertNotNull(memberController.getMembers().get(0));
         assertTrue(memberController.getMembers().get(1) instanceof Competitor);
         assertTrue(memberController.getMembers().get(2) instanceof Trainer);
     }
@@ -207,10 +199,9 @@ class MemberControllerTest {
     @Test
     void editMemberTest_isPassive(){
         MemberController memberController = new MemberController();
-        String current = "false";
         String changeTo = "true";
 
-        memberController.addMember(Boolean.parseBoolean(current),
+        memberController.addMember(false,
                 "name",
                 "25-10-1996",
                 "53663634",
