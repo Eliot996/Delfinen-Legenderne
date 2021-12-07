@@ -2,8 +2,6 @@ package domain.result;
 
 import domain.Discipline;
 import domain.member.Competitor;
-import domain.member.Member;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
