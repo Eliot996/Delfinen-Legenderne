@@ -151,7 +151,6 @@ public class ResultController {
     }
 
 
-
     public Competition getCompetitionFromID(UUID id) {
         for(Competition competition: competitions) {
             if (competition.getId().equals(id)) {
