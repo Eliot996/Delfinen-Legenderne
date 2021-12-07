@@ -9,8 +9,8 @@ public class Team {
     //attributter
     private String name;
     private String description;
-    private ArrayList<Trainer> trainers;
-    private ArrayList<Member> members;
+    private ArrayList<Trainer> trainers = new ArrayList<>();
+    private ArrayList<Member> members = new ArrayList<>();
 
     //konstruktør
     public Team(String name,
@@ -18,8 +18,6 @@ public class Team {
 
         this.name = name;
         this.description = description;
-        this.trainers = new ArrayList<>();
-        this.members = new ArrayList<>();
     }
 
     //CSV konstruktør
@@ -34,6 +32,7 @@ public class Team {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -41,6 +40,7 @@ public class Team {
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -48,6 +48,11 @@ public class Team {
     public ArrayList<Trainer> getTrainers() {
         return trainers;
     }
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
+
     public void setTrainers(ArrayList<Trainer> trainers) {
         this.trainers = trainers;
     }
@@ -61,17 +66,10 @@ public class Team {
     }
 
     public String toCSV() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(";");
-        sb.append(description).append(";");
-
-        sb.append(listOfTrainersToCSV(trainers));
-
-        sb.append(";");
-
-        sb.append(listToCSV(members));
-
-        return  sb.toString();
+        return name + ";" +
+                description + ";" +
+                listOfTrainersToCSV(trainers) + ";" +
+                listToCSV(members);
     }
 
     private String listToCSV(ArrayList<Member> list) {
