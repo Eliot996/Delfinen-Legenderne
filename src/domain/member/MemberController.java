@@ -22,23 +22,23 @@ public class MemberController {
     // to add a member to the database parses date(of format "dd-MM-yyyy")
     public void addMember(boolean isPassiveMember,
                           String name,
-                          String dateOfBirth,
+                          LocalDate dateOfBirth,
                           String phoneNumber,
                           String email) {
 
 
-        addMember(new Member(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        addMember(new Member(isPassiveMember, name, dateOfBirth, phoneNumber, email));
     }
 
     // to add a competitor to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addCompetitor(boolean isPassiveMember,
                               String name,
-                              String dateOfBirth,
+                              LocalDate dateOfBirth,
                               String phoneNumber,
                               String email) {
 
 
-        addMember(new Competitor(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        addMember(new Competitor(isPassiveMember, name, dateOfBirth, phoneNumber, email));
     }
 
     public void addCompetitor(int memberIndex) {
@@ -56,11 +56,11 @@ public class MemberController {
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addTrainer(boolean isPassiveMember,
                            String name,
-                           String dateOfBirth,
+                           LocalDate dateOfBirth,
                            String phoneNumber,
                            String email) {
 
-        addMember(new Trainer(isPassiveMember, name, getDateFromString(dateOfBirth), phoneNumber, email));
+        addMember(new Trainer(isPassiveMember, name, dateOfBirth, phoneNumber, email));
     }
 
     public void addTrainer(int memberIndex) {

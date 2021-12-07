@@ -140,7 +140,7 @@ public class Controller {
             String name = ui.getString();
 
             ui.print("Indtast fødselsdato(dd-mm-åååå)");
-            String DOB = ui.getString();
+            LocalDate DOB = ui.getDate();
 
             ui.print("Indtast telefonnummer");
             String phoneNumber = ui.getString();
@@ -173,7 +173,7 @@ public class Controller {
             String name = ui.getString();
 
             ui.print("Indtast fødselsdato(dd-mm-åååå)");
-            String DOB = ui.getString();
+            LocalDate DOB = ui.getDate();
 
             ui.print("Indtast telefonnummer");
             String phoneNumber = ui.getString();
@@ -277,16 +277,16 @@ public class Controller {
         }
     }
 
-    public void addMember() { // TODO: 02/12/2021 Make better!
-        System.out.print("is passive: ");
+    public void addMember() {
+        System.out.print("Er brugeren passive? ");
         boolean isPassive = ui.getBoolean();
-        System.out.print("name: ");
+        System.out.print("Indtast navn på medlemmet: ");
         String name = ui.getString();
-        System.out.print("DOB: ");
-        String DOB = ui.getString();
-        System.out.print("phone: ");
+        System.out.print("Indtast fødselsdato på medlemmet: ");
+        LocalDate DOB = ui.getDate();
+        System.out.print("Indtast telefonnummer på medlemmet: ");
         String phone = ui.getString();
-        System.out.print("email: ");
+        System.out.print("Indtast email på medlemmet: ");
         String email = ui.getString();
 
         memberController.addMember(
