@@ -12,7 +12,7 @@ public class User {
         this.role = role;
     }
 
-    public User(String CSV){
+    public User(String CSV) {
         // splits the CSV
         String[] elements = CSV.split(";");
 
@@ -22,7 +22,7 @@ public class User {
         this.role = Roles.valueOf(elements[2]);
     }
 
-    public String toCSV(){
+    public String toCSV() {
         return username + ';' + password + ';' + role;
     }
 
@@ -31,13 +31,13 @@ public class User {
         // converts the Enum to an userreadable string
         String roleToPrint;
         switch (role) {
-            case ADMIN   -> roleToPrint = "administrator";
+            case ADMIN -> roleToPrint = "administrator";
             case CASHIER -> roleToPrint = "kasser";
             case TRAINER -> roleToPrint = "træner";
             default -> roleToPrint = "role er ikke blevet defineret";
         }
 
-        return username +  ", role: " + roleToPrint;
+        return username + ", role: " + roleToPrint;
     }
 
     public Roles getRole() {

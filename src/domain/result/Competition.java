@@ -6,6 +6,8 @@ import jdk.dynalink.beans.StaticClass;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 //@author Oliver
@@ -16,6 +18,8 @@ public class Competition {
     private String competitionAdress;
     private LocalDateTime dateOfCompetetition;
     private Discipline competitionDiscipline;
+
+    private List<Discipline> disciplines = new ArrayList<>();
 
     //Konstruktør
     public Competition(String competitionName, String competitionAdress,
@@ -34,10 +38,10 @@ public class Competition {
 
         //assigns base on position
         this.id = UUID.fromString(elements[0]);
-        this.competitionName = elements [1];
-        this.competitionAdress = elements [2];
-        this.dateOfCompetetition = LocalDateTime.parse(elements [3]);
-        this.competitionDiscipline = Discipline.valueOf(elements [4]);
+        this.competitionName = elements[1];
+        this.competitionAdress = elements[2];
+        this.dateOfCompetetition = LocalDateTime.parse(elements[3]);
+        this.competitionDiscipline = Discipline.valueOf(elements[4]);
     }
 
     public String simplePrint() {
@@ -81,7 +85,7 @@ public class Competition {
     @Override
     public String toString() {
         String disciplineToPrint;
-        switch (competitionDiscipline){
+        switch (competitionDiscipline) {
             case BREASTSTROKE -> disciplineToPrint = "Brystsvømning";
             case CRAWL -> disciplineToPrint = "Crawl";
             case BACKCRAWL -> disciplineToPrint = "Ryg crawl";
@@ -90,6 +94,7 @@ public class Competition {
         }
         return disciplineToPrint;
     }
+
     public LocalDateTime getDateAndTimeOfString(String dateAndTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(dateAndTime.trim(), formatter);
@@ -100,10 +105,26 @@ public class Competition {
     }
 
     public String toCSV() {
-        return  id + ";" +
+        return id + ";" +
                 competitionName + ";" +
                 competitionAdress + ";" +
                 dateOfCompetetition + ";" +
                 competitionDiscipline;
+    }
+
+    public List<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines) {
+        this.disciplines = disciplines;
+    }
+
+    public void addDisciplines(Discipline discipline) {
+        this.disciplines.add(discipline);
+    }
+
+    public void removeDisciplines(Discipline discipline) {
+        this.disciplines.remove(discipline);
     }
 }
