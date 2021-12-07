@@ -15,8 +15,9 @@ import java.util.UUID;
 
 public class ResultController {
 
-    MemberController memberController;
-    ArrayList<Result> results = new ArrayList<>();
+    private final MemberController memberController;
+    private final ArrayList<Result> results = new ArrayList<>();
+    private final ArrayList<Competition> competitions = new ArrayList<>();
 
     public ResultController(MemberController memberController) {
         this.memberController = memberController;
@@ -75,16 +76,9 @@ public class ResultController {
         addCompetition(new Competition(competitionName, competitionAdress, getDateOfString(dateOfCompetetition),competitionDiscipline));
     }
 
-    public List<Competition> getCompetetions() {
-        return competitions;
-    }
-
     public void deleteCompetition(int competitionIndex) {
         competitions.remove(competitionIndex);
     }
-
-
-    private ArrayList<Competition> competitions = new ArrayList<>();
 
     public void addCompetition(Competition competition) {
         competitions.add(competition);
@@ -153,12 +147,7 @@ public class ResultController {
         return result.toString();
     }
 
-    public static List<Competition> getCompetitions() {
-        ArrayList<Competition> competitions = new ArrayList<>();
-        for (Competition competition : competitions)
-            if (competition instanceof Competition) {
-                competitions.add(competition);
-            }
+    public List<Competition> getCompetitions() {
         return competitions;
     }
 
@@ -196,12 +185,7 @@ public class ResultController {
     }
 
     public Competition  getCompetition(int competitionIndex) {
-        Competition competition = getCompetition(competitionIndex);
-        if (competition instanceof Competition) {
-            return (Competition) getCompetition(competitionIndex);
-        } else {
-            return null;
-        }
+        return competitions.get(competitionIndex);
     }
 
     public String resultToCSV(){
