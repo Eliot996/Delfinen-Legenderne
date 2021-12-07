@@ -78,7 +78,7 @@ public class MemberController {
 
     public List<Trainer> getTrainers() {
         ArrayList<Trainer> trainers = new ArrayList<>();
-        for (Member member : members)
+        for(Member member: members)
             if (member instanceof Trainer trainer) {
                 trainers.add(trainer);
             }
@@ -119,7 +119,7 @@ public class MemberController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             sb.append(index).
                     append(". ").
                     append(member.simplePrint()).
@@ -134,7 +134,7 @@ public class MemberController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             if (member instanceof Trainer) {
                 sb.append(index).append(". ").append(member.simplePrint()).append('\n');
             }
@@ -160,7 +160,7 @@ public class MemberController {
     }
 
     public Member getMember(String name) {
-        for (Member member : members) {
+        for(Member member: members) {
             if (member.getName().equals(name)) {
                 return member;
             }
@@ -175,7 +175,7 @@ public class MemberController {
     public String toCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             sb.append(member.toCSV()).append('\n');
         }
 
@@ -198,8 +198,8 @@ public class MemberController {
 
     public Member getMemberFromUUID(String uuidString) {
         UUID uuid = UUID.fromString(uuidString);
-        for (Member member : members) {
-            if (member.getMemberID().equals(uuid) ) {
+        for(Member member: members) {
+            if (member.getMemberID().equals(uuid)) {
                 return member;
             }
         }
@@ -208,7 +208,7 @@ public class MemberController {
 
     public Trainer getTrainerFromUUID(String uuidString) {
         UUID uuid = UUID.fromString(uuidString);
-        for (Member member : members) {
+        for(Member member: members) {
             if (member.getMemberID().equals(uuid) && member instanceof Trainer trainer) {
                 return trainer;
             }
@@ -219,7 +219,7 @@ public class MemberController {
     public String memberToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             if (!(member instanceof Competitor) && !(member instanceof Trainer))
                 sb.append(member.toCSV()).append("\n");
         }
@@ -229,7 +229,7 @@ public class MemberController {
     public String trainersToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             if (member instanceof Trainer trainer)
                 sb.append(trainer.toCSV()).append("\n");
         }
@@ -239,7 +239,7 @@ public class MemberController {
     public String competitorsToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Member member : members) {
+        for(Member member: members) {
             if (member instanceof Competitor competitor)
                 sb.append(competitor.toCSV()).append("\n");
         }
@@ -247,25 +247,25 @@ public class MemberController {
     }
 
     public void initMembers(List<String> membersFromFile) {
-        for (String memberString : membersFromFile) {
+        for(String memberString: membersFromFile) {
             members.add(new Member(memberString));
         }
     }
 
     public void initCompetitors(List<String> competitorsFromFile) {
-        for (String competitorString : competitorsFromFile) {
+        for(String competitorString: competitorsFromFile) {
             members.add(new Competitor(competitorString));
         }
     }
 
     public void initTrainers(List<String> trainersFromFile) {
-        for (String trainerString : trainersFromFile) {
+        for(String trainerString: trainersFromFile) {
             members.add(new Trainer(trainerString));
         }
     }
 
     public Competitor getCompetitor(UUID id) {
-        for (Member member : members) {
+        for(Member member: members) {
             if (member.getMemberID().equals(id) && member instanceof Competitor competitor) {
                 return competitor;
             }
@@ -274,17 +274,17 @@ public class MemberController {
     }
 
     public String getStringOfCompetitors() {
-            int index = 1;
-            StringBuilder sb = new StringBuilder();
+        int index = 1;
+        StringBuilder sb = new StringBuilder();
 
-            for (Member member : members) {
-                if (member instanceof Competitor) {
-                    sb.append(index).append(". ").append(member.simplePrint()).append('\n');
-                }
-                index++;
+        for(Member member: members) {
+            if (member instanceof Competitor) {
+                sb.append(index).append(". ").append(member.simplePrint()).append('\n');
             }
-            return sb.toString();
+            index++;
         }
+        return sb.toString();
+    }
 
     public Competitor getCompetitor(int memberIndex) {
         Member member = getMember(memberIndex);

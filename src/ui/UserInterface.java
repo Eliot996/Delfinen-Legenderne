@@ -157,7 +157,7 @@ public class UserInterface {
         return getInt(0, 4);
     }
 
-    public int editResultMenu(){
+    public int editResultMenu() {
         System.out.println("""
                 Hvad vil du gerne ændre?
                 1) Konkurrencesvømmer
@@ -165,9 +165,9 @@ public class UserInterface {
                 3) Dato
                 4) Konkurrence
                 5) Disciplin
-                
+                                
                 0) Annuller""");
-        return getInt(0,5);
+        return getInt(0, 5);
     }
 
     public int userMenu() {

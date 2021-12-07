@@ -26,7 +26,8 @@ public class Competition {
         this.competitionAdress = competitionAdress;
         this.dateOfCompetetition = dateOfCompetetition;
     }
-//@Sofia og Mathias
+
+    //@Sofia og Mathias
     //CSV konstruktør
     public Competition(String competitionString) {
         // splits the CSV
