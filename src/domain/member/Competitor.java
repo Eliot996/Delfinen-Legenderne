@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Author Mathias og Sofia
 public class Competitor extends Member {
 
     private List<Discipline> disciplines = new ArrayList<>();

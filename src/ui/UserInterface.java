@@ -49,9 +49,10 @@ public class UserInterface {
                 2. Bruger menu
                 3. Stævne menu
                 4. Hold menu
+                5. Resultat menu
                 
                 0. Afbryd""");
-        return getInt(0, 4);
+        return getInt(0, 5);
     }
 
     public int memberMenu() {
@@ -263,7 +264,7 @@ public class UserInterface {
     private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public LocalDate getDate() {
-        print("Indtast venligst tid (dd-MM-yyyy)");
+        print("Indtast venligst dato (dd-MM-yyyy)");
         String input = userInput.nextLine();
 
         try {

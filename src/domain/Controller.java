@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-//@author Sofia og Mathias
+//@author Sofia, Mathias, Oliver.
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Competition> comp = new ArrayList<>(); // TODO: 06/12/2021 move to resultcontroller
@@ -96,6 +96,7 @@ public class Controller {
                 case 2 -> usermenu();
                 case 3 -> competitionMenu();
                 case 4 -> teamMenu();
+                case 5 -> resultMenu();
                 case 0 -> keepRunning = false;
             }
         }
@@ -619,9 +620,11 @@ public class Controller {
 
     private void addResult() {
         // gets member
-        ui.print("Indtaste nummeret på det medlem du ønsker at oprette et resultat for, eller fortryd ved at skrive '0': ");
+        ui.print("Her kan du se medlemmerne af svømmeklubben: ");
         ui.print(memberController.getStringOfCompetitors());
-        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
+
+        ui.print("Indtaste nummeret på det medlem du ønsker at oprette et resultat for, eller fortryd ved at skrive '0': ");
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers()) - 1;
 
         // gets time
         LocalTime time = ui.getTime();
@@ -635,7 +638,7 @@ public class Controller {
         if (ui.getBoolean()){
             ui.print(resultController.getStringOfCompetitions());
             ui.print("Indtaste nummeret på det stævne du ønsker at tilføje til resultatet: ");
-            competitionIndex = ui.getInt(1, resultController.getAmountOfCompetition());
+            competitionIndex = ui.getInt(1, resultController.getAmountOfCompetition() - 1);
         }
 
         // get discipline
@@ -721,8 +724,8 @@ public class Controller {
         memberController.initMembers(fileHandler.getMEMBERSFromFile());
         memberController.initCompetitors(fileHandler.getCOMPETITORSFromFile());
         memberController.initTrainers(fileHandler.getTRAINERSFromFile());
-        teamController.initTeams(fileHandler.getTEAMSFromFile());
-        resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
+       // teamController.initTeams(fileHandler.getTEAMSFromFile());
+       // resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
         resultController.initResults(fileHandler.getCOMPETITORS_RESULTFromFile());
         //contingent.initContingents(fileHandler.getCONTINGENTFromFile()); TODO: fix
     }
