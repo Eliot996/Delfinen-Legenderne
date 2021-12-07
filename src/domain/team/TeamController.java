@@ -9,8 +9,8 @@ import java.util.List;
 
 // @Author Sofia
 public class TeamController {
-    private MemberController memberController;
-    private ArrayList<Team> teams = new ArrayList<>();
+    private final MemberController memberController;
+    private final ArrayList<Team> teams = new ArrayList<>();
 
     public TeamController(MemberController memberController) {
         this.memberController = memberController;
@@ -36,10 +36,6 @@ public class TeamController {
 
     public List<Team> getTeams() {
         return teams;
-    }
-
-    public void setTeams(ArrayList<Team> teams) {
-        this.teams = teams;
     }
 
     public String getStringOfTeams() {
