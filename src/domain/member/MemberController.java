@@ -192,12 +192,21 @@ public class MemberController {
         return member.toString() + "Medlem af hold:\n " + teamController.getTeamsWithMember(member);
     }
 
-    public Trainer getTrainerFromUUID(String uuidString) {
-        UUID uuid;
-        uuid = UUID.fromString(uuidString);
+    public Member getMemberFromUUID(String uuidString) {
+        UUID uuid = UUID.fromString(uuidString);
         for (Member member : members) {
-            if (member.getMemberID().equals(uuid)) {
-                return (Trainer) member;
+            if (member.getMemberID().equals(uuid) ) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public Trainer getTrainerFromUUID(String uuidString) {
+        UUID uuid = UUID.fromString(uuidString);
+        for (Member member : members) {
+            if (member.getMemberID().equals(uuid) && member instanceof Trainer trainer) {
+                return trainer;
             }
         }
         return null;
@@ -272,5 +281,5 @@ public class MemberController {
             }
             return sb.toString();
         }
-    }
+}
 
