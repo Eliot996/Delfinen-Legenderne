@@ -1,5 +1,6 @@
 package domain;
 
+import domain.member.Competitor;
 import domain.member.MemberController;
 import domain.result.Competition;
 import domain.result.ResultController;
@@ -25,6 +26,7 @@ public class Controller {
 
     public void mainMenu() {
         initializaData();
+        new Competitor("a3bfce4b-5712-407c-a2f1-a8355315bb11;sofia;1996-10-25;false;091823123;malæshjdf;CRAWL:BACKCRAWL");
 
         memberController.setTeamController(teamController);
         ui.hello();
