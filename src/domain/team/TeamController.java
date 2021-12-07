@@ -140,6 +140,29 @@ public class TeamController {
     public void initTeams(List<String> teamsFromFile) {
         for (String teamString : teamsFromFile) {
             teams.add(new Team(teamString));
+            Team workingTeam = teams.get(teams.size() - 1);
+            String[] parts = teamString.split(";");
+
+            if (parts.length >= 3) {
+                if (parts[2].contains(":")) {
+                    String[] elements = parts[2].split(":");
+                    for (String element : elements) {
+                        workingTeam.addTrainer(memberController.getTrainerFromUUID(element));
+                    }
+                } else if (!parts[2].equals("")) {
+                    workingTeam.addTrainer(memberController.getTrainerFromUUID(parts[2]));
+                }
+            }
+            if (parts.length >= 4) {
+                if (parts[3].contains(":")) {
+                    String[] elements = parts[3].split(":");
+                    for (String element : elements) {
+                        workingTeam.addMember(memberController.getMemberFromUUID(element));
+                    }
+                } else if (!parts[3].equals("")) {
+                    workingTeam.addMember(memberController.getMemberFromUUID(parts[3]));
+                }
+            }
         }
     }
 }
