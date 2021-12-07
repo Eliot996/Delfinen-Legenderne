@@ -73,7 +73,7 @@ public class Competition {
         this.dateOfCompetition = dateOfCompetition;
     }
 
-    public String disicplineToString(Discipline discipline) {
+    public String disciplineToString(Discipline discipline) {
         String disciplineToPrint;
         switch (discipline) {
             case BREASTSTROKE -> disciplineToPrint = "Brystsvømning";
