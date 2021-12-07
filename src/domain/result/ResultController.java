@@ -154,23 +154,6 @@ public class ResultController {
         }
     }
 
-    public List<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public void setDisciplines(List<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
-
-    public void addDisciplines(Discipline discipline) {
-        this.disciplines.add(discipline);
-    }
-
-    public void removeDisciplines(Discipline discipline) {
-        this.disciplines.remove(discipline);
-    }
-
-
     public Competition getCompetitionFromID(UUID id) {
         for (Competition competition : competitions) {
             if (competition.getId().equals(id)) {
