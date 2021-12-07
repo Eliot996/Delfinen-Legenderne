@@ -10,7 +10,6 @@ import java.util.UUID;
 public class Result {
     private UUID id;
     private Competitor competitor;
-
     private LocalTime time;
     private LocalDate date;
     private Competition competition;
@@ -35,11 +34,13 @@ public class Result {
     }
 
     public String toCSV() {
+        String competitionString = competition != null ? competition.getId().toString() : "null";
+
         return id.toString() + ";"
                 + competitor.getMemberID() + ";"
                 + time.toString() + ";"
                 + date.toString() + ";"
-                + competition.getId() + ";"
+                + competitionString + ";"
                 + discipline;
     }
 
