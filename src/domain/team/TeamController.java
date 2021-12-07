@@ -81,11 +81,11 @@ public class TeamController {
         return sb.toString();
     }
 
-    //********************
+    //*********************
     // *
     // * edit team
     // *
-    // *******************
+    // ********************
 
     public void editTeam(int teamIndex, String what, String to) {
         Team team = teams.get(teamIndex);
