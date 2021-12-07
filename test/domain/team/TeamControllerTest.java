@@ -70,4 +70,51 @@ class TeamControllerTest {
         assertEquals(teamController.getTeamFromIndex(0).getTrainers().get(0), trainer1);
         assertEquals(teamController.getTeamFromIndex(0).getMembers().get(0), member1);
     }
+
+    @Test
+    void testInitTeams_MultipleMembersAndTrainers() {
+        MemberController memberController = new MemberController();
+        TeamController teamController = new TeamController(memberController);
+
+        Member member1 = new Member(true,
+                "Name1",
+                LocalDate.of(2222, 11, 1),
+                "+12340878734",
+                "mail");
+        memberController.addMember(member1);
+
+        Member member2 = new Member(true,
+                "Name1",
+                LocalDate.of(2222, 11, 1),
+                "+12340878734",
+                "mail");
+        memberController.addMember(member2);
+
+        Trainer trainer1 = new Trainer(true,
+                "TrainerName1",
+                LocalDate.of(2222, 11, 1),
+                "+12340878734",
+                "mail");
+        memberController.addTrainer(trainer1);
+
+        Trainer trainer2 = new Trainer(true,
+                "TrainerName1",
+                LocalDate.of(2222, 11, 1),
+                "+12340878734",
+                "mail");
+        memberController.addTrainer(trainer2);
+
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("name;description;" +
+                trainer1.getMemberID() + ":" + trainer2.getMemberID() + ";" +
+                member1.getMemberID() + ":" + member2.getMemberID());
+
+        teamController.initTeams(strings);
+
+        assertEquals(teamController.getTeamFromIndex(0).getTrainers().get(0), trainer1);
+        assertEquals(teamController.getTeamFromIndex(0).getTrainers().get(1), trainer2);
+
+        assertEquals(teamController.getTeamFromIndex(0).getMembers().get(0), member1);
+        assertEquals(teamController.getTeamFromIndex(0).getMembers().get(1), member2);
+    }
 }
