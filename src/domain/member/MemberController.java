@@ -272,5 +272,14 @@ public class MemberController {
             }
             return sb.toString();
         }
+
+    public Competitor getCompetitor(int memberIndex) {
+        Member member = getMember(memberIndex);
+        if (member instanceof Competitor) {
+            return (Competitor) getMember(memberIndex);
+        } else {
+            return null;
+        }
     }
+}
 

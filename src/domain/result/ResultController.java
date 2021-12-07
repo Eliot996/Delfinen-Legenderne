@@ -8,6 +8,7 @@ import domain.member.MemberController;
 import domain.team.Team;
 
 
+import javax.naming.NameParser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -182,11 +183,20 @@ public class ResultController {
         Result result = results.get(resultIndex);
 
         switch (what) {
-         //   case "competitor" -> result.setCompetitor(to); TODO: fix to så den ikke er rød
+            case "competitor" -> result.setCompetitor(memberController.getCompetitor(Integer.parseInt(to)));
             case "time" -> result.setTime(LocalTime.parse(to));
             case "date" -> result.setDate(LocalDate.parse(to)) ;
-            // case "competition" -> result.setCompetition(to); TODO: fix to så den ikke er rød
-            // case "disciplin" -> result.setDiscipline(to); TODO: fix to så den ikke er rød
+            case "competition" -> result.setCompetition(getCompetition(Integer.parseInt(to)));
+            case "disciplin" -> result.setDiscipline(Discipline.valueOf(to));
+        }
+    }
+
+    public Competition  getCompetition(int competitionIndex) {
+        Competition competition = getCompetition(competitionIndex);
+        if (competition instanceof Competition) {
+            return (Competition) getCompetition(competitionIndex);
+        } else {
+            return null;
         }
     }
 
@@ -211,6 +221,5 @@ public class ResultController {
             competitions.add(new Competition(resultsString));
         }
     }
-
 }
 
