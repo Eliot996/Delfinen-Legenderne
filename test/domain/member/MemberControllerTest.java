@@ -54,8 +54,8 @@ class MemberControllerTest {
 
         assertNotNull(memberController.getMembers().get(0));
         assertNotNull(memberController.getMembers().get(1));
-        assertEquals(memberController.getMembers().get(0).getDateOfBirth(), LocalDate.of(1996,10,6));
-        assertEquals(memberController.getMembers().get(0).getDateOfBirth(), LocalDate.of(1996,10,6));
+        assertEquals(memberController.getMembers().get(0).getDateOfBirth(), LocalDate.of(1996,10,25));
+        assertEquals(memberController.getMembers().get(1).getDateOfBirth(), LocalDate.of(1996,10,6));
     }
 
     //********************
@@ -67,10 +67,6 @@ class MemberControllerTest {
     @Test
     void createCompetitorTest_With1Member(){
         MemberController memberController = new MemberController();
-
-        ArrayList<Discipline> disciplines = new ArrayList<>();
-        disciplines.add(Discipline.BREASTSTROKE);
-        disciplines.add(Discipline.CRAWL);
 
         memberController.addCompetitor(true,
                 "Name",
@@ -311,6 +307,9 @@ class MemberControllerTest {
 
         Competitor competitor = (Competitor) memberController.getMembers().get(0);
 
+        competitor.addDisciplines(Discipline.BREASTSTROKE);
+        competitor.addDisciplines(Discipline.CRAWL);
+
         assertEquals(current, competitor.getDisciplines());
 
         memberController.editMember(0,"add discipline", toAdd);
@@ -338,6 +337,9 @@ class MemberControllerTest {
                 "Test@gmail.com");
 
         Competitor competitor = (Competitor) memberController.getMembers().get(0);
+
+        competitor.addDisciplines(Discipline.BREASTSTROKE);
+        competitor.addDisciplines(Discipline.CRAWL);
 
         assertEquals(current, competitor.getDisciplines());
 
