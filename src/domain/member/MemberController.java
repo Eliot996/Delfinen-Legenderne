@@ -67,6 +67,10 @@ public class MemberController {
         members.remove(member);
     }
 
+    public void addTrainer(Trainer trainer) {
+        members.add(trainer);
+    }
+
 
     public List<Member> getMembers() {
         return members;
