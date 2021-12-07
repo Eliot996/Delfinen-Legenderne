@@ -24,7 +24,7 @@ public class Competition {
         this.id = UUID.randomUUID();
         this.competitionName = competitionName;
         this.competitionAdress = competitionAdress;
-        this.dateOfCompetetition = dateOfCompetetition;
+        this.dateOfCompetetition = dateOfCompetetition; //TODO Det her skal fikses
     }
 
     //@Sofia og Mathias
@@ -43,7 +43,7 @@ public class Competition {
 
     public String simplePrint() {
         return "Stævnenavn: " + competitionName + " Adresse: " + competitionAdress +
-                " Dato og tid: " + dateOfCompetetition + " Discipliner: "; // todo fix and add + competitionDiscipline;
+                " Dato og tid: " + dateOfCompetetition + " Discipliner: " ; // todo fix and add + competitionDiscipline;
     }
 
     //Getter og Setter af Attributter

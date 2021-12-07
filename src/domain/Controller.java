@@ -461,12 +461,10 @@ public class Controller {
                 }
                 case 4 -> {
                     ui.print("Vælg en disciplin du ønsker at fjerne");
-                    ui.getDiscipline();
                     resultController.editCompetition(competitionIndex, "removeDiscipline", ui.getDiscipline().toString());
                 }
                 case 5 -> {
                     ui.print("Vælg nu den disciplin du ønsker at tilføje");
-
                     resultController.editCompetition(competitionIndex, "addDiscipline", ui.getDiscipline().toString());
                 }
             }
