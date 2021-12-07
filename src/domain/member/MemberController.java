@@ -49,6 +49,10 @@ public class MemberController {
         members.remove(member);
     }
 
+    public void addCompetitor(Competitor competitor) {
+        members.add(competitor);
+    }
+
     // to add a trainer to the database parses date(of format "dd-MM-yyyy") and checks for uniqueness of membernumber
     public void addTrainer(boolean isPassiveMember,
                            String name,
