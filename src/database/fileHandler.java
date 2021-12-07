@@ -1,6 +1,7 @@
 package database;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,16 +25,19 @@ public class fileHandler {
     //**********************
 
     private static ArrayList<String> readFromFile(String filePath) throws IOException {
-            ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String> lines = new ArrayList<>();
 
-            File file = new File(filePath);
-
-            Scanner load = new Scanner(file);
+        try {
+            Scanner load = new Scanner(new File(filePath));
             while (load.hasNextLine()) {
                 lines.add(load.nextLine());
             }
-            return lines;
+        } catch (FileNotFoundException e) {
+            // do nothing it is not important, and is handled
         }
+
+        return lines;
+    }
 
     public static List<String> getUSERSFromFile() {
         try {
