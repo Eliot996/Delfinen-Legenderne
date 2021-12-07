@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-//@author Sofia og Mathias
+//@author Sofia, Mathias, Oliver.
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Competition> comp = new ArrayList<>(); // TODO: 06/12/2021 move to resultcontroller

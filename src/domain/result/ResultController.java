@@ -1,14 +1,8 @@
 package domain.result;
 
 import domain.Discipline;
-import domain.User;
 import domain.member.Competitor;
-import domain.member.Member;
 import domain.member.MemberController;
-import domain.team.Team;
-
-
-import javax.naming.NameParser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -16,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+// @author Sofia og Mathias
 
 public class ResultController {
 

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 // @author Mathias og Sofia
-// comment
+
 public class Member {
     // attributter
     private UUID memberID;

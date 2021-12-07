@@ -26,7 +26,7 @@ public class Competition {
         this.dateOfCompetetition = dateOfCompetetition;
         this.competitionDiscipline = Discipline.valueOf(competitionDiscipline.toString());
     }
-
+//@Sofia og Mathias
     //CSV konstruktør
     public Competition(String competitionString) {
         // splits the CSV

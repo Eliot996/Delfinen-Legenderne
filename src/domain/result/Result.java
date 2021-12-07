@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
 
+//@author Mathias og Sofia
 public class Result {
     private UUID id;
     private Competitor competitor;

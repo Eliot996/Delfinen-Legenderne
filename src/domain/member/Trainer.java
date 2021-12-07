@@ -2,6 +2,7 @@ package domain.member;
 
 import java.time.LocalDate;
 
+//@Author Mathias
 public class Trainer extends Member {
 
     public Trainer(boolean isPassiveMember,
