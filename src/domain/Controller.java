@@ -1,9 +1,9 @@
 package domain;
 
-import domain.member.Competitor;
 import domain.member.MemberController;
 import domain.result.Competition;
 import domain.result.ResultController;
+import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
@@ -13,10 +13,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-//@author Sofia, Mathias, Oliver.
+//@author Sofia og Mathias
 public class Controller {
     ArrayList<User> users = new ArrayList<>();
-    ArrayList<Competition> comp = new ArrayList<>(); // TODO: 06/12/2021 move to resultcontroller
     User activeUser;
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController(memberController);
@@ -26,7 +25,6 @@ public class Controller {
 
     public void mainMenu() {
         initializaData();
-        new Competitor("a3bfce4b-5712-407c-a2f1-a8355315bb11;sofia;1996-10-25;false;091823123;malæshjdf;CRAWL:BACKCRAWL");
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -44,14 +42,14 @@ public class Controller {
 
         saveData();
     }
-    private String userToCSV(){
+
+    private String userToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (User user :
-            users) {
+        for (User user: users) {
             sb.append(user.toCSV()).append("\n");
         }
-           return sb.toString();
+        return sb.toString();
     }
 
     // TODO: make contingent results for write to file
@@ -128,12 +126,12 @@ public class Controller {
 
     private void addTrainer() {
         ui.print("Vil du konverer et eksiterende medlem til en træner?: ");
-        if (ui.getBoolean()){
+        if (ui.getBoolean()) {
             ui.print("Indtast nummeret på det medlem du ønsker at konvertere til en træner, eller fortryd ved at skrive '0': ");
             ui.print(memberController.getStringOfMembers());
             int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
 
-            if (memberIndex != 0){
+            if (memberIndex != 0) {
                 memberIndex--;
                 memberController.addTrainer(memberIndex);
             }
@@ -246,9 +244,9 @@ public class Controller {
                 case 8 -> {
                     ui.print("Indtast nummeret på det hold som du vil tilføje medlemmet til, eller skriv '0' for at anullere: ");
                     ui.print(teamController.getStringOfTeams(memberController.getMember(memberIndex)));
-                    int teamindex = ui.getInt(0,teamController.getAmountOfTeams());
+                    int teamindex = ui.getInt(0, teamController.getAmountOfTeams());
 
-                    if (teamindex != 0){
+                    if (teamindex != 0) {
                         teamindex--;
                         memberController.editMember(memberIndex, "add to team", Integer.toString(teamindex));
                     }
@@ -256,9 +254,9 @@ public class Controller {
                 case 9 -> {
                     ui.print("Indtast nummeret på det hold som du vil fjerne medlemmet fra, eller skriv '0' for at anullere: ");
                     ui.print(teamController.getTeamsWithMember(memberController.getMember(memberIndex)));
-                    int teamindex = ui.getInt(0,teamController.getAmountOfTeams());
+                    int teamindex = ui.getInt(0, teamController.getAmountOfTeams());
 
-                    if (teamindex != 0){
+                    if (teamindex != 0) {
                         teamindex--;
                         memberController.editMember(memberIndex, "remove from team", Integer.toString(teamindex));
                     }
@@ -371,13 +369,13 @@ public class Controller {
                     ui.print(memberController.getStringOfMembers());
                     ui.print("Indtast nummeret på medlemmet du vil tilføje til holdet: ");
                     int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
-                    teamController.editTeam(teamIndex,"add member", Integer.toString(memberIndex));
+                    teamController.editTeam(teamIndex, "add member", Integer.toString(memberIndex));
                 }
                 case 6 -> {
                     ui.print(teamController.getMembersOnTeam(teamIndex));
                     ui.print("Indtast nummeret på medlemmet du vil fjerne fra holdet: ");
                     int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
-                    teamController.editTeam(teamIndex,"remove member", Integer.toString(memberIndex));
+                    teamController.editTeam(teamIndex, "remove member", Integer.toString(memberIndex));
                 }
             }
         }
@@ -420,19 +418,10 @@ public class Controller {
         String competitionName = ui.getString();
         ui.print("Adresse: ");
         String competitionAdress = ui.getString();
-        ui.print("Dato og tid for stævnet: ");
-        String dateOfCompetition = String.valueOf(LocalDateTime.parse(ui.getString()));
-        ui.print("Stævne disciplin der skal svømmes i: \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
-        Discipline competitionDiscipline = null; // todo remove and convert
-        switch (ui.getInt(1, 4)) {
-            case 1 -> competitionDiscipline = Discipline.BREASTSTROKE;
-            case 2 -> competitionDiscipline = Discipline.CRAWL;
-            case 3 -> competitionDiscipline = Discipline.BACKCRAWL;
-            case 4 -> competitionDiscipline = Discipline.BUTTERFLY;
-        }
-
-        assert competitionDiscipline != null;
-        resultController.addCompetition(competitionName,competitionAdress,dateOfCompetition, competitionDiscipline);
+        LocalDateTime dateTime = ui.getDateAndTime();
+        ui.print("Stævne disciplin der skal svømmes i");
+        Discipline competitionDiscipline = ui.getDiscipline();
+        resultController.addCompetition(competitionName, competitionAdress, dateTime, competitionDiscipline);
 
     }
 
@@ -452,37 +441,33 @@ public class Controller {
         ui.print(resultController.getStringOfCompetitions());
 
         ui.print("Du bedes her skrive det stævneindex på det stævne du ønsker at redigere i");
-        int competitionIndex = ui.getInt(0, comp.size());
+        int competitionIndex = ui.getInt(0, resultController.getAmountOfCompetition());
 
         if (competitionIndex != 0) {
             competitionIndex--; // to match with the index
 
-            switch (ui.getInt(1,4)) {
+            switch (ui.editCompetitionMenu()) {
                 case 1 -> {
                     ui.print("Indtast nyt navn på stævnet");
-                    comp.get(competitionIndex).setCompetitionName(ui.getString());
+                    resultController.editCompetition(competitionIndex, "competitionName", ui.getString());
                 }
                 case 2 -> {
                     ui.print("Indtast ny adresse på stævnet");
-                    comp.get(competitionIndex).setCompetitionAdress(ui.getString());
+                    resultController.editCompetition(competitionIndex, "competitionAdress", ui.getString());
                 }
                 case 3 -> {
                     ui.print("Indtast dato og tid på stævnet (dd-mm-åååå tt:mm)");
-                    comp.get(competitionIndex).getDateAndTimeOfString(ui.getString());
+                    resultController.editCompetition(competitionIndex, "dateOfCompetition", ui.getString());
                 }
                 case 4 -> {
-                    ui.print("Vælg venligst den disciplin du vil ændre \n1. Breaststroke\n2. Crawl\n3. Backcrawl\n4. Butterfly");
-                    Discipline competitionDiscipline = null;
-                    switch (ui.getInt(1, 4)) {
-                        case 1 -> competitionDiscipline = Discipline.BREASTSTROKE;
-                        case 2 -> competitionDiscipline = Discipline.CRAWL;
-                        case 3 -> competitionDiscipline = Discipline.BACKCRAWL;
-                        case 4 -> competitionDiscipline = Discipline.BUTTERFLY;
-                    }
-                    comp.get(competitionIndex).setCompetitionDiscipline(competitionDiscipline);
-
-
-                    ui.print(resultController.getStringOfCompetitions());
+                    ui.print("Vælg en disciplin du ønsker at fjerne");
+                    ui.getDiscipline();
+                    resultController.editCompetition(competitionIndex, "removeDiscipline", ui.getDiscipline().toString());
+                }
+                case 5 -> {
+                    ui.print("Vælg nu den disciplin du ønsker at tilføje");
+                    ui.getDiscipline();
+                    resultController.editCompetition(competitionIndex, "addDiscipline", ui.getDiscipline().toString());
                 }
             }
         }
@@ -607,7 +592,7 @@ public class Controller {
         boolean keepRunning = true;
 
         while (keepRunning) {
-            switch (ui.resultMenu()){
+            switch (ui.resultMenu()) {
                 case 1 -> addResult();
                 case 2 -> deleteResult();
                 case 3 -> editResult();
@@ -620,11 +605,9 @@ public class Controller {
 
     private void addResult() {
         // gets member
-        ui.print("Her kan du se medlemmerne af svømmeklubben: ");
-        ui.print(memberController.getStringOfCompetitors());
-
         ui.print("Indtaste nummeret på det medlem du ønsker at oprette et resultat for, eller fortryd ved at skrive '0': ");
-        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers()) - 1;
+        ui.print(memberController.getStringOfCompetitors());
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers());
 
         // gets time
         LocalTime time = ui.getTime();
@@ -635,10 +618,10 @@ public class Controller {
         // get competition
         int competitionIndex = -1;
         ui.print("Vil du tilføje et stævne til resultatet?");
-        if (ui.getBoolean()){
+        if (ui.getBoolean()) {
             ui.print(resultController.getStringOfCompetitions());
             ui.print("Indtaste nummeret på det stævne du ønsker at tilføje til resultatet: ");
-            competitionIndex = ui.getInt(1, resultController.getAmountOfCompetition() - 1);
+            competitionIndex = ui.getInt(1, resultController.getAmountOfCompetition());
         }
 
         // get discipline
@@ -724,16 +707,15 @@ public class Controller {
         memberController.initMembers(fileHandler.getMEMBERSFromFile());
         memberController.initCompetitors(fileHandler.getCOMPETITORSFromFile());
         memberController.initTrainers(fileHandler.getTRAINERSFromFile());
-       // teamController.initTeams(fileHandler.getTEAMSFromFile());
-       // resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
+        teamController.initTeams(fileHandler.getTEAMSFromFile());
+        resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
         resultController.initResults(fileHandler.getCOMPETITORS_RESULTFromFile());
         //contingent.initContingents(fileHandler.getCONTINGENTFromFile()); TODO: fix
     }
 
     private void initializeUsers() {
-        for (String userString : fileHandler.getUSERSFromFile()) {
+        for (String userString: fileHandler.getUSERSFromFile()) {
             users.add(new User(userString));
         }
     }
 }
-//brugerens input

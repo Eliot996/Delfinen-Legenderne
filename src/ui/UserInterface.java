@@ -1,13 +1,13 @@
 package ui;
+
 import domain.Discipline;
 import domain.Roles;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoField;
 import java.util.Scanner;
 
 // @Author Sofia og Mathias
@@ -50,7 +50,7 @@ public class UserInterface {
                 3. Stævne menu
                 4. Hold menu
                 5. Resultat menu
-                
+                                
                 0. Afbryd""");
         return getInt(0, 5);
     }
@@ -96,64 +96,65 @@ public class UserInterface {
                 2) Slet stævne
                 3) Rediger stævne
                 4) Se liste med stævner
-                
+                                
                 0) Tilbage til hovedmenu
                                 
                 """);
         return getInt(0, 4);
     }
 
-    public int editCompetitionMenu(){
+    public int editCompetitionMenu() {
         System.out.println("""
                 Hvad vil du gerne ændre?
                 1) Stævnenavn
                 2) Adresse
                 3) Dato og tid
-                4) Stævnedisciplin
-                
+                4) Fjern disciplin
+                5) Tilføj disciplin
+                                
                 0) Annuller
                 """);
-        return getInt(0,4);
+        return getInt(0, 5);
     }
 
     public int teamMenu() {
         System.out.println("""
                 -------Holdmenu-------
-                
+                                
                 1) Opret hold
                 2) Slet hold
                 3) Rediger hold
                 4) Se alle hold
-                
+                                
                 0) Afbryd
                 """);
-        return getInt(0,4);
+        return getInt(0, 4);
     }
 
-    public int editTeamMenu(){
+    public int editTeamMenu() {
         System.out.println("""
                 Hvad vil du gerne ændre?
                 1) Navn
                 2) Beskrivelse
                 3) Sæt træner på et hold
                 4) Slet træner på et hold
-                
+                                
                 0) Annuller""");
-        return getInt(0,4);
+        return getInt(0, 4);
     }
 
     public int resultMenu() {
         System.out.println("""
                 -------Resultatmenu-------
-                
+                                
                 1) Opret resultat
                 2) Slet resultat
                 3) Rediger resultat
                 4) Se alle resultater
-                
+                                
                 0) Afbryd
                 """);
-        return getInt(0,4);
+        return getInt(0, 4);
     }
 
     public int editResultMenu(){
@@ -172,11 +173,11 @@ public class UserInterface {
     public int userMenu() {
         System.out.println("""
                 -------Brugermenu-------
-                
+                                
                 1) Opret bruger
                 2) Rediger bruger
                 3) Slet bruger
-                
+                                
                 0) Tilbage til hovedmenu
                 """);
         return getInt(0, 3);
@@ -194,7 +195,7 @@ public class UserInterface {
     }
 
     public int getInt() {
-        if (userInput.hasNextInt()){
+        if (userInput.hasNextInt()) {
             int choice = userInput.nextInt();
             userInput.nextLine(); // to prevent scanner bug
             return choice;
@@ -209,10 +210,10 @@ public class UserInterface {
         return userInput.nextLine().trim();
     }
 
-    public Boolean getBoolean(){
+    public Boolean getBoolean() {
         String input = userInput.nextLine().trim().toLowerCase();
 
-        if (input.equals("ja")){
+        if (input.equals("ja")) {
             return true;
         } else if (input.equals("nej")) {
             return false;
@@ -273,6 +274,21 @@ public class UserInterface {
             print("Forkert input, prøv igen");
             return getDate();
         }
+    }
+
+    private final DateTimeFormatter dft = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+    public LocalDateTime getDateAndTime() {
+        print("Indtast dato og tid på stævnet (dd-mm-åååå tt:mm)");
+        String input = userInput.nextLine();
+
+        try {
+            return LocalDateTime.parse(input, dft);
+        } catch (DateTimeParseException e) {
+            print("Forkert input, prøv igen");
+            return getDateAndTime();
+        }
+
     }
 }
 
