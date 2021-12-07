@@ -3,6 +3,7 @@ package domain.result;
 import domain.Discipline;
 import domain.member.Competitor;
 import domain.member.MemberController;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -86,7 +87,7 @@ public class ResultController {
     }
 
     public void initResults(List<String> competitors_resultFromFile) {
-        for (String resultsString : competitors_resultFromFile) {
+        for(String resultsString: competitors_resultFromFile) {
             String[] elements = resultsString.split(";");
 
             results.add(new Result(UUID.fromString(elements[0]),
@@ -102,7 +103,7 @@ public class ResultController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Result result: results) {
+        for(Result result: results) {
             sb.append(index).append(". ").append(result.simplePrint()).append('\n');
             index++;
         }
@@ -125,7 +126,8 @@ public class ResultController {
                                LocalDateTime dateOfCompetetition,
                                Discipline competitionDiscipline) {
 
-        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetetition, competitionDiscipline));
+        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetetition));
+        competitions.get(competitions.size()-1).addDisciplines(competitionDiscipline);
     }
 
     public List<Competition> getCompetetions() {
@@ -149,8 +151,8 @@ public class ResultController {
 
         switch (what) {
             case "competitionName" -> competition.setCompetitionName(to);
-            case "competitionAdress" -> competition.setCompetitionAdress(to);
-            case "dateOfCompetition" -> competition.setDateOfCompetetition(getDateOfString(to));
+            case "competitionAdress" -> competition.setCompetitionAddress(to);
+            case "dateOfCompetition" -> competition.setDateOfCompetition(getDateOfString(to));
             case "removeDiscipline" -> competition.removeDisciplines(Discipline.valueOf(to.toUpperCase()));
             case "addDiscipline" -> competition.addDisciplines(Discipline.valueOf(to.toUpperCase()));
 
@@ -158,7 +160,7 @@ public class ResultController {
     }
 
     public Competition getCompetitionFromID(UUID id) {
-        for (Competition competition : competitions) {
+        for(Competition competition: competitions) {
             if (competition.getId().equals(id)) {
                 return competition;
             }
@@ -179,7 +181,7 @@ public class ResultController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Competition competition: competitions) {
+        for(Competition competition: competitions) {
             sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
             index++;
         }
@@ -200,29 +202,30 @@ public class ResultController {
     public String competitionsToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Competition competition : getCompetitions()) {
+        for(Competition competition: getCompetitions()) {
             sb.append(competition.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
-    public Competition  getCompetition(int competitionIndex) {
+    public Competition getCompetition(int competitionIndex) {
         return competitions.get(competitionIndex);
     }
 
-    public String resultToCSV(){
+    public String resultToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Result result :
-               getResults()) {
+        for(Result result:
+                getResults()) {
             sb.append(result.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
     public void initCompetitions(List<String> competitionsFromFile) {
-        for (String competitionString : competitionsFromFile) {
+        for(String competitionString: competitionsFromFile) {
             competitions.add(new Competition(competitionString));
+            //TODO add disciplins
         }
     }
 }

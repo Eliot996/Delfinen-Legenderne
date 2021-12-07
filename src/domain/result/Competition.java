@@ -11,20 +11,21 @@ import java.util.UUID;
 //@author Oliver
 public class Competition {
 
-    private UUID id;
+    private final UUID id;
     private String competitionName;
-    private String competitionAdress;
-    private LocalDateTime dateOfCompetetition;
+    private String competitionAddress;
+    private LocalDateTime dateOfCompetition;
 
     private List<Discipline> disciplines = new ArrayList<>();
 
     //Konstruktør
-    public Competition(String competitionName, String competitionAdress,
-                       LocalDateTime dateOfCompetetition, Discipline competitionDiscipline) {
+    public Competition(String competitionName, String competitionAddress,
+                       LocalDateTime dateOfCompetition) {
         this.id = UUID.randomUUID();
         this.competitionName = competitionName;
-        this.competitionAdress = competitionAdress;
-        this.dateOfCompetetition = dateOfCompetetition; //TODO Det her skal fikses
+        this.competitionAddress = competitionAddress;
+        this.dateOfCompetition = dateOfCompetition;
+
     }
 
     //@Sofia og Mathias
@@ -36,14 +37,13 @@ public class Competition {
         //assigns base on position
         this.id = UUID.fromString(elements[0]);
         this.competitionName = elements[1];
-        this.competitionAdress = elements[2];
-        this.dateOfCompetetition = LocalDateTime.parse(elements[3]);
-        //this.competitionDiscipline = Discipline.valueOf(elements[4]); TODO: fix
+        this.competitionAddress = elements[2];
+        this.dateOfCompetition = LocalDateTime.parse(elements[3]);
     }
 
     public String simplePrint() {
-        return "Stævnenavn: " + competitionName + " Adresse: " + competitionAdress +
-                " Dato og tid: " + dateOfCompetetition + " Discipliner: " ; // todo fix and add + competitionDiscipline;
+        return "Stævnenavn: " + competitionName + " Adresse: " + competitionAddress +
+                " Dato og tid: " + dateOfCompetition + " Discipliner: "; // todo fix and add + competitionDiscipline;
     }
 
     //Getter og Setter af Attributter
@@ -55,20 +55,20 @@ public class Competition {
         this.competitionName = competitionName;
     }
 
-    public String getCompetitionAdress() {
-        return competitionAdress;
+    public String getCompetitionAddress() {
+        return competitionAddress;
     }
 
-    public void setCompetitionAdress(String competitionAdress) {
-        this.competitionAdress = competitionAdress;
+    public void setCompetitionAddress(String competitionAddress) {
+        this.competitionAddress = competitionAddress;
     }
 
-    public LocalDateTime getDateOfCompetetition(LocalDateTime dateOfCompetetition) {
-        return dateOfCompetetition;
+    public LocalDateTime getDateOfCompetition(LocalDateTime dateOfCompetition) {
+        return dateOfCompetition;
     }
 
-    public void setDateOfCompetetition(LocalDateTime dateOfCompetetition) {
-        this.dateOfCompetetition = dateOfCompetetition;
+    public void setDateOfCompetition(LocalDateTime dateOfCompetition) {
+        this.dateOfCompetition = dateOfCompetition;
     }
 
     public String disicplineToString(Discipline discipline) {
@@ -95,8 +95,8 @@ public class Competition {
     public String toCSV() {
         return id + ";" +
                 competitionName + ";" +
-                competitionAdress + ";" +
-                dateOfCompetetition + ";"
+                competitionAddress + ";" +
+                dateOfCompetition + ";"
                 ; // add disciplines
     }
 
