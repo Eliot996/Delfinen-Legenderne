@@ -1,9 +1,7 @@
 package domain;
 
 import domain.member.MemberController;
-import domain.result.Competition;
 import domain.result.ResultController;
-import domain.team.Team;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.fileHandler;
@@ -52,8 +50,6 @@ public class Controller {
         return sb.toString();
     }
 
-    // TODO: make contingent results for write to file
-
     private void login() {
         ui.print("enter username: ");
         String username = ui.getString();
@@ -76,15 +72,33 @@ public class Controller {
         }
     }
 
-    public void userMenuSelector() {
+    private void userMenuSelector() {
         switch (activeUser.getRole()) {
-            case ADMIN -> adminMenu();
-            //case CASHIER -> ;
-            //case TRAINER -> ;
+            case ADMIN   -> adminMenu();
+            case CASHIER -> cashierMenu();
+            case TRAINER -> trainerMenu();
         }
     }
 
-    public void adminMenu() {
+    private void cashierMenu() {
+
+    }
+
+    private void trainerMenu() {
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            int choice = ui.adminMenu();
+            switch (choice) {
+                case 1 -> competitionMenu();
+                case 2 -> teamMenu();
+                case 3 -> resultMenu();
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
+
+    private void adminMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
@@ -461,10 +475,12 @@ public class Controller {
                 }
                 case 4 -> {
                     ui.print("Vælg en disciplin du ønsker at fjerne");
+                    ui.getDiscipline();
                     resultController.editCompetition(competitionIndex, "removeDiscipline", ui.getDiscipline().toString());
                 }
                 case 5 -> {
                     ui.print("Vælg nu den disciplin du ønsker at tilføje");
+
                     resultController.editCompetition(competitionIndex, "addDiscipline", ui.getDiscipline().toString());
                 }
             }
@@ -698,6 +714,7 @@ public class Controller {
         fileHandler.writeToCompetitors(resultController.competitionsToCSV());
         fileHandler.writeToCompetitors_Results(resultController.resultToCSV());
         //  fileHandler.writeToContingent(); TODO: lav det færdigt.
+        // TODO: make contingent results for write to file
     }
 
     private void initializaData() {
