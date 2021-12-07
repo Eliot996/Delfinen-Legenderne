@@ -31,7 +31,7 @@ class MemberControllerTest {
     void createMemberTest_With1Member() {
     memberController.addMember(true,
             "Name",
-            "25-10-1996",
+            LocalDate.of(1996,10,25),
             "53663634",
             "Test@gmail.com");
     assertNotNull(memberController.getMembers().get(0));
@@ -41,13 +41,13 @@ class MemberControllerTest {
     void createMemberTest_With2Member(){
         memberController.addMember(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
         memberController.addMember(true,
                 "Name",
-                "06-10-1996",
+                LocalDate.of(1996,10,6),
                 "53663634",
                 "Test@gmail.com");
 
@@ -70,7 +70,7 @@ class MemberControllerTest {
 
         memberController.addCompetitor(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
@@ -85,13 +85,13 @@ class MemberControllerTest {
 
         memberController.addMember(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
         memberController.addCompetitor(true,
                 "Name",
-                "06-10-1996",
+                LocalDate.of(1996,10,6),
                 "53663634",
                 "Test@gmail.com");
 
@@ -112,19 +112,19 @@ class MemberControllerTest {
 
         memberController.addMember(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
         memberController.addCompetitor(true,
                 "Name",
-                "06-10-1996",
+                LocalDate.of(1996,10,6),
                 "53663634",
                 "Test@gmail.com");
 
         memberController.addTrainer(true,
                 "Trainer",
-                "06-10-1996",
+                LocalDate.of(1996,10,6),
                 "53663634",
                 "trainer@gmail.com");
 
@@ -184,7 +184,7 @@ class MemberControllerTest {
 
         memberController.addMember(true,
                 current,
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
@@ -203,7 +203,7 @@ class MemberControllerTest {
 
         memberController.addMember(false,
                 "name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
@@ -218,17 +218,17 @@ class MemberControllerTest {
     @Test
     void editMemberTest_DOB(){
         MemberController memberController = new MemberController();
-        String current = "25-10-1996";
+        LocalDate current = LocalDate.of(1996,10,25);
         String changeTo = "26-10-1996";
 
         memberController.addMember(false,
                 "name",
-                current,
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
 
-        assertEquals(memberController.getDateFromString(current),memberController.getMembers().get(0).getDateOfBirth());
+        assertEquals(current,memberController.getMembers().get(0).getDateOfBirth());
 
         memberController.editMember(0,"dateOfBirth", changeTo);
 
@@ -243,7 +243,7 @@ class MemberControllerTest {
 
         memberController.addMember(true,
                 "name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 current,
                 "Test@gmail.com");
 
@@ -263,7 +263,7 @@ class MemberControllerTest {
 
         memberController.addMember(true,
                 "name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "phone number",
                 current);
 
@@ -292,7 +292,7 @@ class MemberControllerTest {
 
         memberController.addCompetitor(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 
@@ -323,7 +323,7 @@ class MemberControllerTest {
 
         memberController.addCompetitor(true,
                 "Name",
-                "25-10-1996",
+                LocalDate.of(1996,10,25),
                 "53663634",
                 "Test@gmail.com");
 

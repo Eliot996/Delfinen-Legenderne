@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 //@author Oliver
 public class Competition {
@@ -16,7 +17,7 @@ public class Competition {
     private String competitionAddress;
     private LocalDateTime dateOfCompetition;
 
-    private List<Discipline> disciplines = new ArrayList<>();
+    List<Discipline> disciplines = new ArrayList<>();
 
     //Konstruktør
     public Competition(String competitionName, String competitionAddress,
@@ -42,8 +43,10 @@ public class Competition {
     }
 
     public String simplePrint() {
+        String discipline = disciplines.stream().map((o) -> disciplineToString(o))
+                .collect(Collectors.joining(", "));
         return "Stævnenavn: " + competitionName + " Adresse: " + competitionAddress +
-                " Dato og tid: " + dateOfCompetition + " Discipliner: "; // todo fix and add + competitionDiscipline;
+                " Dato og tid: " + dateOfCompetition + " Discipliner: " + discipline;
     }
 
 
@@ -78,7 +81,7 @@ public class Competition {
         switch (discipline) {
             case BREASTSTROKE -> disciplineToPrint = "Brystsvømning";
             case CRAWL -> disciplineToPrint = "Crawl";
-            case BACKCRAWL -> disciplineToPrint = "Ryg crawl";
+            case BACKCRAWL -> disciplineToPrint = "Rygcrawl";
             case BUTTERFLY -> disciplineToPrint = "Butterfly";
             default -> disciplineToPrint = "Disciplin er ikke blevet defineret";
         }
