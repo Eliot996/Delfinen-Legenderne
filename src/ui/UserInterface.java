@@ -193,6 +193,32 @@ public class UserInterface {
         return getInt(0, 3);
     }
 
+    public int contingentMenu() {
+        System.out.println("""
+                -------Kontingentmenu-------
+                
+                1) Opret kontingent for et medlem
+                2) Se hvilke medlemmer der har betalt kontingent
+                3) Redigere et medlems kontingent
+                4) Se priser
+                5) Se restanceliste
+                
+                """);
+        return getInt(0,5);
+    }
+
+    public int editContingentmenu() {
+        System.out.println("""
+                Hvad vil du gerne ændre?
+                1) 
+                2) 
+                3)
+                4) 
+                                
+                0) Annuller""");
+        return getInt(0,4);
+    }
+
     public int getInt(int lowerLimit, int upperLimit) {
         int choice = getInt();
 
