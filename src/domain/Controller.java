@@ -88,7 +88,7 @@ public class Controller {
         boolean keepRunning = true;
 
         while (keepRunning) {
-            int choice = ui.adminMenu();
+            int choice = ui.trainerMenu();
             switch (choice) {
                 case 1 -> competitionMenu();
                 case 2 -> teamMenu();

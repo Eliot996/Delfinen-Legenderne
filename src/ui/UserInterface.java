@@ -55,6 +55,16 @@ public class UserInterface {
         return getInt(0, 5);
     }
 
+    public int trainerMenu() {
+        System.out.println("""
+                1. Stævne menu
+                2. Hold menu
+                3. Resultat menu
+                                
+                0. Afbryd""");
+        return getInt(0, 5);
+    }
+
     public int memberMenu() {
         System.out.println("""
                 -----------------medlemsmenu---------------
