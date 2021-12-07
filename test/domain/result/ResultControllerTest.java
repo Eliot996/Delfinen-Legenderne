@@ -63,8 +63,7 @@ class ResultControllerTest {
 
         Competition competition = new Competition("name",
                 "desc",
-                LocalDateTime.of(199,12,12,12,12),
-                Discipline.CRAWL);
+                LocalDateTime.of(199,12,12,12,12));
 
         resultController.addCompetition(competition);
 
