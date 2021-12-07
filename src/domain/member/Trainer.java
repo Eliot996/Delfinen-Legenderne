@@ -13,7 +13,7 @@ public class Trainer extends Member {
         super(isPassiveMember, name, dateOfBirth, phoneNumber, email);
     }
 
-    public Trainer(String csv){
+    public Trainer(String csv) {
         super(csv);
     }
 }

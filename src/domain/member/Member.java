@@ -47,11 +47,11 @@ public class Member {
 
     public String getMemberType() {
         if (isPensioner()) {
-            return  "pensionistmedlem";
+            return "pensionistmedlem";
         } else if (isSenior()) {
-            return  "seniormedlem";
+            return "seniormedlem";
         } else {
-            return  "juniormedlem";
+            return "juniormedlem";
         }
     }
 
@@ -71,9 +71,9 @@ public class Member {
     }
 
     public String toCSV() {
-        return  memberID + ";"+
+        return memberID + ";" +
                 name + ";" +
-                dateOfBirth + ";"+
+                dateOfBirth + ";" +
                 isPassiveMember + ";" +
                 phoneNumber + ";" +
                 email;
@@ -95,6 +95,7 @@ public class Member {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -102,6 +103,7 @@ public class Member {
     public void setPassiveMember(boolean passiveMember) {
         isPassiveMember = passiveMember;
     }
+
     public boolean isPassiveMember() {
         return isPassiveMember;
     }
@@ -109,6 +111,7 @@ public class Member {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
@@ -116,6 +119,7 @@ public class Member {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -123,6 +127,7 @@ public class Member {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -130,6 +135,7 @@ public class Member {
     public UUID getMemberID() {
         return memberID;
     }
+
     public void setMemberID(UUID memberID) {
         this.memberID = memberID;
     }

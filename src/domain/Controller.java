@@ -46,7 +46,7 @@ public class Controller {
     private String userToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (User user: users) {
+        for(User user: users) {
             sb.append(user.toCSV()).append("\n");
         }
         return sb.toString();
@@ -466,7 +466,7 @@ public class Controller {
                 }
                 case 5 -> {
                     ui.print("Vælg nu den disciplin du ønsker at tilføje");
-                    ui.getDiscipline();
+
                     resultController.editCompetition(competitionIndex, "addDiscipline", ui.getDiscipline().toString());
                 }
             }
@@ -632,62 +632,62 @@ public class Controller {
         resultController.addResult(memberIndex, time, date, competitionIndex, discipline);
     }
 
-   private void deleteResult() {
-    ui.print("Her kan du se resultaterne for konkurrencesvømmerne af svømmeklubben: ");
-    ui.print(resultController.getStringOfResults());
+    private void deleteResult() {
+        ui.print("Her kan du se resultaterne for konkurrencesvømmerne af svømmeklubben: ");
+        ui.print(resultController.getStringOfResults());
 
-    ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at slette, eller fortryd ved at skrive '0': ");
-    int resultIndex = ui.getInt(0,resultController.getAmountOfResults());
+        ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at slette, eller fortryd ved at skrive '0': ");
+        int resultIndex = ui.getInt(0, resultController.getAmountOfResults());
 
-    if (resultIndex > 0) {
-        resultController.deleteResult(resultIndex - 1);
+        if (resultIndex > 0) {
+            resultController.deleteResult(resultIndex - 1);
         }
     }
 
     private void editResult() {
-    ui.print("Her kan du se resultater for konkurrencesvømmerne af svømmeklubben: ");
-    ui.print(resultController.getStringOfResults());
+        ui.print("Her kan du se resultater for konkurrencesvømmerne af svømmeklubben: ");
+        ui.print(resultController.getStringOfResults());
 
-    ui.print("Du bedes her indtast resultatindex på på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
-    int resultIndex = ui.getInt(0, resultController.getAmountOfResults());
+        ui.print("Du bedes her indtast resultatindex på på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        int resultIndex = ui.getInt(0, resultController.getAmountOfResults());
 
-    if (resultIndex != 0) {
-        resultIndex--; // for at matche med index man får ind.
+        if (resultIndex != 0) {
+            resultIndex--; // for at matche med index man får ind.
         }
 
-    switch (ui.editResultMenu()) {
-        case 1 -> {
-            ui.print("Indtast konkurrencesvømmer: ");
-            resultController.editResult(resultIndex, "competitor", ui.getString());
-        }
-        case 2 -> {
-            ui.print("Indtast tid: ");
-            resultController.editResult(resultIndex, "time", ui.getString());
-        }
-        case 3 -> {
-            ui.print("Indtast dato (hh-mm-ss): ");
-            resultController.editResult(resultIndex, "date", ui.getString());
-        }
-        case 4 -> {
-            ui.print("Indtast konkurrence: ");
-            resultController.editResult(resultIndex, "competition", ui.getString());
-        }
-        case 5 -> {
-            ui.print("Indtast disciplin: ");
-            resultController.editResult(resultIndex, "disciplin", ui.getString());
+        switch (ui.editResultMenu()) {
+            case 1 -> {
+                ui.print("Indtast konkurrencesvømmer: ");
+                resultController.editResult(resultIndex, "competitor", ui.getString());
+            }
+            case 2 -> {
+                ui.print("Indtast tid: ");
+                resultController.editResult(resultIndex, "time", ui.getString());
+            }
+            case 3 -> {
+                ui.print("Indtast dato (hh-mm-ss): ");
+                resultController.editResult(resultIndex, "date", ui.getString());
+            }
+            case 4 -> {
+                ui.print("Indtast konkurrence: ");
+                resultController.editResult(resultIndex, "competition", ui.getString());
+            }
+            case 5 -> {
+                ui.print("Indtast disciplin: ");
+                resultController.editResult(resultIndex, "disciplin", ui.getString());
             }
         }
     }
 
     private void viewResults() {
-    ui.print("Her kan du se resultaterne for konkurrencesvømmer af svømmeklubben: ");
-    ui.print(resultController.getStringOfResults());
+        ui.print("Her kan du se resultaterne for konkurrencesvømmer af svømmeklubben: ");
+        ui.print(resultController.getStringOfResults());
 
-    ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
-    int resultIndex = ui.getInt(0,resultController.getAmountOfResults());
+        ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        int resultIndex = ui.getInt(0, resultController.getAmountOfResults());
 
-    if (resultIndex > 0) {
-        ui.print(resultController.getInfo(resultIndex - 1));
+        if (resultIndex > 0) {
+            ui.print(resultController.getInfo(resultIndex - 1));
         }
     }
 
@@ -702,7 +702,7 @@ public class Controller {
         //  fileHandler.writeToContingent(); TODO: lav det færdigt.
     }
 
-    private void  initializaData() {
+    private void initializaData() {
         initializeUsers();
         memberController.initMembers(fileHandler.getMEMBERSFromFile());
         memberController.initCompetitors(fileHandler.getCOMPETITORSFromFile());
@@ -714,7 +714,7 @@ public class Controller {
     }
 
     private void initializeUsers() {
-        for (String userString: fileHandler.getUSERSFromFile()) {
+        for(String userString: fileHandler.getUSERSFromFile()) {
             users.add(new User(userString));
         }
     }

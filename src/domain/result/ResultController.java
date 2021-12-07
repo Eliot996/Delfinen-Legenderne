@@ -3,6 +3,7 @@ package domain.result;
 import domain.Discipline;
 import domain.member.Competitor;
 import domain.member.MemberController;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -11,10 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-// @author Sofia og Mathias
+// @author Sofia, Mathias og Oliver
 
 public class ResultController {
 
+
+    private List<Discipline> disciplines = new ArrayList<>();
     private final MemberController memberController;
     private final ArrayList<Result> results = new ArrayList<>();
     private final ArrayList<Competition> competitions = new ArrayList<>();
@@ -33,7 +36,7 @@ public class ResultController {
                           LocalTime time,
                           LocalDate date,
                           int competitionIndex,
-                          Discipline discipline){
+                          Discipline discipline) {
         if (competitionIndex == -1) {
             results.add(new Result((Competitor) memberController.getMember(memberIndex),
                     time,
@@ -68,6 +71,7 @@ public class ResultController {
     public int getAmountOfResults() {
         return results.size();
     }
+
     public void deleteResult(int resultIndex) {
         results.remove(results.get(resultIndex));
     }
@@ -78,14 +82,14 @@ public class ResultController {
         switch (what) {
             case "competitor" -> result.setCompetitor(memberController.getCompetitor(Integer.parseInt(to)));
             case "time" -> result.setTime(LocalTime.parse(to));
-            case "date" -> result.setDate(LocalDate.parse(to)) ;
+            case "date" -> result.setDate(LocalDate.parse(to));
             case "competition" -> result.setCompetition(getCompetition(Integer.parseInt(to)));
             case "disciplin" -> result.setDiscipline(Discipline.valueOf(to));
         }
     }
 
     public void initResults(List<String> competitors_resultFromFile) {
-        for (String     resultsString : competitors_resultFromFile) {
+        for(String resultsString: competitors_resultFromFile) {
             competitions.add(new Competition(resultsString));
         }
     }
@@ -94,7 +98,7 @@ public class ResultController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Result result : results) {
+        for(Result result: results) {
             sb.append(index).append(". ").append(result.simplePrint()).append('\n');
             index++;
         }
@@ -114,7 +118,7 @@ public class ResultController {
                                LocalDateTime dateOfCompetetition,
                                Discipline competitionDiscipline) {
 
-        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetetition , competitionDiscipline));
+        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetetition, competitionDiscipline));
     }
 
     public List<Competition> getCompetetions() {
@@ -146,8 +150,25 @@ public class ResultController {
         }
     }
 
+    public List<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines) {
+        this.disciplines = disciplines;
+    }
+
+    public void addDisciplines(Discipline discipline) {
+        this.disciplines.add(discipline);
+    }
+
+    public void removeDisciplines(Discipline discipline) {
+        this.disciplines.remove(discipline);
+    }
+
+
     public Competition getCompetitionFromID(UUID id) {
-        for (Competition competition : competitions) {
+        for(Competition competition: competitions) {
             if (competition.getId().equals(id)) {
                 return competition;
             }
@@ -168,7 +189,7 @@ public class ResultController {
         int index = 1;
         StringBuilder sb = new StringBuilder();
 
-        for (Competition competition: competitions) {
+        for(Competition competition: competitions) {
             sb.append(index).append(". ").append(competition.simplePrint()).append('\n');
             index++;
         }
@@ -189,28 +210,28 @@ public class ResultController {
     public String competitionsToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Competition competition : getCompetitions()) {
+        for(Competition competition: getCompetitions()) {
             sb.append(competition.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
-    public Competition  getCompetition(int competitionIndex) {
+    public Competition getCompetition(int competitionIndex) {
         return competitions.get(competitionIndex);
     }
 
-    public String resultToCSV(){
+    public String resultToCSV() {
         StringBuilder sb = new StringBuilder();
 
-        for (Result result :
-               getResults()) {
+        for(Result result:
+                getResults()) {
             sb.append(result.toCSV()).append("\n");
         }
         return sb.toString();
     }
 
     public void initCompetitions(List<String> competitionsFromFile) {
-        for (String competitionString : competitionsFromFile) {
+        for(String competitionString: competitionsFromFile) {
             competitions.add(new Competition(competitionString));
         }
     }
