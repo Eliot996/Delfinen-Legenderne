@@ -110,6 +110,9 @@ public class ResultController {
         return sb.toString();
     }
 
+    public Result getResult(int index) {
+        return results.get(index);
+    }
 
     // **************
     // *
