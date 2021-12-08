@@ -839,10 +839,10 @@ public class Controller {
                     "+45" + (int) (Math.random() * 99999999),
                     "mail@mail.com");
 
-            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.CRAWL.toString());
-            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BACKCRAWL.toString());
-            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BUTTERFLY.toString());
-            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BREASTSTROKE.toString());
+            if (Math.random() < 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.CRAWL.toString());
+            if (Math.random() < 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BACKCRAWL.toString());
+            if (Math.random() < 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BUTTERFLY.toString());
+            if (Math.random() < 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BREASTSTROKE.toString());
 
             System.out.println(memberController.getMember(memberController.getAmountOfMembers()-1));
         }
@@ -850,10 +850,10 @@ public class Controller {
         // Competitions
         Discipline discipline = Discipline.CRAWL;
         for (int i = 0; i < 10; i++) {
-            if (Math.random() > 0.25)discipline = Discipline.CRAWL;
-            if (Math.random() > 0.25)discipline = Discipline.BACKCRAWL;
-            if (Math.random() > 0.25)discipline = Discipline.BREASTSTROKE;
-            if (Math.random() > 0.25)discipline = Discipline.BUTTERFLY;
+            if (Math.random() < 0.25)discipline = Discipline.CRAWL;
+            if (Math.random() < 0.25)discipline = Discipline.BACKCRAWL;
+            if (Math.random() < 0.25)discipline = Discipline.BREASTSTROKE;
+            if (Math.random() < 0.25)discipline = Discipline.BUTTERFLY;
             resultController.addCompetition("Competition " + i,
                     "address",
                     LocalDateTime.of((int) Math.ceil(Math.random() * 5) + 2015,
@@ -867,10 +867,10 @@ public class Controller {
 
         // results
         for (int i = 0; i < 101; i++) {
-            if (Math.random() > 0.25)discipline = Discipline.CRAWL;
-            if (Math.random() > 0.25)discipline = Discipline.BACKCRAWL;
-            if (Math.random() > 0.25)discipline = Discipline.BREASTSTROKE;
-            if (Math.random() > 0.25)discipline = Discipline.BUTTERFLY;
+            if (Math.random() < 0.25)discipline = Discipline.CRAWL;
+            if (Math.random() < 0.25)discipline = Discipline.BACKCRAWL;
+            if (Math.random() < 0.25)discipline = Discipline.BREASTSTROKE;
+            if (Math.random() < 0.25)discipline = Discipline.BUTTERFLY;
 
             resultController.addResult((int) Math.ceil(Math.random() * 25) + memberController.getAmountOfMembers() - 26,
                     LocalTime.of(0,
