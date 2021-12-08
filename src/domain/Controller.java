@@ -710,7 +710,7 @@ public class Controller {
         ui.print("Her kan du se resultaterne for konkurrencesvømmer af svømmeklubben: ");
         ui.print(resultController.getStringOfResults());
 
-        ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        ui.print("Du bedes her indtaste resultatindex på det resultat du ønsker at se, eller fortryd ved at skrive '0': ");
         int resultIndex = ui.getInt(0, resultController.getAmountOfResults());
 
         if (resultIndex > 0) {
