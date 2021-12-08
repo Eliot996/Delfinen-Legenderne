@@ -45,10 +45,10 @@ public class Result {
     }
 
     public String simplePrint() {
-        return "Konkurrencesvømmer: " + competitor +
+        return competitor.getName() + " " + competitor.getMemberType() +
                 ", Tid: " + time +
                 ", Dato: " + date +
-                ", Konkurrence: " + competition +
+                ",\n Konkurrence: " + competition.simplePrint() +
                 ", Disciplin: " + discipline;
     }
 
