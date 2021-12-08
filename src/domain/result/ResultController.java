@@ -209,9 +209,17 @@ public class ResultController {
     }
 
     public void initCompetitions(List<String> competitionsFromFile) {
-        for(String competitionString: competitionsFromFile) {
+        for(String competitionString : competitionsFromFile) {
             competitions.add(new Competition(competitionString));
-            //TODO add disciplins
+
+            String discpinesToAdd = competitionString.substring(competitionString.lastIndexOf(";") + 1);
+            if (!discpinesToAdd.equals("")) {
+                String[] elements = discpinesToAdd.split(":");
+
+                for (String element: elements) {
+                    competitions.get(competitions.size() - 1).addDisciplines(Discipline.valueOf(element));
+                }
+            }
         }
     }
 
