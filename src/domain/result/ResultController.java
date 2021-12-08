@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
@@ -219,20 +220,49 @@ public class ResultController {
         for (Result result : results) {
             if (result.getDiscipline().equals(discipline)){
                 if (ageGroup.equals("junior")
-                        && !result.getCompetitor().isSenior()) {
-                    list.add(result);
-                } else if (ageGroup.equals("senior")
-                        && result.getCompetitor().isSenior()
+                        && !result.getCompetitor().isSenior()
                         && !result.getCompetitor().isPensioner()) {
                     list.add(result);
+                } else if (ageGroup.equals("senior")
+                        && result.getCompetitor().isSenior()) {
+                    list.add(result);
                 }
-                else if (ageGroup.equals("senior")
+                else if (ageGroup.equals("pensioner")
                         && result.getCompetitor().isPensioner()) {
                     list.add(result);
                 }
             }
         }
-        return list.toString();
+        list.sort(Comparator.comparing(Result::getTime));
+
+        ArrayList<Result> finalList = new ArrayList();
+        boolean existingInList = false;
+
+        for (Result result : list) {
+            if (finalList.size() < 5) {
+                for (Result finalResult : finalList) {
+                    if (finalResult.getCompetitor() == result.getCompetitor()) {
+                        existingInList = true;
+                        break;
+                    }
+                }
+                if (!existingInList) {
+                    finalList.add(result);
+                }
+                existingInList = false;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        if (finalList.size() > 0) {
+            for (Result result : finalList) {
+                sb.append("Tid: ").append(result.getTime()).append('\n');
+                sb.append(result.getCompetitor().simplePrint()).append('\n');
+            }
+        }
+
+        return sb.toString();
     }
 }
 
