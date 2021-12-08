@@ -298,5 +298,18 @@ public class MemberController {
             return null;
         }
     }
+
+    public double calculateContingent(int age, boolean isPassive) {
+        if (isPassive != true) {
+
+            if (age < 18) {
+                return 1000;
+            } else if (age >= 18 && age < 60) {
+                return 1600;
+            } else if (age > 60) {
+                return 1200;
+            }
+        }  return 500;
+    }
 }
 

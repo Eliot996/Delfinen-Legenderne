@@ -112,10 +112,10 @@ public class ResultController {
 
     public void addCompetition(String competitionName,
                                String competitionAdress,
-                               LocalDateTime dateOfCompetetition,
+                               LocalDateTime dateOfCompetition,
                                Discipline competitionDiscipline) {
 
-        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetetition));
+        addCompetition(new Competition(competitionName, competitionAdress, dateOfCompetition));
         competitions.get(competitions.size()-1).addDisciplines(competitionDiscipline);
     }
 
