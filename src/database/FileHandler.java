@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class fileHandler {
+public class FileHandler {
     private static final String USERS = "data/users.csv";
     private static final String MEMBERS = "data/members.csv";
     private static final String TRAINERS = "data/trainers.csv";
@@ -126,13 +126,13 @@ public class fileHandler {
     public static void writeToCompetitors(String toWrite) {
         writeToFile(COMPETITORS, toWrite);
     }
-    public static void WriteToTeams(String toWrite) {
+    public static void writeToTeams(String toWrite) {
         writeToFile(TEAMS, toWrite);
     }
     public static void writeToCompetitions(String toWrite) {
         writeToFile(COMPETITIONS, toWrite);
     }
-    public static void writeToCompetitors_Results(String toWrite) {
+    public static void writeToResults(String toWrite) {
         writeToFile(COMPETITORS_RESULTS, toWrite);
     }
     public static void writeToContingent(String toWrite) {
