@@ -148,10 +148,12 @@ public class UserInterface {
                 1) Navn
                 2) Beskrivelse
                 3) Sæt træner på et hold
-                4) Slet træner på et hold
+                4) Fjern træner fra et hold
+                5) Sæt medlem på et hold
+                6) Fjern medlem fra et hold
                                 
                 0) Annuller""");
-        return getInt(0, 4);
+        return getInt(0, 6);
     }
 
     public int resultMenu() {
