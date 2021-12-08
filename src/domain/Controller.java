@@ -366,7 +366,7 @@ public class Controller {
         ui.print("Her kan du se svømmeklubbens hold: ");
         ui.print(teamController.getStringOfTeams());
 
-        ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0': ");
+        ui.print("Her bedes du indtaste det nummeret på det hold du ønsker at redigere, eller fortryd ved at skrive '0': ");
         int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
 
         if (teamIndex != 0) {
@@ -410,7 +410,7 @@ public class Controller {
         ui.print("Her kan du se svømmeklubbens hold: ");
         ui.print(teamController.getStringOfTeams());
 
-        ui.print("Du bedes her indtaste holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0'");
+        ui.print("Du bedes her indtaste holdindex på det hold du ønsker at se, eller fortryd ved at skrive '0'");
         int teamIndex = ui.getInt(0, teamController.getAmountOfTeams());
 
         if (teamIndex > 0) {
@@ -622,6 +622,7 @@ public class Controller {
                 case 2 -> deleteResult();
                 case 3 -> editResult();
                 case 4 -> viewResults();
+                case 5 -> getTopFive();
 
                 case 0 -> keepRunning = false;
             }
@@ -714,6 +715,21 @@ public class Controller {
         if (resultIndex > 0) {
             ui.print(resultController.getInfo(resultIndex - 1));
         }
+    }
+
+    private void getTopFive() {
+        ui.print("Hvilken disiplin vil du finde resultater fra?");
+        Discipline discipline = ui.getDiscipline();
+
+        ui.print("Hvilken medlemstype vil du søge på? \n 1. Junior\n 2. Senior\n 3. Pensionist");
+        String ageGroup = null;
+        switch (ui.getInt(1,3)){
+            case 1 -> ageGroup = "junior";
+            case 2 -> ageGroup = "senior";
+            case 3 -> ageGroup = "pensioner";
+        }
+
+        resultController.getTopFive(discipline, ageGroup);
     }
 
     //**********************
