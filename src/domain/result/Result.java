@@ -45,8 +45,7 @@ public class Result {
     }
 
     public String simplePrint() {
-        return "ID: " + id +
-                ", Konkurrencesvømmer: " + competitor +
+        return "Konkurrencesvømmer: " + competitor +
                 ", Tid: " + time +
                 ", Dato: " + date +
                 ", Konkurrence: " + competition +
@@ -69,10 +68,6 @@ public class Result {
         return id;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public Competitor getCompetitor() {
         return competitor;
     }
@@ -87,10 +82,6 @@ public class Result {
 
     public void setTime(LocalTime time) {
         this.time = time;
-    }
-
-    public LocalDate getDate() {
-        return date;
     }
 
     public void setDate(LocalDate date) {
