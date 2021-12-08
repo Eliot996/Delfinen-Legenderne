@@ -4,7 +4,7 @@ import domain.member.MemberController;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
-import database.fileHandler;
+import database.FileHandler;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -750,31 +750,127 @@ public class Controller {
     }
 
     private void saveData() {
-        fileHandler.writeToUsers(userToCSV());
-        fileHandler.writeToMembers(memberController.memberToCSV());
-        fileHandler.writeToCompetitors(memberController.competitorsToCSV());
-        fileHandler.writeToTrainers(memberController.trainersToCSV());
-        fileHandler.writeToTrainers(teamController.teamsToCSV());
-        fileHandler.writeToCompetitors(resultController.competitionsToCSV());
-        fileHandler.writeToCompetitors_Results(resultController.resultToCSV());
-        //  fileHandler.writeToContingent(); TODO: lav det færdigt.
+        FileHandler.writeToUsers(userToCSV());
+        FileHandler.writeToMembers(memberController.memberToCSV());
+        FileHandler.writeToCompetitors(memberController.competitorsToCSV());
+        FileHandler.writeToTrainers(memberController.trainersToCSV());
+        FileHandler.writeToTeams(teamController.teamsToCSV());
+        FileHandler.writeToCompetitions(resultController.competitionsToCSV());
+        FileHandler.writeToResults(resultController.resultToCSV());
+        // FileHandler.writeToContingent(); //TODO: lav det færdigt.
         // TODO: make contingent results for write to file
     }
 
     private void initializaData() {
         initializeUsers();
-        memberController.initMembers(fileHandler.getMEMBERSFromFile());
-        memberController.initCompetitors(fileHandler.getCOMPETITORSFromFile());
-        memberController.initTrainers(fileHandler.getTRAINERSFromFile());
-        teamController.initTeams(fileHandler.getTEAMSFromFile());
-        resultController.initCompetitions(fileHandler.getCOMPETITIONSFromFile());
-        resultController.initResults(fileHandler.getCOMPETITORS_RESULTFromFile());
+        memberController.initMembers(FileHandler.getMEMBERSFromFile());
+        memberController.initCompetitors(FileHandler.getCOMPETITORSFromFile());
+        memberController.initTrainers(FileHandler.getTRAINERSFromFile());
+        teamController.initTeams(FileHandler.getTEAMSFromFile());
+        resultController.initCompetitions(FileHandler.getCOMPETITIONSFromFile());
+        resultController.initResults(FileHandler.getCOMPETITORS_RESULTFromFile());
         //contingent.initContingents(fileHandler.getCONTINGENTFromFile()); TODO: fix
     }
 
     private void initializeUsers() {
-        for(String userString: fileHandler.getUSERSFromFile()) {
+        for(String userString: FileHandler.getUSERSFromFile()) {
             users.add(new User(userString));
+        }
+    }
+
+    private void makeMockData() {
+        // members
+        for (int i = 0; i < 50; i++) {
+            memberController.addMember(
+                    !(Math.random() > 0.25),
+                    "name" + i,
+                    LocalDate.of((int) Math.ceil(Math.random() * 70) + 1940, (int) Math.ceil(Math.random() * 12), (int) Math.ceil(Math.random() * 28)),
+                    "+45" + (int) (Math.random() * 99999999),
+                    "mail@mail.com");
+            System.out.println(memberController.getMember(memberController.getAmountOfMembers()-1));
+        }
+
+        // trainers
+        for (int i = 0; i < 5; i++) {
+            memberController.addTrainer(
+                    !(Math.random() > 0.25),
+                    "trainer" + i,
+                    LocalDate.of((int) Math.ceil(Math.random() * 70) + 1940, (int) Math.ceil(Math.random() * 12), (int) Math.ceil(Math.random() * 28)),
+                    "+45" + (int) (Math.random() * 99999999),
+                    "mail@mail.com");
+            System.out.println(memberController.getMember(memberController.getAmountOfMembers()-1));
+        }
+
+        // competitors
+        for (int i = 0; i < 25; i++) {
+            memberController.addCompetitor(
+                    !(Math.random() > 0.25),
+                    "Competitor" + i,
+                    LocalDate.of((int) Math.ceil(Math.random() * 70) + 1940, (int) Math.ceil(Math.random() * 12), (int) Math.ceil(Math.random() * 28)),
+                    "+45" + (int) (Math.random() * 99999999),
+                    "mail@mail.com");
+
+            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.CRAWL.toString());
+            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BACKCRAWL.toString());
+            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BUTTERFLY.toString());
+            if (Math.random() > 0.5) memberController.editMember(memberController.getAmountOfMembers() - 1, "add discipline", Discipline.BREASTSTROKE.toString());
+
+            System.out.println(memberController.getMember(memberController.getAmountOfMembers()-1));
+        }
+
+        // Competitions
+        Discipline discipline = Discipline.CRAWL;
+        for (int i = 0; i < 10; i++) {
+            if (Math.random() > 0.25)discipline = Discipline.CRAWL;
+            if (Math.random() > 0.25)discipline = Discipline.BACKCRAWL;
+            if (Math.random() > 0.25)discipline = Discipline.BREASTSTROKE;
+            if (Math.random() > 0.25)discipline = Discipline.BUTTERFLY;
+            resultController.addCompetition("Competition " + i,
+                    "address",
+                    LocalDateTime.of((int) Math.ceil(Math.random() * 5) + 2015,
+                            (int) Math.ceil(Math.random() * 12),
+                            (int) Math.ceil(Math.random() * 28),
+                            (int) (Math.random() * 24),
+                            (int) (Math.random() * 60)),
+                    discipline);
+            System.out.println(resultController.getCompetition(resultController.getAmountOfCompetition() - 1));
+        }
+
+        // results
+        for (int i = 0; i < 101; i++) {
+            if (Math.random() > 0.25)discipline = Discipline.CRAWL;
+            if (Math.random() > 0.25)discipline = Discipline.BACKCRAWL;
+            if (Math.random() > 0.25)discipline = Discipline.BREASTSTROKE;
+            if (Math.random() > 0.25)discipline = Discipline.BUTTERFLY;
+
+            resultController.addResult((int) Math.ceil(Math.random() * 25) + memberController.getAmountOfMembers() - 26,
+                    LocalTime.of(0,
+                            (int) (Math.random() * 60),
+                            (int) (Math.random() * 60)),
+                    LocalDate.of(
+                            (int) Math.ceil(Math.random() * 5) + 2015,
+                            (int) Math.ceil(Math.random() * 12),
+                            (int) Math.ceil(Math.random() * 28)),
+                    resultController.getAmountOfCompetition() - 1,
+                    discipline);
+            System.out.println(resultController.getResult(resultController.getAmountOfResults() - 1));
+        }
+
+        // teams
+        for (int i = 0; i < 6; i++) {
+            teamController.addTeam("team " + i, "description for team " + i);
+
+            for (int j = 0; j < Math.random() * 15; j++) {
+                teamController.addMemberToTeam(memberController.getMember((int) Math.ceil(Math.random() * 5) + memberController.getAmountOfMembers() - 26), teamController.getAmountOfTeams() - 1);
+            }
+
+            for (int j = 0; j < 2; j++) {
+                teamController.editTeam(
+                        teamController.getAmountOfTeams() - 1,
+                        "add trainers", Integer.toString((int) Math.ceil(Math.random() * 5) + memberController.getAmountOfMembers() - 31));
+            }
+
+            System.out.println(teamController.getTeamFromIndex(teamController.getAmountOfTeams() - 1));
         }
     }
 }
