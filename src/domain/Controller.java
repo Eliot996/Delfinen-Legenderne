@@ -82,7 +82,14 @@ public class Controller {
     }
 
     private void cashierMenu() {
+        boolean keepRunning = true;
 
+        while (keepRunning) {
+            switch (ui.getInt(0,1)) {
+                case 1 -> contingentMenu();
+                case 0 -> keepRunning = false;
+            }
+        }
     }
 
     private void trainerMenu() {
@@ -761,7 +768,6 @@ public class Controller {
         FileHandler.writeToCompetitions(resultController.competitionsToCSV());
         FileHandler.writeToResults(resultController.resultToCSV());
         // FileHandler.writeToContingent(); //TODO: lav det færdigt.
-        // TODO: make contingent results for write to file
     }
 
     private void initializaData() {
