@@ -98,11 +98,26 @@ public class Competition {
     }
 
     public String toCSV() {
+        StringBuilder stringOfDisciplines = new StringBuilder();
+
+        if (disciplines.size() > 0) {
+
+            stringOfDisciplines.append(disciplines.get(0));
+
+            if (disciplines.size() > 1){
+                for (int i = 1; i < disciplines.size(); i++) {
+                    stringOfDisciplines.append(':').append(disciplines.get(i).toString());
+                }
+            }
+        } else {
+          stringOfDisciplines.append("null");
+        }
+
         return id + ";" +
                 competitionName + ";" +
                 competitionAddress + ";" +
-                dateOfCompetition + ";"
-                ; // add disciplines
+                dateOfCompetition + ";" +
+                stringOfDisciplines;
     }
 
     public List<Discipline> getDisciplines() {
