@@ -1,11 +1,13 @@
 package domain;
 
+import domain.member.Member;
 import domain.member.MemberController;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.FileHandler;
 
+import javax.sound.midi.InvalidMidiDataException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -744,7 +746,7 @@ public class Controller {
         while (keepRunning) {
             switch (ui.contingentMenu()) {
                 case 1 -> addContingent();
-                case 2 -> memberContigentPayed();
+                case 2 -> memberContingentPayed();
                 case 3 -> editContingent();
                 case 4 -> seeContingentPrices();
                 case 5 -> seeArrearsList();
@@ -755,10 +757,14 @@ public class Controller {
     }
 
     public void addContingent() {
+        ui.print("Her kan du se alle medlemmerne i klubben");
+        ui.print(memberController.getStringOfMembers());
+        ui.print("Indtast ");
+
 
     }
 
-    public void memberContigentPayed() {
+    public void memberContingentPayed() {
 
     }
 
