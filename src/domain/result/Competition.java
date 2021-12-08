@@ -43,7 +43,7 @@ public class Competition {
     }
 
     public String simplePrint() {
-        String discipline = disciplines.stream().map((o) -> disciplineToString(o))
+        String discipline = disciplines.stream().map(this::disciplineToString)
                 .collect(Collectors.joining(", "));
         return "Stævnenavn: " + competitionName + " Adresse: " + competitionAddress +
                 " Dato og tid: " + dateOfCompetition + " Discipliner: " + discipline;
