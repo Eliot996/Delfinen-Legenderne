@@ -3,7 +3,6 @@ package domain.result;
 import domain.Discipline;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -52,24 +51,13 @@ public class Competition {
 
 
     //Getter og Setter af Attributter
-    public String getCompetitionName() {
-        return competitionName;
-    }
 
     public void setCompetitionName(String competitionName) {
         this.competitionName = competitionName;
     }
 
-    public String getCompetitionAddress() {
-        return competitionAddress;
-    }
-
     public void setCompetitionAddress(String competitionAddress) {
         this.competitionAddress = competitionAddress;
-    }
-
-    public LocalDateTime getDateOfCompetition(LocalDateTime dateOfCompetition) {
-        return dateOfCompetition;
     }
 
     public void setDateOfCompetition(LocalDateTime dateOfCompetition) {
@@ -86,11 +74,6 @@ public class Competition {
             default -> disciplineToPrint = "Disciplin er ikke blevet defineret";
         }
         return disciplineToPrint;
-    }
-
-    public LocalDateTime getDateAndTimeOfString(String dateAndTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        return LocalDateTime.parse(dateAndTime.trim(), formatter);
     }
 
     public UUID getId() {
@@ -118,14 +101,6 @@ public class Competition {
                 competitionAddress + ";" +
                 dateOfCompetition + ";" +
                 stringOfDisciplines;
-    }
-
-    public List<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
-    public void setDisciplines(List<Discipline> disciplines) {
-        this.disciplines = disciplines;
     }
 
     public void addDisciplines(Discipline discipline) {
