@@ -164,10 +164,11 @@ public class UserInterface {
                 2) Slet resultat
                 3) Rediger resultat
                 4) Se alle resultater
+                5) Få top 5
                                 
                 0) Afbryd
                 """);
-        return getInt(0, 4);
+        return getInt(0, 5);
     }
 
     public int editResultMenu() {

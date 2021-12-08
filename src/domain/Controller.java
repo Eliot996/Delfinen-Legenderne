@@ -1,13 +1,11 @@
 package domain;
 
-import domain.member.Member;
 import domain.member.MemberController;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.FileHandler;
 
-import javax.sound.midi.InvalidMidiDataException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,6 +22,7 @@ public class Controller {
 
 
     public void mainMenu() {
+        initializeUsers();
         initializaData();
         //makeMockData();
 
@@ -731,7 +730,7 @@ public class Controller {
             case 3 -> ageGroup = "pensioner";
         }
 
-        resultController.getTopFive(discipline, ageGroup);
+        ui.print(resultController.getTopFive(discipline, ageGroup));
     }
 
     //**********************
@@ -793,7 +792,6 @@ public class Controller {
     }
 
     private void initializaData() {
-        initializeUsers();
         memberController.initMembers(FileHandler.getMEMBERSFromFile());
         memberController.initCompetitors(FileHandler.getCOMPETITORSFromFile());
         memberController.initTrainers(FileHandler.getTRAINERSFromFile());
