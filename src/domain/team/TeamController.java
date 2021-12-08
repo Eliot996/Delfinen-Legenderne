@@ -121,6 +121,10 @@ public class TeamController {
         teams.get(teamIndex).removeMember(member);
     }
 
+    public String getTrainersOnTeam(int teamIndex) {
+        return teams.get(teamIndex).getStringOfTrainers();
+    }
+
     public String getMembersOnTeam(int teamIndex) {
         return teams.get(teamIndex).getStringOfMembers();
     }
