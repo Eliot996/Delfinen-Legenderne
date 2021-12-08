@@ -15,7 +15,7 @@ public class fileHandler {
     private static final String COMPETITORS = "data/competitors.csv";
     private static final String TEAMS = "data/teams.csv";
     private static final String COMPETITIONS = "data/competitions.csv";
-    private static final String COMPETITORS_RESULTS = "data/competitor_results.csv";
+    private static final String COMPETITORS_RESULTS = "data/results.csv";
     private static final String CONTINGENT = "data/contingent.csv";
 
     //**********************
