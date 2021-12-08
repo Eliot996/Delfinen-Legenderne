@@ -758,8 +758,10 @@ public class Controller {
     public void addContingent() {
         ui.print("Her kan du se alle medlemmerne i klubben");
         ui.print(memberController.getStringOfMembers());
-        ui.print("Indtast ");
+        ui.print("Indtast det medlem du vil tilføje et kontingent på");
 
+
+        memberController.calculateContingent(ui.getInt(), ui.getBoolean());
 
     }
 

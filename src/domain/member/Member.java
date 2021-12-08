@@ -13,6 +13,7 @@ public class Member {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String email;
+    private double contingentPrice;
 
     //konstruktør
     public Member(boolean isPassiveMember,
@@ -30,12 +31,12 @@ public class Member {
     }
 
     public boolean isSenior() {
-        LocalDate eightteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+        LocalDate eighteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
         LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
 
         LocalDate today = LocalDate.now();
 
-        return eightteenYearsLater.isBefore(today) && sixtyYearsLater.isAfter(today);
+        return eighteenYearsLater.isBefore(today) && sixtyYearsLater.isAfter(today);
     }
 
     public boolean isPensioner() {
