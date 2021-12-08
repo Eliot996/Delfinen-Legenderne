@@ -9,8 +9,8 @@ public class Team {
     //attributter
     private String name;
     private String description;
-    private ArrayList<Trainer> trainers = new ArrayList<>();
-    private ArrayList<Member> members = new ArrayList<>();
+    private final ArrayList<Trainer> trainers = new ArrayList<>();
+    private final ArrayList<Member> members = new ArrayList<>();
 
     //konstruktør
     public Team(String name,
@@ -53,16 +53,13 @@ public class Team {
         return members;
     }
 
-    public void setTrainers(ArrayList<Trainer> trainers) {
-        this.trainers = trainers;
-    }
-
     @Override
     public String toString() {
         return "---- Holdoplysninger ----\n" +
                 "Holdnavn: " + name +
-                "\n Holdbeskrivelse: " + description +
-                "\n Træner(e): " + trainers + "\n";
+                "\nHoldbeskrivelse: " + description +
+                "\nTræner(e): \n" + getStringOfTrainers() +
+                "\nMedlemmer(e): \n " + getStringOfMembers() + "\n";
     }
 
     public String toCSV() {
@@ -92,7 +89,7 @@ public class Team {
     }
 
     public String simplePrint() {
-        return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): " + trainers;
+        return "Navn: " + name + ", Beskrivelse: " + description + ", Træner(e): \n" + getStringOfTrainers();
     }
 
     public String getStringOfTrainers(){
@@ -114,9 +111,7 @@ public class Team {
         StringBuilder sb = new StringBuilder();
 
         for (Member member : members) {
-            if(member instanceof Trainer) {
                 sb.append(index).append(". ").append(member.simplePrint()).append('\n');
-            }
             index++;
         }
 
