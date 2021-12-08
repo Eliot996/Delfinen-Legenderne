@@ -356,7 +356,7 @@ public class Controller {
     }
 
     private void editTeam() {
-        ui.print("Her kan du se svømmeklubbens hold");
+        ui.print("Her kan du se svømmeklubbens hold: ");
         ui.print(teamController.getStringOfTeams());
 
         ui.print("Her bedes du indtaste det holdindex på det hold du ønsker at redigere, eller fortryd ved at skrive '0': ");
@@ -374,10 +374,12 @@ public class Controller {
                     teamController.editTeam(teamIndex, "description", ui.getString());
                 }
                 case 3 -> {
+                    ui.print(memberController.getStringOfTrainers());
                     ui.print("Indtast hvilken træner du gerne vil have på et hold");
                     teamController.editTeam(teamIndex, "add trainers", ui.getString());
                 }
                 case 4 -> {
+                    ui.print(teamController.getTrainersOnTeam(teamIndex));
                     ui.print("Indtast hvilken træner du gerne vil fjerne på et hold");
                     teamController.editTeam(teamIndex, "remove trainers", ui.getString());
                 }
@@ -862,7 +864,10 @@ public class Controller {
             teamController.addTeam("team " + i, "description for team " + i);
 
             for (int j = 0; j < Math.random() * 15; j++) {
-                teamController.addMemberToTeam(memberController.getMember((int) Math.ceil(Math.random() * 5) + memberController.getAmountOfMembers() - 26), teamController.getAmountOfTeams() - 1);
+                teamController.editTeam(
+                        teamController.getAmountOfTeams() - 1,
+                        "add member",
+                        Integer.toString((int) Math.ceil(Math.random() * 25) + memberController.getAmountOfMembers() - 26));
             }
 
             for (int j = 0; j < 2; j++) {
