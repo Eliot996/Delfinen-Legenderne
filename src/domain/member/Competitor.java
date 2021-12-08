@@ -23,11 +23,14 @@ public class Competitor extends Member {
         super(csv);
 
         String discpinesToAdd = csv.substring(csv.lastIndexOf(";") + 1);
-        String[] elements = discpinesToAdd.split(":");
+        if (!discpinesToAdd.equals("")) {
+            String[] elements = discpinesToAdd.split(":");
 
-        for(String element: elements) {
-            addDisciplines(Discipline.valueOf(element));
+            for (String element: elements) {
+                addDisciplines(Discipline.valueOf(element));
+            }
         }
+
     }
 
     public List<Discipline> getDisciplines() {
@@ -52,7 +55,7 @@ public class Competitor extends Member {
 
         sb.append(";");
         if (disciplines.size() > 1) {
-            sb.append(disciplines);
+            sb.append(disciplines.get(0));
             for(int i = 1; i < disciplines.size(); i++) {
                 sb.append(":").append(disciplines.get(i));
             }
