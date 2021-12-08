@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class Contingent {
     HashMap<String, Integer> contingent = new HashMap<String, Integer>();
-    LocalDate dateOfBirth;
 
     public Contingent() {
         contingent.put("Ungdomssvømmere", 1000);

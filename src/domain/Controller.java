@@ -761,8 +761,6 @@ public class Controller {
         ui.print("Indtast det medlem du vil tilføje et kontingent på");
 
 
-        memberController.calculateContingent(ui.getInt(), ui.getBoolean());
-
     }
 
     public void memberContingentPayed() {
