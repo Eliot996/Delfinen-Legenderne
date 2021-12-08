@@ -23,6 +23,7 @@ public class Controller {
 
     public void mainMenu() {
         initializaData();
+        //makeMockData();
 
         memberController.setTeamController(teamController);
         ui.hello();
