@@ -8,7 +8,7 @@ import java.util.UUID;
 
 //@author Mathias og Sofia
 public class Result {
-    private UUID id;
+    private final UUID id;
     private Competitor competitor;
     private LocalTime time;
     private LocalDate date;
