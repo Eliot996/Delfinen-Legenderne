@@ -53,7 +53,7 @@ public class UserInterface {
                 6. Kontingent menu
                                 
                 0. Afbryd""");
-        return getInt(0, 5);
+        return getInt(0, 6);
     }
 
     public int trainerMenu() {
@@ -201,7 +201,7 @@ public class UserInterface {
                 -------Kontingentmenu-------
                 
                 1) Opret kontingent for et medlem
-                2) Se hvilke medlemmer der har betalt kontingent
+                2) Se betalingsoversigt
                 3) Redigere et medlems kontingent
                 4) Se priser
                 5) Se restanceliste
