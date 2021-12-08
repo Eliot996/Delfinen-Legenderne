@@ -50,18 +50,6 @@ public class ResultController {
         }
     }
 
-    private void addResultFromCSV(String csv) { // might work, but properly doesn't
-        String[] elemets = csv.split(";");
-
-        results.add(new Result(
-                UUID.fromString(elemets[0]),
-                memberController.getCompetitor(UUID.fromString(elemets[1])),
-                LocalTime.parse(elemets[2]),
-                LocalDate.parse(elemets[3]),
-                getCompetitionFromID(UUID.fromString(elemets[4])),
-                Discipline.valueOf(elemets[5])));
-    }
-
     public ArrayList<Result> getResults() {
         return results;
     }
@@ -87,7 +75,7 @@ public class ResultController {
     }
 
     public void initResults(List<String> competitors_resultFromFile) {
-        for(String resultsString: competitors_resultFromFile) {
+        for (String resultsString: competitors_resultFromFile) {
             String[] elements = resultsString.split(";");
 
             results.add(new Result(UUID.fromString(elements[0]),
@@ -130,10 +118,6 @@ public class ResultController {
         competitions.get(competitions.size()-1).addDisciplines(competitionDiscipline);
     }
 
-    public List<Competition> getCompetetions() {
-        return competitions;
-    }
-
     public void deleteCompetition(int competitionIndex) {
         competitions.remove(competitionIndex);
     }
@@ -142,7 +126,7 @@ public class ResultController {
         competitions.add(competition);
     }
 
-    public void deleteCompetetion(Competition competition) {
+    public void deleteCompetition(Competition competition) {
         competitions.remove(competition);
     }
 
