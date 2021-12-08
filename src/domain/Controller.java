@@ -109,6 +109,7 @@ public class Controller {
                 case 3 -> competitionMenu();
                 case 4 -> teamMenu();
                 case 5 -> resultMenu();
+                case 6 -> contingentMenu();
                 case 0 -> keepRunning = false;
             }
         }
@@ -703,6 +704,49 @@ public class Controller {
         if (resultIndex > 0) {
             ui.print(resultController.getInfo(resultIndex - 1));
         }
+    }
+
+    //**********************
+    //*
+    //* Contingent
+    //*
+    //**********************
+
+    public void contingentMenu() {
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            switch (ui.contingentMenu()) {
+                case 1 -> addContingent();
+                case 2 -> memberContigentPayed();
+                case 3 -> editContingent();
+                case 4 -> seeContingentPrices();
+                case 5 -> seeArrearsList();
+
+                case 0 -> keepRunning = false;
+            }
+        }
+    }
+
+    public void addContingent() {
+
+    }
+
+    public void memberContigentPayed() {
+
+    }
+
+    public void editContingent() {
+
+    }
+
+    public void seeContingentPrices() {
+
+    }
+
+    //arrearsList er restance listen
+    public void seeArrearsList() {
+
     }
 
     private void saveData() {

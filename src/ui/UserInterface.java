@@ -50,6 +50,7 @@ public class UserInterface {
                 3. Stævne menu
                 4. Hold menu
                 5. Resultat menu
+                6. Kontingent menu
                                 
                 0. Afbryd""");
         return getInt(0, 5);
@@ -202,6 +203,8 @@ public class UserInterface {
                 3) Redigere et medlems kontingent
                 4) Se priser
                 5) Se restanceliste
+                
+                0) Tilbage til hovedmenu
                 
                 """);
         return getInt(0,5);
