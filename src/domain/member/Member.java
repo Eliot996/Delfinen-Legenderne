@@ -13,7 +13,6 @@ public class Member {
     private LocalDate dateOfBirth;
     private String phoneNumber;
     private String email;
-    private double contingentPrice;
 
     //konstruktør
     public Member(boolean isPassiveMember,
