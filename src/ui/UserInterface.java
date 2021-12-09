@@ -205,14 +205,15 @@ public class UserInterface {
                 2) Opret kontingent for et medlem
                 3) Se betalingsoversigt
                 4) Se overskredet betalinger
-                5) Rediger en opkravning
-                6) Se priser
-                7) Rediger priser
+                5) Registre betaling
+                6) Rediger en opkrævning
+                7) Se priser
+                8) Rediger priser
                 
                 0) Tilbage til hovedmenu
                 
                 """);
-        return getInt(0,7);
+        return getInt(0,8);
     }
 
     public int editContingentmenu() {
