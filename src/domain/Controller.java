@@ -294,15 +294,15 @@ public class Controller {
     }
 
     private void addMember() {
-        System.out.print("Er brugeren passive? ");
+        ui.print("Er brugeren passive? ");
         boolean isPassive = ui.getBoolean();
-        System.out.print("Indtast navn på medlemmet: ");
+        ui.print("Indtast navn på medlemmet: ");
         String name = ui.getString();
-        System.out.print("Indtast fødselsdato på medlemmet: ");
+        ui.print("Indtast fødselsdato på medlemmet: ");
         LocalDate DOB = ui.getDate();
-        System.out.print("Indtast telefonnummer på medlemmet: ");
+        ui.print("Indtast telefonnummer på medlemmet: ");
         String phone = ui.getString();
-        System.out.print("Indtast email på medlemmet: ");
+        ui.print("Indtast email på medlemmet: ");
         String email = ui.getString();
 
         memberController.addMember(
