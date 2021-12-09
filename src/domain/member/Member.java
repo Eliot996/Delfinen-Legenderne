@@ -46,12 +46,16 @@ public class Member {
     }
 
     public String getMemberType() {
-        if (isPensioner()) {
-            return "pensionistmedlem";
-        } else if (isSenior()) {
-            return "seniormedlem";
+        if(isPassiveMember){
+            return "passivt";
         } else {
-            return "juniormedlem";
+            if (isPensioner()) {
+                return "pensionistmedlem";
+            } else if (isSenior()) {
+                return "seniormedlem";
+            } else {
+                return "juniormedlem";
+            }
         }
     }
 
