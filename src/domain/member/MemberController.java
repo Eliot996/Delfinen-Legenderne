@@ -98,6 +98,9 @@ public class MemberController {
         return competitors;
     }
 
+    // Method to edit a member object in the members list,
+    // takes the index of the member to change, and a string of what to change, as well as another string of
+    // what to change it to
     public void editMember(int memberIndex, String what, String to) {
         Member member = members.get(memberIndex);
 
@@ -150,9 +153,9 @@ public class MemberController {
     public int getAmountOfMembers() {
         return members.size();
     }
+
     // methods from MemberDatabase
     // @author Mathias
-
     private ArrayList<Member> members = new ArrayList<>();
 
     public void addMember(Member member) {
@@ -161,15 +164,6 @@ public class MemberController {
 
     public void deleteMember(int memberIndex) {
         members.remove(members.get(memberIndex));
-    }
-
-    public Member getMember(String name) {
-        for(Member member: members) {
-            if (member.getName().equals(name)) {
-                return member;
-            }
-        }
-        return null;
     }
 
     public Member getMember(int memberIndex) {

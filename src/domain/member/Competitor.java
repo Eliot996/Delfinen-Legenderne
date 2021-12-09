@@ -37,10 +37,6 @@ public class Competitor extends Member {
         return disciplines;
     }
 
-    public void setDisciplines(List<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
-
     public void addDisciplines(Discipline discipline) {
         this.disciplines.add(discipline);
     }
@@ -53,9 +49,12 @@ public class Competitor extends Member {
     public String toCSV() {
         StringBuilder sb = new StringBuilder(super.toCSV());
 
+        // appends the delimiter
         sb.append(";");
+        // if there are any disciplines on the competitor, then add the first one
         if (disciplines.size() > 1) {
             sb.append(disciplines.get(0));
+            //
             for(int i = 1; i < disciplines.size(); i++) {
                 sb.append(":").append(disciplines.get(i));
             }

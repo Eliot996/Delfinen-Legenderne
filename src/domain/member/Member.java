@@ -30,16 +30,21 @@ public class Member {
     }
 
     public boolean isSenior() {
+        // generates data to tests against, based on the members birthday
         LocalDate eighteenYearsLater = LocalDate.of(dateOfBirth.getYear() + 18, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
         LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
 
+        // get the date of today
         LocalDate today = LocalDate.now();
 
+        // check if the members birthday falls between the to check dates
         return eighteenYearsLater.isBefore(today) && sixtyYearsLater.isAfter(today);
     }
 
     public boolean isPensioner() {
+        // generates data to tests against, based on the members birthday
         LocalDate sixtyYearsLater = LocalDate.of(dateOfBirth.getYear() + 60, dateOfBirth.getMonth(), dateOfBirth.getDayOfMonth());
+        // get the date of today
         LocalDate today = LocalDate.now();
 
         return sixtyYearsLater.isBefore(today);
