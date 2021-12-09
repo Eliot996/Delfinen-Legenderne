@@ -45,11 +45,13 @@ public class Contingent {
 
 
         for (String csv: csvs) {
+            System.out.println(csv);
             String[] elements = csv.split(";");
             charges.add(new Charge(Integer.parseInt(elements[0]),
                     controller.getMember(elements[1]),
                     LocalDate.parse(elements[2]),
-                    Boolean.parseBoolean(elements[3])));
+                    Boolean.parseBoolean(elements[3]),
+                    Boolean.parseBoolean(elements[4])));
         }
 
         checkAndAddYearlyContigentCharge();
@@ -61,16 +63,18 @@ public class Contingent {
 
         boolean contains = false;
         for (Charge charge : charges) {
-            for (Charge latestChargePerMember : latestChargesPerMember) {
-                if (charge.getMember() == latestChargePerMember.getMember()) {
-                    contains = true;
-                    break;
+            if (charge.isYearlyCharge()){
+                for (Charge latestChargePerMember : latestChargesPerMember) {
+                    if (charge.getMember() == latestChargePerMember.getMember()) {
+                        contains = true;
+                        break;
+                    }
                 }
+                if (!contains) {
+                    latestChargesPerMember.add(charge);
+                }
+                contains = false;
             }
-            if (!contains) {
-                latestChargesPerMember.add(charge);
-            }
-            contains = false;
         }
 
         LocalDate now = LocalDate.now();
@@ -86,7 +90,7 @@ public class Contingent {
     }
 
     public String chargesToCSV() {
-        StringBuilder sb = new StringBuilder("At betale;Medlems ID;Dato for betaling;Er Betalt\n");
+        StringBuilder sb = new StringBuilder("At betale;Medlems ID;Dato for betaling;Er Betalt;Årligt kontingent\n");
 
         for (Charge charge : charges) {
             sb.append(charge.toCSV()).append('\n');
@@ -100,22 +104,32 @@ public class Contingent {
         private Member member;
         private LocalDate dueDate;
         private boolean paid = false;
+        private boolean yearlyCharge;
 
         public Charge(int charge, Member member, LocalDate dueDate) {
             this.charge = charge;
             this.member = member;
             this.dueDate = dueDate;
+            this.yearlyCharge = true;
         }
 
-        public Charge(int charge, Member member, LocalDate dueDate, Boolean paid) {
+        public Charge(int charge, Member member, LocalDate dueDate, boolean yearlyCharge) {
+            this.charge = charge;
+            this.member = member;
+            this.dueDate = dueDate;
+            this.yearlyCharge = yearlyCharge;
+        }
+
+        public Charge(int charge, Member member, LocalDate dueDate, Boolean paid, boolean yearlyCharge) {
             this.charge = charge;
             this.member = member;
             this.dueDate = dueDate;
             this.paid = paid;
+            this.yearlyCharge = yearlyCharge;
         }
 
         public String toCSV() {
-            return charge + ";" + member.getMemberID() + ";" + dueDate.toString() + ";" + paid;
+            return charge + ";" + member.getMemberID() + ";" + dueDate.toString() + ";" + paid + ";" + yearlyCharge;
         }
 
         @Override
@@ -156,6 +170,10 @@ public class Contingent {
 
         public void setPaid(boolean paid) {
             this.paid = paid;
+        }
+
+        public boolean isYearlyCharge() {
+            return yearlyCharge;
         }
     }
 
