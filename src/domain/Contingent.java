@@ -21,6 +21,14 @@ public class Contingent {
     // *
     // ****************
 
+    public void generateCharges(List<Member> members) {
+        for (Member member : members) {
+            charges.add(new Charge(contingent.get(member.getMemberType().toLowerCase()),
+                    member,
+                    LocalDate.now()));
+        }
+    }
+
     public Charge getCharge(int index) {
         return charges.get(index);
     }
@@ -30,6 +38,7 @@ public class Contingent {
     }
 
     public void initCharges(List<String> csvs) {
+        if (csvs.size() > 0)
         csvs.remove(0);// TODO: 09/12/2021 Temp, needs to be redone, to include in Filehandler
 
 
@@ -73,6 +82,14 @@ public class Contingent {
 
         public String toCSV() {
             return charge + ";" + member.getMemberID() + ";" + dueDate.toString() + ";" + paid;
+        }
+
+        @Override
+        public String toString() {
+            return "charge=" + charge +
+                    ", medlem=" + member.getMemberID() +
+                    ", betalingsdato=" + dueDate +
+                    ", betalt=" + paid;
         }
 
         public int getCharge() {
