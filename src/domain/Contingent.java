@@ -116,6 +116,38 @@ public class Contingent {
         return sb.toString();
     }
 
+    public String getStringOfLatePayments() {
+        LocalDate now = LocalDate.now();
+        StringBuilder sb = new StringBuilder();
+        int index = 1;
+
+        for (Charge charge : charges) {
+            if (charge.dueDate.isBefore(now)) {
+                sb.append(index).append(". ");
+                sb.append(charge).append('\n');
+            }
+            index++;
+        }
+
+        return sb.toString();
+    }
+
+    public String getStringOfUnpaidPayments() {
+        LocalDate now = LocalDate.now();
+        StringBuilder sb = new StringBuilder();
+        int index = 1;
+
+        for (Charge charge : charges) {
+            if (!charge.isPaid()) {
+                sb.append(index).append(". ");
+                sb.append(charge).append('\n');
+            }
+            index++;
+        }
+
+        return sb.toString();
+    }
+
     private class Charge {
         private int charge;
         private Member member;
