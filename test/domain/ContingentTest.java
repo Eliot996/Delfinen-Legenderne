@@ -29,6 +29,7 @@ class ContingentTest {
         csv.add("1600;" +
                 mc.getMember("d54f8ec5-4538-4727-944f-087f39cdd9cd").getMemberID() + ";" +
                 LocalDate.of(2021,12,1) + ";" +
+                false + ";" +
                 false);
 
         contingent.initCharges(csv);

@@ -1,5 +1,4 @@
 At betale;Medlems ID;Dato for betaling;Er Betalt;Årligt kontingent
-1200;d54f8ec5-4538-4727-944f-087f39cdd9cd;2019-01-08;false;true
 1200;7756407f-606a-43fc-8df9-d250b909ce3a;2022-01-08;false;true
 1600;62bcb427-1159-49a8-9236-b16336b9ba63;2022-01-08;false;true
 500;1e0fd6c0-c392-48e2-b821-3f937c3c95aa;2022-01-08;false;true
@@ -79,3 +78,5 @@ At betale;Medlems ID;Dato for betaling;Er Betalt;Årligt kontingent
 1200;59574a4b-4b39-4980-92cb-e705849978bd;2022-01-08;false;true
 500;8ee12655-bc27-4faf-80e1-8c27964cb352;2022-01-08;false;true
 500;535366e2-2c18-476a-87dc-1380a858ceaf;2022-01-08;false;true
+1200;d54f8ec5-4538-4727-944f-087f39cdd9cd;2019-01-08;false;true
+1200;d54f8ec5-4538-4727-944f-087f39cdd9cd;2022-01-08;false;true
