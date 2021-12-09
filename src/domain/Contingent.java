@@ -166,6 +166,47 @@ public class Contingent {
         }
     }
 
+    public int yearlyContingent(List<Member> list) {
+        int total = 0;
+
+        for (Member member : list){
+            total += contingent.get(member.getMemberType().toLowerCase());
+        }
+
+        return  total;
+    }
+
+    public int getAveragePayment() {
+        return getExpectedIncome()/charges.size();
+    }
+
+    public int getLatePaymentTotal() {
+        LocalDate now = LocalDate.now();
+        int total = 0;
+
+        for (Charge charge : charges){
+            if (charge.getDueDate().isBefore(now) && !charge.paid)
+            total += charge.getCharge();
+        }
+
+        return  total;
+    }
+
+    public int getExpectedIncome() {
+        int total = 0;
+
+        for (Charge charge : charges) {
+            total += charge.getCharge();
+        }
+
+        return total;
+    }
+
+    public double getRelativeLatePayments() {
+
+        return (double) getLatePaymentTotal() / getExpectedIncome();
+    }
+
     private class Charge {
         private int charge;
         private Member member;

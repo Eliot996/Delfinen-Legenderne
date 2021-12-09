@@ -208,11 +208,12 @@ public class UserInterface {
                 5) Rediger en opkrævning
                 6) Se priser
                 7) Rediger priser
+                8) Statistik
                 
                 0) Tilbage til hovedmenu
                 
                 """);
-        return getInt(0,7);
+        return getInt(0,8);
     }
 
     public int editContingentmenu() {
@@ -225,6 +226,20 @@ public class UserInterface {
                                 
                 0) Annuller""");
         return getInt(0,4);
+    }
+
+    public int ContintgentStatistics() {
+        System.out.println("""
+                -------Kontingent statitsik-------
+                
+                1) Forvented indtægt
+                2) Årlig kontingent indtægt
+                3) Gennemsnitlig opkrævning
+                4) Hvor meget er der i restance?
+                5) Hvad andel af består restancelisten udgør i forhold til den forventede indtægt?
+                                
+                0) Annuller""");
+        return getInt(0,5);
     }
 
     public int getInt(int lowerLimit, int upperLimit) {

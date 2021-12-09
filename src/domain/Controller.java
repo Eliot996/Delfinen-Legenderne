@@ -26,7 +26,6 @@ public class Controller {
         initializeUsers();
         initializaData();
         //makeMockData();
-        //contingentController.generateCharges(memberController.getMembers());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -304,20 +303,6 @@ public class Controller {
         System.out.print("Indtast email på medlemmet: ");
         String email = ui.getString();
 
-        memberController.addMember(
-                isPassive,
-                name,
-                DOB,
-                phone,
-                email);
-    }
-
-    // for testing of Contingent
-    public void addMember(boolean isPassive,
-                          String name,
-                          LocalDate DOB,
-                          String phone,
-                          String email) {
         memberController.addMember(
                 isPassive,
                 name,
@@ -744,7 +729,7 @@ public class Controller {
     //*
     //**********************
 
-    public void contingentMenu() {
+    private void contingentMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
@@ -756,13 +741,14 @@ public class Controller {
                 case 5 -> editCharge();
                 case 6 -> seeContingentPrices();
                 case 7 -> editContingentPrices();
+                case 8 -> contingentStatistics();
 
                 case 0 -> keepRunning = false;
             }
         }
     }
 
-    public void addPayment() {
+    private void addPayment() {
         ui.print("Her kan du se alle medlemmerne i klubben");
         ui.print(memberController.getStringOfMembers());
 
@@ -783,7 +769,7 @@ public class Controller {
         ui.print(contingentController.getStringOfLatePayments());
     }
 
-    public void memberContingentPayed() {
+    private void memberContingentPayed() {
         ui.print(contingentController.getStringOfUnpaidPayments());
         ui.print("Indtast nummeret på den betaling som skal markeres som betalt, eller skriv '0' for at afbryde:");
         int choice = ui.getInt(0, contingentController.getAmountOfCharges()) - 1;
@@ -794,7 +780,7 @@ public class Controller {
         }
     }
 
-    public void editCharge() {
+    private void editCharge() {
         ui.print(contingentController.getStringOfCharges());
         ui.print("Hvilken opkrævning vil du redigere?, eller skriv '0' for at afbryde");
         int chargeIndex = ui.getInt(0, contingentController.getAmountOfCharges()) - 1;
@@ -827,7 +813,7 @@ public class Controller {
 
     }
 
-    public void seeContingentPrices() {
+    private void seeContingentPrices() {
         ui.print(contingentController.getStringOfContingents());
     }
 
@@ -848,6 +834,23 @@ public class Controller {
             contingentController.setContingentPrice(choice, ui.getInt(0, 99999));
         }
 
+    }
+
+    private void contingentStatistics() {
+        boolean keepRunning = true;
+
+        while (keepRunning) {
+            switch (ui.ContintgentStatistics()) {
+                case 1 -> ui.print("Der forventes at indkræves " + contingentController.getExpectedIncome() + "kr.");
+                case 2 -> ui.print("Årlige kontingent indtægt: " +
+                        contingentController.yearlyContingent(memberController.getMembers()) + "kr.");
+                case 3 -> ui.print("Den gennemsnitlige opkrævning lyder på " +
+                        contingentController.getAveragePayment()  + "kr.");
+                case 4 -> ui.print("Der er " + contingentController.getLatePaymentTotal() + "kr. i restance");
+                case 5 -> ui.print(String.format("Restance listen udgøre %.2f%% af den forventede indtægt",
+                        contingentController.getRelativeLatePayments()));
+            }
+        }
     }
 
     // **************
