@@ -21,12 +21,14 @@ public class Contingent {
     // *
     // ****************
 
-    public void generateCharges(List<Member> members) {
-        for (Member member : members) {
-            charges.add(new Charge(contingent.get(member.getMemberType().toLowerCase()),
-                    member,
-                    LocalDate.now()));
-        }
+    public void addCharge(Member member) {
+            addCharge(member, contingent.get(member.getMemberType().toLowerCase()));
+    }
+
+    public void addCharge(Member member, int amount) {
+        charges.add(new Charge(amount,
+                member,
+                LocalDate.now().plusDays(30)));
     }
 
     public Charge getCharge(int index) {
@@ -49,6 +51,38 @@ public class Contingent {
                     LocalDate.parse(elements[2]),
                     Boolean.parseBoolean(elements[3])));
         }
+
+        checkAndAddYearlyContigentCharge();
+    }
+
+    private void checkAndAddYearlyContigentCharge() {
+        ArrayList<Charge> latestChargesPerMember = new ArrayList<>();
+        sortCharges();
+
+        boolean contains = false;
+        for (Charge charge : charges) {
+            for (Charge latestChargePerMember : latestChargesPerMember) {
+                if (charge.getMember() == latestChargePerMember.getMember()) {
+                    contains = true;
+                    break;
+                }
+            }
+            if (!contains) {
+                latestChargesPerMember.add(charge);
+            }
+            contains = false;
+        }
+
+        LocalDate now = LocalDate.now();
+        for (Charge charge : latestChargesPerMember) {
+            if (charge.getDueDate().plusYears(1).isBefore(now)) {
+                addCharge(charge.member);
+            }
+        }
+    }
+
+    private void sortCharges() {
+        charges.sort(((o1, o2) -> o2.getDueDate().compareTo(o1.getDueDate())));
     }
 
     public String chargesToCSV() {
