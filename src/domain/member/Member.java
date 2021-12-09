@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Member {
     // attributter
-    private UUID memberID;
+    private final UUID memberID;
     private boolean isPassiveMember;
     private String name;
     private LocalDate dateOfBirth;
@@ -47,7 +47,7 @@ public class Member {
 
     public String getMemberType() {
         if(isPassiveMember){
-            return "passivt";
+            return "passivt medlem";
         } else {
             if (isPensioner()) {
                 return "pensionistmedlem";
@@ -138,10 +138,6 @@ public class Member {
 
     public UUID getMemberID() {
         return memberID;
-    }
-
-    public void setMemberID(UUID memberID) {
-        this.memberID = memberID;
     }
 }
 
