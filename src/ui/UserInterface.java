@@ -201,25 +201,27 @@ public class UserInterface {
         System.out.println("""
                 -------Kontingentmenu-------
                 
-                1) Opret kontingent for et medlem
-                2) Se betalingsoversigt
-                3) Redigere et medlems kontingent
-                4) Se priser
-                5) Se restanceliste
+                1) Opret kontingent opkrævninger for all medlemmer
+                2) Opret kontingent for et medlem
+                3) Se betalingsoversigt
+                4) Se overskredet betalinger
+                5) Rediger en opkravning
+                6) Se priser
+                7) Rediger priser
                 
                 0) Tilbage til hovedmenu
                 
                 """);
-        return getInt(0,5);
+        return getInt(0,7);
     }
 
     public int editContingentmenu() {
         System.out.println("""
                 Hvad vil du gerne ændre?
-                1) 
-                2) 
-                3)
-                4) 
+                1) Pris
+                2) Betalings dato
+                3) Betalingsstatus
+                4) Slet opkrævning
                                 
                 0) Annuller""");
         return getInt(0,4);
