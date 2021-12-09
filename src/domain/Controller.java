@@ -832,6 +832,21 @@ public class Controller {
     }
 
     private void editContingentPrices() {
+        ui.print(contingentController.getStringOfContingents());
+        ui.print("Hvilket Kontingent vil du ændre prisen på?, eller skriv '0' for at afbryde");
+        int contintgentIndex = ui.getInt(0, 4);
+
+        if (contintgentIndex != 0) {
+            String choice = null;
+            switch (contintgentIndex){
+                case 1 -> choice = "passivt medlem";
+                case 2 -> choice = "seniormedlem";
+                case 3 -> choice = "juniormedlem";
+                case 4 -> choice = "pensionistmedlem";
+            }
+            ui.print("Hvad skal den nye pris være?");
+            contingentController.setContingentPrice(choice, ui.getInt(0, 99999));
+        }
 
     }
 
@@ -849,7 +864,7 @@ public class Controller {
         FileHandler.writeToTeams(teamController.teamsToCSV());
         FileHandler.writeToCompetitions(resultController.competitionsToCSV());
         FileHandler.writeToResults(resultController.resultToCSV());
-        // FileHandler.writeToContingent(contingentController.ContigentToCSV()); is it nessecary?
+        FileHandler.writeToContingent(contingentController.ContigentToCSV());
         FileHandler.writeToCharges(contingentController.chargesToCSV());
     }
 

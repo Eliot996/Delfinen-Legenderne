@@ -36,6 +36,10 @@ public class Contingent {
                 yearlyCharge));
     }
 
+    public int getChargeAmount(int index) {
+        return charges.get(index).getCharge();
+    }
+
     public Charge getCharge(int index) {
         return charges.get(index);
     }
@@ -251,6 +255,10 @@ public class Contingent {
         }
 
         return sb.toString();
+    }
+
+    public void setContingentPrice(String memberType, int price) {
+        contingent.put(memberType, price);
     }
 
     public String ContigentToCSV() {
