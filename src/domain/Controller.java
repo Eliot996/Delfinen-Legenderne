@@ -780,11 +780,18 @@ public class Controller {
     }
 
     private void seeLatePayments() {
-
+        ui.print(contingentController.getStringOfLatePayments());
     }
 
     public void memberContingentPayed() {
+        ui.print(contingentController.getStringOfUnpaidPayments());
+        ui.print("Indtast nummeret på den betaling som skal markeres som betalt, eller skriv '0' for at afbryde:");
+        int choice = ui.getInt(0, contingentController.getAmountOfCharges()) - 1;
 
+        if (choice != -1) {
+            contingentController.markPaid(choice);
+            ui.print("Betaling registreret");
+        }
     }
 
     public void editContingent() {
