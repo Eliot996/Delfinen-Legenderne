@@ -166,6 +166,7 @@ public class Controller {
             boolean isPassive = ui.getBoolean();
 
             memberController.addTrainer(isPassive, name, DOB, phoneNumber, email);
+            contingentController.addCharge(memberController.getMember(memberController.getAmountOfMembers()- 1));
 
             ui.print(name + " er blevet oprettet som træner");
         }
@@ -199,6 +200,7 @@ public class Controller {
             boolean isPassive = ui.getBoolean();
 
             memberController.addCompetitor(isPassive, name, DOB, phoneNumber, email);
+            contingentController.addCharge(memberController.getMember(memberController.getAmountOfMembers()- 1));
 
             ui.print(name + " er blevet oprettet som konkurrencesvømmer");
         }
@@ -309,6 +311,7 @@ public class Controller {
                 DOB,
                 phone,
                 email);
+        contingentController.addCharge(memberController.getMember(memberController.getAmountOfMembers()- 1));
     }
 
     //**********************
@@ -737,7 +740,7 @@ public class Controller {
                 case 1 -> addPayment();
                 case 2 -> seeContigents();
                 case 3 -> seeLatePayments();
-                case 4 -> memberContingentPayed();
+                case 4 -> memberContingentPaid();
                 case 5 -> editCharge();
                 case 6 -> seeContingentPrices();
                 case 7 -> editContingentPrices();
@@ -769,7 +772,7 @@ public class Controller {
         ui.print(contingentController.getStringOfLatePayments());
     }
 
-    private void memberContingentPayed() {
+    private void memberContingentPaid() {
         ui.print(contingentController.getStringOfUnpaidPayments());
         ui.print("Indtast nummeret på den betaling som skal markeres som betalt, eller skriv '0' for at afbryde:");
         int choice = ui.getInt(0, contingentController.getAmountOfCharges()) - 1;
