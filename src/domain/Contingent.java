@@ -148,6 +148,10 @@ public class Contingent {
         return sb.toString();
     }
 
+    public void markPaid(int index) {
+        charges.get(index).setPaid(true);
+    }
+
     private class Charge {
         private int charge;
         private Member member;
