@@ -753,7 +753,7 @@ public class Controller {
                 case 2 -> seeContigents();
                 case 3 -> seeLatePayments();
                 case 4 -> memberContingentPayed();
-                case 5 -> editContingent();
+                case 5 -> editCharge();
                 case 6 -> seeContingentPrices();
                 case 7 -> editContingentPrices();
 
@@ -794,7 +794,36 @@ public class Controller {
         }
     }
 
-    public void editContingent() {
+    public void editCharge() {
+        ui.print(contingentController.getStringOfCharges());
+        ui.print("Hvilken opkrævning vil du redigere?, eller skriv '0' for at afbryde");
+        int chargeIndex = ui.getInt(0, contingentController.getAmountOfCharges()) - 1;
+
+        if (chargeIndex != -1) {
+            switch (ui.editContingentmenu()) {
+                case 1 -> {
+                    ui.print("Hvad vil du ændre prisen til?");
+                    contingentController.editCharge(chargeIndex, "price",
+                            Integer.toString(ui.getInt(0, 99999)));
+                }
+                case 2 -> {
+                    ui.print("Hvilken dato skal den ændres til?");
+                    LocalDate date = ui.getDate();
+                    contingentController.editCharge(chargeIndex, "date", date.toString());
+                }
+                case 3 -> {
+                    ui.print("Er denne opkrævning betalt?");
+                    contingentController.editCharge(chargeIndex, "paid", ui.getBoolean().toString());
+                }
+                case 4 -> {
+                    ui.print("Er du sikker på at du vil slette denne opkrævning?");
+                    boolean choice = ui.getBoolean();
+                    if (choice) {
+                        contingentController.editCharge(chargeIndex, "delete", "delete");
+                    }
+                }
+            }
+        }
 
     }
 

@@ -133,7 +133,6 @@ public class Contingent {
     }
 
     public String getStringOfUnpaidPayments() {
-        LocalDate now = LocalDate.now();
         StringBuilder sb = new StringBuilder();
         int index = 1;
 
@@ -152,19 +151,23 @@ public class Contingent {
         charges.get(index).setPaid(true);
     }
 
+    public void editCharge(int index, String what, String to) {
+        Charge charge = charges.get(index);
+
+        switch (what) {
+            case "price" -> charge.setCharge(Integer.parseInt(to));
+            case "date"  -> charge.setDueDate(LocalDate.parse(to));
+            case "paid"  -> charge.setPaid(Boolean.parseBoolean(to));
+            case "delete" -> charges.remove(charge);
+        }
+    }
+
     private class Charge {
         private int charge;
         private Member member;
         private LocalDate dueDate;
         private boolean paid = false;
-        private boolean yearlyCharge;
-
-        public Charge(int charge, Member member, LocalDate dueDate) {
-            this.charge = charge;
-            this.member = member;
-            this.dueDate = dueDate;
-            this.yearlyCharge = true;
-        }
+        private final boolean yearlyCharge;
 
         public Charge(int charge, Member member, LocalDate dueDate, boolean yearlyCharge) {
             this.charge = charge;
