@@ -828,7 +828,7 @@ public class Controller {
     }
 
     public void seeContingentPrices() {
-
+        ui.print(contingentController.getStringOfContingents());
     }
 
     private void editContingentPrices() {

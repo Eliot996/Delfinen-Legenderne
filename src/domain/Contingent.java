@@ -168,7 +168,6 @@ public class Contingent {
         private LocalDate dueDate;
         private boolean paid = false;
         private final boolean yearlyCharge;
-
         public Charge(int charge, Member member, LocalDate dueDate, boolean yearlyCharge) {
             this.charge = charge;
             this.member = member;
@@ -231,13 +230,28 @@ public class Contingent {
         public boolean isYearlyCharge() {
             return yearlyCharge;
         }
+
     }
 
     // ****************
     // *
-    // * CSV
+    // * contingent
     // *
     // ****************
+
+    public String getStringOfContingents() {
+        StringBuilder sb = new StringBuilder();
+        int index = 1;
+
+        for (Map.Entry<String, Integer> entry : contingent.entrySet()) {
+            sb.append(index).append(". ");
+            sb.append(entry.getKey()).append(": ");
+            sb.append(entry.getValue()).append('\n');
+            index++;
+        }
+
+        return sb.toString();
+    }
 
     public String ContigentToCSV() {
         StringBuilder sb = new StringBuilder("Navn(MÅ IKKE ÆNDRES);Pris\n");
