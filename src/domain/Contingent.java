@@ -3,21 +3,54 @@ package domain;
 import domain.member.Member;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class Contingent {
     HashMap<String, Integer> contingent = new HashMap<>();
     ArrayList<Charge> charges = new ArrayList<>();
+    Controller controller;
+
+    public Contingent(Controller controller) {
+        this.controller = controller;
+    }
 
     // ****************
     // *
     // * Charge
     // *
     // ****************
+
+    public Charge getCharge(int index) {
+        return charges.get(index);
+    }
+
+    public int getAmountOfCharges() {
+        return charges.size();
+    }
+
+    public void initCharges(List<String> csvs) {
+        csvs.remove(0);// TODO: 09/12/2021 Temp, needs to be redone, to include in Filehandler
+
+
+        for (String csv: csvs) {
+            String[] elements = csv.split(";");
+            charges.add(new Charge(Integer.parseInt(elements[0]),
+                    controller.getMember(elements[1]),
+                    LocalDate.parse(elements[2]),
+                    Boolean.parseBoolean(elements[3])));
+        }
+    }
+
+    public String chargesToCSV() {
+        StringBuilder sb = new StringBuilder("At betale;Medlems ID;Dato for betaling;Er Betalt\n");
+
+        for (Charge charge : charges) {
+            sb.append(charge.toCSV()).append('\n');
+        }
+
+        return sb.toString();
+    }
 
     private class Charge {
         private int charge;
@@ -29,6 +62,13 @@ public class Contingent {
             this.charge = charge;
             this.member = member;
             this.dueDate = dueDate;
+        }
+
+        public Charge(int charge, Member member, LocalDate dueDate, Boolean paid) {
+            this.charge = charge;
+            this.member = member;
+            this.dueDate = dueDate;
+            this.paid = paid;
         }
 
         public String toCSV() {
@@ -86,11 +126,10 @@ public class Contingent {
     }
 
     public void initContingents(List<String> csvs) {
-        csvs.remove(0);
+        csvs.remove(0); // TODO: 09/12/2021 Temp, needs to be redone, to include in Filehandler
         for (String csv: csvs) {
             String[] elements = csv.split(";");
             contingent.put(elements[0], Integer.parseInt(elements[1]));
-            System.out.println(contingent.get(elements[0]));
         }
     }
 }

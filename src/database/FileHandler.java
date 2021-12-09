@@ -17,6 +17,7 @@ public class FileHandler {
     private static final String COMPETITIONS = "data/competitions.csv";
     private static final String COMPETITORS_RESULTS = "data/results.csv";
     private static final String CONTINGENT = "data/contingent.csv";
+    private static final String CHARGES = "data/charges.csv";
 
     //**********************
     //*
@@ -97,6 +98,14 @@ public class FileHandler {
         }
     }
 
+    public static List<String> getChargesFromFile() {
+        try {
+            return readFromFile(CHARGES);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
     //**********************
     //*
     //* write to file
@@ -117,27 +126,39 @@ public class FileHandler {
     public static void writeToUsers(String toWrite) {
         writeToFile(USERS, toWrite);
     }
+
     public static void writeToMembers(String toWrite) {
         writeToFile(MEMBERS, toWrite);
     }
+
     public static void writeToTrainers(String toWrite) {
         writeToFile(TRAINERS,toWrite);
     }
+
     public static void writeToCompetitors(String toWrite) {
         writeToFile(COMPETITORS, toWrite);
     }
+
     public static void writeToTeams(String toWrite) {
         writeToFile(TEAMS, toWrite);
     }
+
     public static void writeToCompetitions(String toWrite) {
         writeToFile(COMPETITIONS, toWrite);
     }
+
     public static void writeToResults(String toWrite) {
         writeToFile(COMPETITORS_RESULTS, toWrite);
     }
+
     public static void writeToContingent(String toWrite) {
         writeToFile(CONTINGENT, toWrite);
     }
+
+    public static void writeToCharges(String toWrite) {
+        writeToFile(CHARGES, toWrite);
+    }
+
 }
 // Delfinen
 /*

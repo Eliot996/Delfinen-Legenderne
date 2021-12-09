@@ -1,11 +1,11 @@
 package domain;
 
+import domain.member.Member;
 import domain.member.MemberController;
 import domain.result.ResultController;
 import domain.team.TeamController;
 import ui.UserInterface;
 import database.FileHandler;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,7 +18,7 @@ public class Controller {
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController(memberController);
     TeamController teamController = new TeamController(memberController);
-    Contingent contingentController = new Contingent();
+    Contingent contingentController = new Contingent(this);
     UserInterface ui = new UserInterface();
 
 
@@ -314,6 +314,20 @@ public class Controller {
         System.out.print("Indtast email på medlemmet: ");
         String email = ui.getString();
 
+        memberController.addMember(
+                isPassive,
+                name,
+                DOB,
+                phone,
+                email);
+    }
+
+    // for testing of Contingent
+    public void addMember(boolean isPassive,
+                          String name,
+                          LocalDate DOB,
+                          String phone,
+                          String email) {
         memberController.addMember(
                 isPassive,
                 name,
@@ -790,9 +804,10 @@ public class Controller {
         FileHandler.writeToCompetitions(resultController.competitionsToCSV());
         FileHandler.writeToResults(resultController.resultToCSV());
         FileHandler.writeToContingent(contingentController.ContigentToCSV());
+        FileHandler.writeToCharges(contingentController.chargesToCSV());
     }
 
-    private void initializaData() {
+    public void initializaData() {
         memberController.initMembers(FileHandler.getMEMBERSFromFile());
         memberController.initCompetitors(FileHandler.getCOMPETITORSFromFile());
         memberController.initTrainers(FileHandler.getTRAINERSFromFile());
@@ -800,6 +815,7 @@ public class Controller {
         resultController.initCompetitions(FileHandler.getCOMPETITIONSFromFile());
         resultController.initResults(FileHandler.getCOMPETITORS_RESULTFromFile());
         contingentController.initContingents(FileHandler.getCONTINGENTFromFile());
+        //contingentController.initCharges(FileHandler.getChargesFromFile());
     }
 
     private void initializeUsers() {
@@ -905,5 +921,9 @@ public class Controller {
 
             System.out.println(teamController.getTeamFromIndex(teamController.getAmountOfTeams() - 1));
         }
+    }
+
+    public Member getMember(String memberID) {
+        return memberController.getMemberFromUUID(memberID);
     }
 }
