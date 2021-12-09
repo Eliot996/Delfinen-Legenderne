@@ -18,6 +18,7 @@ public class Controller {
     MemberController memberController = new MemberController();
     ResultController resultController = new ResultController(memberController);
     TeamController teamController = new TeamController(memberController);
+    Contingent contingentController = new Contingent();
     UserInterface ui = new UserInterface();
 
 
@@ -788,7 +789,7 @@ public class Controller {
         FileHandler.writeToTeams(teamController.teamsToCSV());
         FileHandler.writeToCompetitions(resultController.competitionsToCSV());
         FileHandler.writeToResults(resultController.resultToCSV());
-        // FileHandler.writeToContingent(); //TODO: lav det færdigt.
+        FileHandler.writeToContingent(contingentController.ContigentToCSV());
     }
 
     private void initializaData() {
@@ -798,7 +799,7 @@ public class Controller {
         teamController.initTeams(FileHandler.getTEAMSFromFile());
         resultController.initCompetitions(FileHandler.getCOMPETITIONSFromFile());
         resultController.initResults(FileHandler.getCOMPETITORS_RESULTFromFile());
-        //contingent.initContingents(fileHandler.getCONTINGENTFromFile()); TODO: fix
+        contingentController.initContingents(FileHandler.getCONTINGENTFromFile());
     }
 
     private void initializeUsers() {
