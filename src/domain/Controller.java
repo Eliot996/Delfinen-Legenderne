@@ -120,7 +120,7 @@ public class Controller {
     //* Member
     //*
     //**********************
-    public void memberMenu() {
+    private void memberMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
@@ -204,7 +204,7 @@ public class Controller {
         }
     }
 
-    public void seeMember() {
+    private void seeMember() {
         ui.print("Her kan du se medlemmerne af svømmeklubben: ");
         ui.print(memberController.getStringOfMembers());
 
@@ -291,7 +291,7 @@ public class Controller {
         }
     }
 
-    public void addMember() {
+    private void addMember() {
         System.out.print("Er brugeren passive? ");
         boolean isPassive = ui.getBoolean();
         System.out.print("Indtast navn på medlemmet: ");
@@ -317,7 +317,7 @@ public class Controller {
     //*
     //**********************
 
-    public void teamMenu() {
+    private void teamMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
@@ -332,7 +332,7 @@ public class Controller {
         }
     }
 
-    public void addTeam() {
+    private void addTeam() {
         ui.print("Navn: ");
         String name = ui.getString();
         ui.print("Beskrivelse: ");
@@ -341,7 +341,7 @@ public class Controller {
         teamController.addTeam(name, description);
     }
 
-    public void deleteTeam() {
+    private void deleteTeam() {
         ui.print("Her kan du se svømmeklubbens hold: ");
         ui.print(teamController.getStringOfTeams());
 
@@ -397,7 +397,7 @@ public class Controller {
         }
     }
 
-    public void seeTeam() {
+    private void seeTeam() {
         ui.print("Her kan du se svømmeklubbens hold: ");
         ui.print(teamController.getStringOfTeams());
 
@@ -415,7 +415,7 @@ public class Controller {
     //*
     //**********************
 
-    public void competitionMenu() {
+    private void competitionMenu() {
         boolean keepRunning = true;
         while (keepRunning) {
             int choice = ui.competitionMenu();
@@ -429,7 +429,7 @@ public class Controller {
         }
     }
 
-    public void addCompetition() {
+    private void addCompetition() {
         ui.print("Stævnenavn: ");
         String competitionName = ui.getString();
         ui.print("Adresse: ");
@@ -441,7 +441,7 @@ public class Controller {
 
     }
 
-    public void deleteCompetition() {
+    private void deleteCompetition() {
         ui.print("Vælg hvilket stævne du ønsker at slette ud fra listen herunder\n");
         ui.print(resultController.getStringOfCompetitions());
         ui.print("Indtast indekset på det stævne du ønsker at slette");
@@ -604,7 +604,7 @@ public class Controller {
     //*
     //**********************
 
-    public void resultMenu() {
+    private void resultMenu() {
         boolean keepRunning = true;
 
         while (keepRunning) {
