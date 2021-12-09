@@ -22,13 +22,18 @@ public class Contingent {
     // ****************
 
     public void addCharge(Member member) {
-            addCharge(member, contingent.get(member.getMemberType().toLowerCase()));
+        addCharge(member, contingent.get(member.getMemberType().toLowerCase()), true);
     }
 
     public void addCharge(Member member, int amount) {
+        addCharge(member, amount, false);
+    }
+
+    public void addCharge(Member member, int amount, boolean yearlyCharge) {
         charges.add(new Charge(amount,
                 member,
-                LocalDate.now().plusDays(30)));
+                LocalDate.now().plusDays(30),
+                yearlyCharge));
     }
 
     public Charge getCharge(int index) {
@@ -45,7 +50,6 @@ public class Contingent {
 
 
         for (String csv: csvs) {
-            System.out.println(csv);
             String[] elements = csv.split(";");
             charges.add(new Charge(Integer.parseInt(elements[0]),
                     controller.getMember(elements[1]),
@@ -94,6 +98,19 @@ public class Contingent {
 
         for (Charge charge : charges) {
             sb.append(charge.toCSV()).append('\n');
+        }
+
+        return sb.toString();
+    }
+
+    public String getStringOfCharges() {
+        StringBuilder sb = new StringBuilder();
+        int index = 1;
+
+        for (Charge charge : charges) {
+            sb.append(index).append(". ");
+            sb.append(charge).append('\n');
+            index++;
         }
 
         return sb.toString();

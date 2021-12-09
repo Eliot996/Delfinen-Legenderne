@@ -26,6 +26,7 @@ public class Controller {
         initializeUsers();
         initializaData();
         //makeMockData();
+        //contingentController.generateCharges(memberController.getMembers());
 
         memberController.setTeamController(teamController);
         ui.hello();
@@ -748,23 +749,38 @@ public class Controller {
 
         while (keepRunning) {
             switch (ui.contingentMenu()) {
-                case 1 -> addContingent();
-                case 2 -> memberContingentPayed();
-                case 3 -> editContingent();
-                case 4 -> seeContingentPrices();
-                case 5 -> seeArrearsList();
+                case 1 -> addPayment();
+                case 2 -> seeContigents();
+                case 3 -> seeLatePayments();
+                case 4 -> memberContingentPayed();
+                case 5 -> editContingent();
+                case 6 -> seeContingentPrices();
+                case 7 -> editContingentPrices();
 
                 case 0 -> keepRunning = false;
             }
         }
     }
 
-    public void addContingent() {
+    public void addPayment() {
         ui.print("Her kan du se alle medlemmerne i klubben");
         ui.print(memberController.getStringOfMembers());
-        ui.print("Indtast det medlem du vil tilføje et kontingent på");
 
-        contingentController.generateCharges(memberController.getMembers());
+        ui.print("Indtast det medlem du vil tilføje en opkrævning på");
+        int memberIndex = ui.getInt(0, memberController.getAmountOfMembers()) - 1;
+
+        ui.print("Hvor meget skal der opkræves?");
+        int amount = ui.getInt(0, 99999);
+
+        contingentController.addCharge(memberController.getMember(memberIndex), amount);
+    }
+
+    private void seeContigents() {
+        ui.print(contingentController.getStringOfCharges());
+    }
+
+    private void seeLatePayments() {
+
     }
 
     public void memberContingentPayed() {
@@ -779,10 +795,15 @@ public class Controller {
 
     }
 
-    //arrearsList er restance listen
-    public void seeArrearsList() {
+    private void editContingentPrices() {
 
     }
+
+    // **************
+    // *
+    // * DATA
+    // *
+    // **************
 
     private void saveData() {
         FileHandler.writeToUsers(userToCSV());

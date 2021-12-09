@@ -201,7 +201,7 @@ public class UserInterface {
         System.out.println("""
                 -------Kontingentmenu-------
                 
-                1) Opret kontingent for et medlem
+                1) Opret opkrævning for et medlem
                 2) Se betalingsoversigt
                 3) Se overskredet betalinger
                 4) Registre betaling
