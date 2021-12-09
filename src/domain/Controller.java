@@ -78,19 +78,8 @@ public class Controller {
     private void userMenuSelector() {
         switch (activeUser.getRole()) {
             case ADMIN   -> adminMenu();
-            case CASHIER -> cashierMenu();
+            case CASHIER -> contingentMenu();
             case TRAINER -> trainerMenu();
-        }
-    }
-
-    private void cashierMenu() {
-        boolean keepRunning = true;
-
-        while (keepRunning) {
-            switch (ui.getInt(0,1)) {
-                case 1 -> contingentMenu();
-                case 0 -> keepRunning = false;
-            }
         }
     }
 
@@ -775,7 +764,7 @@ public class Controller {
         ui.print(memberController.getStringOfMembers());
         ui.print("Indtast det medlem du vil tilføje et kontingent på");
 
-
+        contingentController.generateCharges(memberController.getMembers());
     }
 
     public void memberContingentPayed() {
@@ -803,7 +792,7 @@ public class Controller {
         FileHandler.writeToTeams(teamController.teamsToCSV());
         FileHandler.writeToCompetitions(resultController.competitionsToCSV());
         FileHandler.writeToResults(resultController.resultToCSV());
-        FileHandler.writeToContingent(contingentController.ContigentToCSV());
+        // FileHandler.writeToContingent(contingentController.ContigentToCSV()); is it nessecary?
         FileHandler.writeToCharges(contingentController.chargesToCSV());
     }
 
@@ -815,7 +804,7 @@ public class Controller {
         resultController.initCompetitions(FileHandler.getCOMPETITIONSFromFile());
         resultController.initResults(FileHandler.getCOMPETITORS_RESULTFromFile());
         contingentController.initContingents(FileHandler.getCONTINGENTFromFile());
-        //contingentController.initCharges(FileHandler.getChargesFromFile());
+        contingentController.initCharges(FileHandler.getChargesFromFile());
     }
 
     private void initializeUsers() {
